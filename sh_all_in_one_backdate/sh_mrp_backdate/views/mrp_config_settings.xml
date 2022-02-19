@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sh_mrp_backdate_res_config_settings" model="ir.ui.view">
+        <field name="name">MRP Backdate Settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="mrp.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='mrp']" position="inside">
+                <h2>MRP Backdate Settings</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="enable_backdate_for_mrp" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="enable_backdate_for_mrp" />
+                            <div class="text-muted">
+                               
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="remark_for_mrp_production" attrs="{'invisible': [('enable_backdate_for_mrp','=',False)]}"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="remark_for_mrp_production" attrs="{'invisible': [('enable_backdate_for_mrp','=',False)]}"/>
+                            <div class="text-muted">
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="remark_mandatory_for_mrp_production" attrs="{'invisible': ['|',('enable_backdate_for_mrp','=',False),('remark_for_mrp_production','=',False)]}" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="remark_mandatory_for_mrp_production" attrs="{'invisible': ['|',('enable_backdate_for_mrp','=',False),('remark_for_mrp_production','=',False)]}"/>
+                            <div class="text-muted">
+                               
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                        </div>
+                        <div class="o_setting_right_pane">
+                        </div>
+                    </div>
+                </div>
+
+            </xpath>
+            
+        </field>
+    </record>
+</odoo>

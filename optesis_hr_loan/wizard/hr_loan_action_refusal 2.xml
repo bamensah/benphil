@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Loan refusal -->
+        <record id="hr_loan_refusal_form" model="ir.ui.view">
+            <field name="name">Mettre la motivation</field>
+            <field name="model">loan.refusal.motivation</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Motif du refus">
+                    <div>
+                        <field name="loan_request" invisible="1"/>
+                    </div>
+                            <field name="motivation"/>
+                    <footer>
+                        <button name="refuse" string="Rejeter" type="object" class="oe_highlight"/>
+                        ou
+                        <button special="cancel" string="Annuler" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="hr_loan_refusal" model="ir.actions.act_window">
+            <field name="name">Motif du refus</field>
+            <field name="res_model">hr.loan</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            
+            <field name="binding_model_id" ref="model_loan_refusal_motivation"/>
+            <field name="binding_view_types">form</field>
+        </record>
+        <!--act_window name="Motif du refus"
+                    res_model="loan.refusal.motivation"
+                    src_model="hr.loan"
+                    view_mode="form"
+                    target="new"
+                    key2="client_action_multi"
+                    id="hr_loan_refusal"/-->
+
+    </data>
+</odoo>

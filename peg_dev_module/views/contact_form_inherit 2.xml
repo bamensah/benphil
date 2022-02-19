@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="res_partner_form_peg_inherit">
+            <field name="name">res.partner.form.peg.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="contact_type" option="{'no_quick_create': True, 'no_create_edit' : True}" widget="many2many_tags" string="Contact Type" />
+                    <field name="gender" />
+                    <field name="marital_status" />
+                    <field name="number_of_dependents" />
+                    <field name="education_level_id" option="{'no_quick_create': True, 'no_create_edit' : True}" />
+                    <field name="primary_occupation_id" option="{'no_quick_create': True, 'no_create_edit' : True}" />
+                    <field name="secondary_occupation_id" option="{'no_quick_create': True, 'no_create_edit' : True}" />
+                    <field name="crop_id" option="{'no_quick_create': True, 'no_create_edit' : True}" attrs="{ 'invisible':[('agric_occupation','=',False)] }" />
+                    <field name="livestock_id" option="{'no_quick_create': True, 'no_create_edit' : True}" attrs="{ 'invisible':[('agric_occupation','=',False)] }" />
+                    <field name="agric_occupation" invisible="1" />
+                    <field name="manual_withhold_rate" string="Withhold Rate (%)" readonly="1" attrs="{'invisible':[('manual_withhold_rate','&lt;', 0)]}"/>
+                    <field name="computed_withhold_rate" string="Withhold Rate (%)" readonly="1" attrs="{'invisible':[('manual_withhold_rate','&gt;=', 0)]}"/>
+
+                </xpath>
+
+                <!-- expr is not correct -->
+<!--                <xpath expr="//form/sheet/group/group/label[@for='phone']" position="before">-->
+                <xpath expr="//field[@name='function']" position="after">
+                    <field name="mobile_payment_number" widget="phone" />
+                </xpath>
+
+                <xpath expr="//page[@name='sales_purchases']" position="after">
+                    <page string="Location Description">
+                    <group string="Descriptions">
+                        <field name="location_description" string="Location Description" />
+                        <field name="contact_district" string="Town/District" widget="text" />
+                    </group>
+                    </page>
+                </xpath>
+
+                <xpath expr="//field[@name='lang']" position="before">
+                    <field name="id_type_id" options="{'no_create_edit': True}" />
+                </xpath>
+
+                <xpath expr="//field[@name='lang']" position="before">
+                    <field name="id_number" />
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <record id="action_contact_district_tree" model="ir.actions.act_window">
+            <field name="name">Towns/Districts Coordinates</field>
+            <field name="res_model">contact.district</field>
+            <field name="view_mode">tree,form</field>
+<!--            <field name="view_type">form</field>-->
+        </record>
+
+        <record id="action_contact_region_tree" model="ir.actions.act_window">
+            <field name="name">Regions</field>
+            <field name="res_model">contact.region</field>
+            <field name="view_mode">tree,form</field>
+<!--            <field name="view_type">form</field>-->
+        </record>
+
+
+        <record id="contact_district_tree_view" model="ir.ui.view">
+            <field name="name">Towns/Districts</field>
+            <field name="model">contact.district</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree name="Towns/Districts">
+                    <field name="name" />
+                    <field name="name2" />
+                    <field name="region" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="contact_region_tree_view" model="ir.ui.view">
+            <field name="name">Regions</field>
+            <field name="model">contact.region</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree name="Regions">
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_contact_occupation_view" model="ir.actions.act_window">
+            <field name="name">Contact Occupations</field>
+            <field name="res_model">contact.occupation</field>
+            <field name="view_mode">tree,form</field>
+<!--            <field name="view_type">form</field>-->
+        </record>
+
+        <record id="action_contact_crop_view" model="ir.actions.act_window">
+            <field name="name">Contact Crops</field>
+            <field name="res_model">contact.crop</field>
+            <field name="view_mode">tree,form</field>
+<!--            <field name="view_type">form</field>-->
+        </record>
+
+        <record id="action_contact_livestock_view" model="ir.actions.act_window">
+            <field name="name">Contact Livestock</field>
+            <field name="res_model">contact.livestock</field>
+            <field name="view_mode">tree,form</field>
+<!--            <field name="view_type">form</field>-->
+        </record>
+
+        <record id="action_contact_education_level_view" model="ir.actions.act_window">
+            <field name="name">Contact Education Level</field>
+            <field name="res_model">contact.education_level</field>
+            <field name="view_mode">tree,form</field>
+<!--            <field name="view_type">form</field>-->
+        </record>
+
+        <record id="view_save_partner_withhold_payment_rate" model="ir.ui.view">
+            <field name="name">Set Withhold Payment Rate</field>
+            <field name="model">set.withhold_payment_rate.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <p class="oe_grey">
+                            Set Withhold Payment Rate for Clients.
+                        </p>
+                        <field name="rate" widget="selection" />
+                        <footer>
+                            <button name="save_rate" string="Save" type="object" class="btn-primary" />
+                            <button string="Cancel" class="btn-secondary" special="cancel" />
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="action_view_sale_order_cancel" model="ir.actions.act_window">
+            <field name="name">Set Withhold Payment Rate</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">set.withhold_payment_rate.wizard</field>
+            <field name="binding_model_id" ref="base.model_res_partner" />
+<!--            <field name="view_type">form</field>-->
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="contact_district_menu" name="Contact Towns" parent="contacts.res_partner_menu_config" sequence="10" action="action_contact_district_tree" />
+        <menuitem id="contact_region_menu" name="Contact Regions" parent="contacts.res_partner_menu_config" sequence="11" action="action_contact_region_tree" />
+        <menuitem id="contact_occupation_menu" name="Contact Occupations" parent="contacts.res_partner_menu_config" sequence="12" action="action_contact_occupation_view" />
+        <menuitem id="contact_crop_menu" name="Contact Crops" parent="contacts.res_partner_menu_config" sequence="13" action="action_contact_crop_view" />
+        <menuitem id="contact_livestock_menu" name="Contact Livestock" parent="contacts.res_partner_menu_config" sequence="14" action="action_contact_livestock_view" />
+        <menuitem id="contact_education_level_menu" name="Contact Education Level" parent="contacts.res_partner_menu_config" sequence="15" action="action_contact_education_level_view" />
+
+    </data>
+</odoo>

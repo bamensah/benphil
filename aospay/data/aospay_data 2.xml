@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- Concernant la codification des contributions, si quelqu'un sait où trouver une codification officielle on migrera dessus. En attendant les code des cotisations sont mis au hasard -->
+
+<!--   Rule Category -->
+
+    
+    <record id="hr_payroll.NET" model="hr.salary.rule.category">
+        <field name="name">Salaire Net</field>
+        <field name="code">NET</field>
+        <field name="parent_id" eval="False"/>
+    </record>
+
+    <record id="hr_payroll.GROSS" model="hr.salary.rule.category">
+        <field name="name">Salaire Brut</field>
+        <field name="code">GROSS</field>
+        <field name="parent_id" eval="False"/>
+    </record>
+
+    <record id="hr_payroll.BASIC" model="hr.salary.rule.category">
+        <field name="name">Salaire de base</field>
+        <field name="code">BASIC</field>
+        <field name="parent_id" eval="False"/>
+    </record>
+
+    <record id="hr_payroll.ALW" model="hr.salary.rule.category">
+        <field name="name">Indemnite</field>
+        <field name="code">ALW</field>
+        <field name="parent_id" eval="False"/>
+    </record>
+
+    <record id="hr_payroll.DED" model="hr.salary.rule.category">
+        <field name="name">Deduction</field>
+        <field name="code">DED</field>
+        <field name="parent_id" eval="False"/>
+    </record>
+
+    <record id="B_calcul" model="hr.salary.rule.category">
+        <field name="name">Base de Calcul</field>
+        <field name="code">BDC</field>
+        <field name="parent_id" eval="False"/>
+    </record>
+	
+	<record id="hr_payroll.COMP" model="hr.salary.rule.category">
+        <field name="name">Cotisations Patronales</field>
+        <field name="code">COMP</field>
+        <field name="parent_id" eval="False"/>
+    </record>
+
+    <!-- Contribution Register -->
+
+    <!--record id="contrib_registre_inps" model="hr.contribution.register">
+        <field name="name">INPS</field>
+    </record>
+	
+	<record id="contrib_registre_amo" model="hr.contribution.register">
+        <field name="name">AMO</field>
+    </record>
+	
+	<record id="contrib_registre_its" model="hr.contribution.register">
+        <field name="name">Impôts du Mali</field>
+    </record-->
+
+	<!-- Salary Structure -->
+    <record id="structure_migr" model="hr.payroll.structure">
+        <field name="name">Basic Pay</field>
+        <field name="type_id" ref="hr_contract.structure_type_employee"/>
+        <field name="unpaid_work_entry_type_ids" eval="[(4, ref('hr_work_entry_contract.work_entry_type_unpaid_leave'))]"/>
+        <field name="country_id" eval="False"/>
+    </record>
+        <!-- Salary Structure -->
+	
+	<record id="hr_payroll_salary_structure_salaire_non_cadre" model="hr.payroll.structure">
+<!--        <field name="code">SNC</field>-->
+        <field name="name">Salaire non-cadre</field>
+        <!--field eval="[(6, 0, [ref('hr_rule_sbm'), ref('hr_rule_ss'), ref('hr_rule_indd'), ref('hr_rule_inds91'),ref('hr_rule_inds73'),ref('hr_rule_pcvie'),ref('hr_rule_presp'),ref('hr_rule_brut'),ref('hr_rule_inps'),ref('hr_rule_amo'),ref('hr_rule_its'),ref('hr_rule_ttr'),ref('hr_rule_cft'),ref('hr_rule_tlg'),ref('hr_rule_tcp'),ref('hr_rule_cte'),ref('hr_rule_nap')])]" name="rule_ids"/-->
+        <field name="country_id" eval="False"/>
+        <field name="type_id" ref="hr_contract.structure_type_employee"/>
+    </record>
+	
+	<record id="hr_payroll_salary_structure_salaire_cadre" model="hr.payroll.structure">
+<!--        <field name="code">SC</field>-->
+        <field name="name">Salaire cadre</field>
+        <!--field eval="[(6, 0, [ref('hr_rule_sbm'), ref('hr_rule_ss'), ref('hr_rule_indd'), ref('hr_rule_inds91'),ref('hr_rule_inds73'),ref('hr_rule_pcvie'),ref('hr_rule_presp'),ref('hr_rule_brut'),ref('hr_rule_inps'),ref('hr_rule_amo'),ref('hr_rule_its'),ref('hr_rule_ttr'),ref('hr_rule_cft'),ref('hr_rule_tlg'),ref('hr_rule_tcp'),ref('hr_rule_cte'),ref('hr_rule_nap')])]" name="rule_ids"/-->
+        <field name="country_id" eval="False"/>
+        <field name="type_id" ref="hr_contract.structure_type_employee"/>
+    </record>
+	
+	<!-- Convention du Commerce -->
+    
+
+
+	<!-- HR SALARY RULES-->
+
+
+    
+    <record id="hr_rule_sbm" model="hr.salary.rule">
+        <field name="name">Salaire de Base Majoré</field>
+        <field name="code">sbm</field>
+		<field name="category_id" ref="hr_payroll.BASIC"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">1</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = contract.wage</field>
+		<field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+
+    <record id="hr_rule_ss" model="hr.salary.rule">
+        <field name="name">Sur salaire</field>
+        <field name="code">ss</field>
+		<field name="category_id" ref="hr_payroll.BASIC"/>
+<!--		<field name="appears_on_payslip" eval="True"/>-->
+        <field name="sequence">2</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result=contract.sursal</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_indd" model="hr.salary.rule">
+        <field name="name">Indemnité de déplacement</field>
+        <field name="code">indd</field>
+		<field name="category_id" ref="hr_payroll.BASIC"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">3</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = contract.indd</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_inds91" model="hr.salary.rule">
+        <field name="name">Ind solid.1991</field>
+        <field name="code">inds91</field>
+		<field name="category_id" ref="hr_payroll.BASIC"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">4</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = contract.inds91</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_inds73" model="hr.salary.rule">
+        <field name="name">Indi spéc. 73</field>
+        <field name="code">inds73</field>
+		<field name="category_id" ref="hr_payroll.BASIC"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">5</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = contract.inds73</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_pcvie" model="hr.salary.rule">
+        <field name="name">Prime de Cherte de vie</field>
+        <field name="code">pcvie</field>
+		<field name="category_id" ref="hr_payroll.BASIC"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">5</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = contract.pcvie</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_presp" model="hr.salary.rule">
+        <field name="name">Prime de responsabilité</field>
+        <field name="code">presp</field>
+		<field name="category_id" ref="hr_payroll.BASIC"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">6</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = contract.presp</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_brut" model="hr.salary.rule">
+        <field name="name">Salaire Brut</field>
+        <field name="code">brut</field>
+		<field name="category_id" ref="hr_payroll.GROSS"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">7</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = categories.BASIC</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_inps" model="hr.salary.rule">
+        <field name="name">INPS</field>
+        <field name="code">inps</field>
+		<field name="category_id" ref="B_calcul"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">8</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = brut-indd</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_inpse" model="hr.salary.rule">
+        <field name="name">INPS</field>
+<!--		<field name="parent_rule_id" ref="hr_rule_inps"/>-->
+        <field name="code">inpse</field>
+		<field name="category_id" ref="hr_payroll.DED"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">8</field>
+		<field name="amount_select">percentage</field>
+		<field name="amount_percentage">3.6000</field>
+		<field name="amount_percentage_base">inps</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_inpss" model="hr.salary.rule">
+        <field name="name">INPS</field>
+<!--		<field name="parent_rule_id" ref="hr_rule_inps"/>-->
+        <field name="code">inpss</field>
+		<field name="category_id" ref="hr_payroll.COMP"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">8</field>
+		<field name="amount_select">percentage</field>
+		<field name="amount_percentage">16.4000</field>
+		<field name="amount_percentage_base">inps</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_amo" model="hr.salary.rule">
+        <field name="name">AMO</field>
+        <field name="code">amo</field>
+		<field name="category_id" ref="B_calcul"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">9</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = inps</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_amoe" model="hr.salary.rule">
+        <field name="name">AMO</field>
+<!--		<field name="parent_rule_id" ref="hr_rule_amo"/>-->
+        <field name="code">amoe</field>
+		<field name="category_id" ref="hr_payroll.DED"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">9</field>
+		<field name="amount_select">percentage</field>
+		<field name="amount_percentage">3.0600</field>
+		<field name="amount_percentage_base">amo</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_amos" model="hr.salary.rule">
+        <field name="name">AMO</field>
+<!--		<field name="parent_rule_id" ref="hr_rule_amo"/>-->
+        <field name="code">amos</field>
+		<field name="category_id" ref="hr_payroll.COMP"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">9</field>
+		<field name="amount_select">percentage</field>
+		<field name="amount_percentage">3.5000</field>
+		<field name="amount_percentage_base">amo</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_its" model="hr.salary.rule">
+        <field name="name">ITS</field>
+        <field name="code">its</field>
+		<field name="category_id" ref="B_calcul"/>
+		<field name="appears_on_payslip" eval="False"/>
+        <field name="sequence">10</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = brut-inds73-inds91-indd-inps*0.036-presp</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_itsa" model="hr.salary.rule">
+        <field name="name">ITS</field>
+<!--		<field name="parent_rule_id" ref="hr_rule_its"/>-->
+        <field name="code">itsa</field>
+		<field name="category_id" ref="B_calcul"/>
+		<field name="appears_on_payslip" eval="False"/>
+        <field name="sequence">10</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = its*12</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_itsaa" model="hr.salary.rule">
+        <field name="name">ITS</field>
+<!--		<field name="parent_rule_id" ref="hr_rule_its"/>-->
+        <field name="code">itsaa</field>
+		<field name="category_id" ref="B_calcul"/>
+		<field name="appears_on_payslip" eval="False"/>
+        <field name="sequence">10</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = round(itsa/1000.0 -0.5)*1000</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_itsp1" model="hr.salary.rule">
+        <field name="name">ITS</field>
+<!--		<field name="parent_rule_id" ref="hr_rule_its"/>-->
+        <field name="code">itsp</field>
+		<field name="category_id" ref="B_calcul"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">10</field>
+		<field name="condition_select">range</field>
+		<field name="condition_range">itsaa</field>
+        <field name="condition_range_min">0.00</field>
+		<field name="condition_range_max">330000.00</field>
+		<field name="amount_fix">0.00</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_itsp2" model="hr.salary.rule">
+        <field name="name">ITS</field>
+<!--		<field name="parent_rule_id" ref="hr_rule_its"/>-->
+        <field name="code">itsp</field>
+		<field name="category_id" ref="B_calcul"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">10</field>
+		<field name="condition_select">range</field>
+		<field name="condition_range">itsaa</field>
+        <field name="condition_range_min">330000.00</field>
+		<field name="condition_range_max">578400.00</field>
+		<field name="amount_select">percentage</field>
+		<field name="amount_percentage">5.0000</field>
+		<field name="amount_percentage_base">itsaa</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_itsp3" model="hr.salary.rule">
+        <field name="name">ITS</field>
+<!--		<field name="parent_rule_id" ref="hr_rule_its"/>-->
+        <field name="code">itsp</field>
+		<field name="category_id" ref="B_calcul"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">10</field>
+		<field name="condition_select">range</field>
+		<field name="condition_range">itsaa</field>
+        <field name="condition_range_min">578400.00</field>
+		<field name="condition_range_max">1176400.00</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = 12420+(itsaa-578401)*0.12</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_itsp4" model="hr.salary.rule">
+        <field name="name">ITS</field>
+<!--		<field name="parent_rule_id" ref="hr_rule_its"/>-->
+        <field name="code">itsp</field>
+		<field name="category_id" ref="B_calcul"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">10</field>
+		<field name="condition_select">range</field>
+		<field name="condition_range">itsaa</field>
+        <field name="condition_range_min">1176400.00</field>
+		<field name="condition_range_max">1789733.00</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = 84180+(itsaa-1176401)*0.18</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_itsp5" model="hr.salary.rule">
+        <field name="name">ITS</field>
+<!--		<field name="parent_rule_id" ref="hr_rule_its"/>-->
+        <field name="code">itsp</field>
+		<field name="category_id" ref="B_calcul"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">10</field>
+		<field name="condition_select">range</field>
+		<field name="condition_range">itsaa</field>
+        <field name="condition_range_min">1789733.00</field>
+		<field name="condition_range_max">2384195.00</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = 194579.94 + (itsaa-1789734)*0.26</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_itsp6" model="hr.salary.rule">
+        <field name="name">ITS</field>
+<!--		<field name="parent_rule_id" ref="hr_rule_its"/>-->
+        <field name="code">itsp</field>
+		<field name="category_id" ref="B_calcul"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">10</field>
+		<field name="condition_select">range</field>
+		<field name="condition_range">itsaa</field>
+        <field name="condition_range_min">2384195.00</field>
+		<field name="condition_range_max">3494130.00</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = 349140.06+(itsaa-2384196)*0.31</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_itsp7" model="hr.salary.rule">
+        <field name="name">ITS</field>
+<!--		<field name="parent_rule_id" ref="hr_rule_its"/>-->
+        <field name="code">itsp</field>
+		<field name="category_id" ref="B_calcul"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">10</field>
+		<field name="condition_select">python</field>
+		<field name="condition_python">result=itsaa>3494130</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = 693219.91+(itsaa- 3494130)*0.37</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_itsar" model="hr.salary.rule">
+        <field name="name">ITS</field>
+<!--		<field name="parent_rule_id" ref="hr_rule_its"/>-->
+        <field name="code">itsar</field>
+		<field name="category_id" ref="B_calcul"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">10</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = itsp*(1-employee.tauxabat/100)</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_itst" model="hr.salary.rule">
+        <field name="name">ITS</field>
+<!--		<field name="parent_rule_id" ref="hr_rule_its"/>-->
+        <field name="code">itst</field>
+		<field name="category_id" ref="B_calcul"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">10</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = 100*itsar/itsa</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_itstatt" model="hr.salary.rule">
+        <field name="name">ITS</field>
+<!--		<field name="parent_rule_id" ref="hr_rule_its"/>-->
+        <field name="code">itstatt</field>
+		<field name="category_id" ref="B_calcul"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">10</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = itst-2</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_itsm" model="hr.salary.rule">
+        <field name="name">ITS</field>
+<!--		<field name="parent_rule_id" ref="hr_rule_its"/>-->
+        <field name="code">itsm</field>
+		<field name="category_id" ref="hr_payroll.DED"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">10</field>
+		<field name="condition_select">python</field>
+		<field name="condition_python">result = itstatt > 0</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = its*itstatt/100</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_itsm1" model="hr.salary.rule">
+        <field name="name">ITS</field>
+<!--		<field name="parent_rule_id" ref="hr_rule_its"/>-->
+        <field name="code">itsm</field>
+		<field name="category_id" ref="hr_payroll.DED"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">10</field>
+		<field name="condition_select">python</field>
+		<field name="condition_python">result = itstatt &lt;=0 </field>
+		<field name="amount_fix">0.00</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_ttr" model="hr.salary.rule">
+        <field name="name">Total retenues</field>
+		<field name="code">ttr</field>
+		<field name="category_id" ref="hr_payroll.DED"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">11</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = categories.DED</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_cft" model="hr.salary.rule">
+        <field name="name">Contribution Forfaitaire</field>
+		<field name="code">cft</field>
+		<field name="category_id" ref="B_calcul"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">12</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = brut</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_cfts" model="hr.salary.rule">
+        <field name="name">Contribution Forfaitaire</field>
+<!--		<field name="parent_rule_id" ref="hr_rule_cft"/>-->
+		<field name="code">cfts</field>
+		<field name="category_id" ref="hr_payroll.COMP"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">12</field>
+		<field name="amount_select">percentage</field>
+		<field name="amount_percentage">3.5000</field>
+		<field name="amount_percentage_base">cft</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_tlg" model="hr.salary.rule">
+        <field name="name">Taxe-logement</field>
+		<field name="code">tlg</field>
+		<field name="category_id" ref="B_calcul"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">13</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = brut</field>
+        <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+    </record>
+	
+	<record id="hr_rule_tlgs" model="hr.salary.rule">
+        <field name="name">Taxe-logement</field>
+<!--		<field name="parent_rule_id" ref="hr_rule_tlg"/>-->
+		<field name="code">tlgs</field>
+		<field name="category_id" ref="hr_payroll.COMP"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">13</field>
+		<field name="amount_select">percentage</field>
+		<field name="amount_percentage">1.0000</field>
+		<field name="amount_percentage_base">tlg</field>
+	    <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+	</record>
+	
+	<record id="hr_rule_tcp" model="hr.salary.rule">
+        <field name="name">Total charges patronales</field>
+		<field name="code">tcp</field>
+		<field name="category_id" ref="hr_payroll.COMP"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">14</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = categories.COMP</field>
+	    <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+	</record>
+	
+	<record id="hr_rule_cte" model="hr.salary.rule">
+        <field name="name">Coût total employé</field>
+		<field name="code">cte</field>
+		<field name="category_id" ref="B_calcul"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">15</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = brut+tcp</field>
+	    <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+	</record>
+	
+	<record id="hr_rule_nap" model="hr.salary.rule">
+        <field name="name">NET A PAYER</field>
+		<field name="code">nap</field>
+		<field name="category_id" ref="hr_payroll.NET"/>
+		<field name="appears_on_payslip" eval="True"/>
+        <field name="sequence">20</field>
+		<field name="amount_select">code</field>
+		<field name="amount_python_compute">result = round(brut-ttr)</field>
+	    <field name="struct_id" ref="hr_payroll_salary_structure_salaire_cadre"/>
+	</record>
+
+
+
+    
+</odoo>

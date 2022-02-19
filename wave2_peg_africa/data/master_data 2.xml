@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<odoo>
+    <data noupdate="1">
+        <!-- MD Contract Status-->
+        <record model="sale.contract.status" id="contract_status_lead">
+            <field name="name">Lead</field>
+            <field name="order_of_account">-1</field>
+        </record>
+
+        <record model="sale.contract.status" id="contract_status_written_off">
+            <field name="name">Written Off</field>
+            <field name="order_of_account">0</field>
+        </record>
+
+        <record model="sale.contract.status" id="contract_status_active">
+            <field name="name">Active</field>
+            <field name="order_of_account">1</field>
+        </record>
+
+        <record model="sale.contract.status" id="contract_status_inactive">
+            <field name="name">Inactive</field>
+            <field name="order_of_account">2</field>
+        </record>
+
+        <record model="sale.contract.status" id="contract_status_blocked">
+            <field name="name">Blocked</field>
+            <field name="order_of_account">3</field>
+        </record>
+
+        <record model="sale.contract.status" id="contract_status_paid_off">
+            <field name="name">Paid Off</field>
+            <field name="order_of_account">-2</field>
+        </record>
+
+      <!-- MD Stock Action-->
+      <record model="sale.stock.action" id="stock_action_to_be_repossessed">
+        <field name="name">To be repossessed</field>
+        <field name="order_of_account">3</field>
+      </record>
+
+      <record model="sale.stock.action" id="stock_action_repossessed">
+        <field name="name">Repossessed</field>
+        <field name="order_of_account">2</field>
+      </record>
+
+      <record model="sale.stock.action" id="stock_action_lost_stolen">
+        <field name="name">Lost/Stolen</field>
+        <field name="order_of_account">1</field>
+      </record>       
+
+      <record model="sale.stock.action" id="stock_action_no_action">
+        <field name="name">No Action</field>
+        <field name="order_of_account">-1</field>
+      </record>
+
+      <!-- MD Suspension Reason-->
+      <record model="suspension.reason" id="suspension_reason_customer_will">
+        <field name="name">Customer Will</field>
+      </record>
+
+      <record model="suspension.reason" id="suspension_reason_repayment_repossession">
+        <field name="name">Repayment Repossession</field>
+      </record>
+
+      <record model="suspension.reason" id="suspension_reason_wasted_sale">
+        <field name="name">Wasted Sale</field>
+      </record>
+
+      <!-- MD Sub Suspension Reason-->
+      <record model="sub.suspension.reason" id="sub_suspension_reason_bad_experience">
+        <field name="name">Bad customer experience</field>
+        <field name="reason_id" ref="suspension_reason_customer_will"/>
+      </record>
+
+      <record model="sub.suspension.reason" id="sub_suspension_reason_price">
+        <field name="name">Pricing not meeting customer income</field>
+        <field name="reason_id" ref="suspension_reason_customer_will"/>
+      </record>
+
+      <record model="sub.suspension.reason" id="sub_suspension_reason_product">
+        <field name="name">Product not meeting customer expectations</field>
+        <field name="reason_id" ref="suspension_reason_customer_will"/>
+      </record>
+
+      <record model="sub.suspension.reason" id="sub_suspension_reason_not_needed">
+        <field name="name">Household just got electrified</field>
+        <field name="reason_id" ref="suspension_reason_customer_will"/>
+      </record>
+
+      <record model="sub.suspension.reason" id="sub_suspension_reason_disagreement">
+        <field name="name">Customer do not agree with arrears recovery</field>
+        <field name="reason_id" ref="suspension_reason_customer_will"/>
+      </record>
+
+      <!-- MD Deposit Status-->
+      <record model="deposit.status" id="deposit_status_fully_refunded">
+        <field name="name">Fully refunded</field>
+      </record>
+
+      <record model="deposit.status" id="deposit_status_half_refunded">
+        <field name="name">Half refunded</field>
+      </record>
+
+      <record model="deposit.status" id="deposit_status_not_refunded">
+        <field name="name">Not refunded</field>
+      </record>
+
+      <!-- MD Device Status-->
+      <record model="device.status" id="device_status_full_working">
+        <field name="name">Full &amp; Working</field>
+      </record>
+
+      <record model="device.status" id="device_status_missing_component">
+        <field name="name">Missing Component</field>
+      </record>
+    </data>
+</odoo>

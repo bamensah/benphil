@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data>
+        <record id="view_account_analytic_line_form_inherit_dpartmnt_stud" model="ir.ui.view">
+            <field name="name">account.analytic.line.from.view</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_line_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='account_id']" position="after">
+                    <field name="dpartement" string="Département"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+<!--Odoo Studio: account.analytic.line.form customization-->

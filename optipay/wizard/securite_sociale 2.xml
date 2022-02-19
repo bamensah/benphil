@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_optesis_securite_sociale" model="ir.ui.view">
+            <field name="name">optesis.payslip.lines.securite.sociale</field>
+            <field name="model">optesis.payslip.lines.securite.sociale</field>
+            <field name="arch" type="xml">
+                <form string="Contribution Register's Payslip Lines">
+                    <field name="state" invisible="1"/>
+                    <div states="get">
+                        <group>
+                            <field name="css_data" colspan="4" invisible="1"/>
+                            <field name="file_name" filename="css_data" colspan="4"/>
+                        </group>
+                    </div>
+                    <div states="choose">
+                        <group col="4" colspan="6">
+                            <field name="date_from"/>
+                            <newline/>
+                            <field name="date_to"/>
+                            <field name="print_format"/>
+                        </group>
+                    </div>
+                    <footer states="choose">
+                        <button name="print_report_css" string="Imprimer" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                    <footer states="get">
+                        <button special="cancel" string="Cancel" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    <!--act_window
+            id="payslip_lines_securite_sociale_value"
+            name="Securité sociale"
+            multi="True"
+            key2="client_print_multi"
+            res_model="optesis.payslip.lines.securite.sociale"
+            src_model="hr.contribution.register"
+            view_mode="form"
+            target="new"
+            view_type="form"/-->
+    <!--record id="payslip_lines_securite_sociale_value" model="ir.actions.act_window">
+        <field name="name">Securité sociale</field>
+        <field name="res_model">optesis.payslip.lines.securite.sociale</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        
+        <field name="binding_model_id" ref="model_hr_contribution_register"/>
+        <field name="binding_view_types">form</field>
+    </record-->
+            
+    </data>
+</odoo>

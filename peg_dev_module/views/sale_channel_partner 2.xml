@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="sale_channel_partner_menu_action">
+            <field name="name">Sales Channel Partner</field>
+            <field name="res_model">sale.channel.partner</field>
+            <!--<field name="view_type">form</field>-->
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem parent="sale.menu_sale_config"
+            id="menu_sale_channel_partner"
+            groups="base.group_user"
+            name="Sale Channel Partners"
+            action="sale_channel_partner_menu_action"
+            sequence="15"
+        />
+    </data>
+</odoo>

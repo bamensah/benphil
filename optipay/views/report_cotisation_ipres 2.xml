@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- by khk -->
+<odoo>
+
+    <report
+            id="cotisation_ipres"
+            model="hr.contribution.register"
+            string="Cotisation Ipres"
+            report_type="qweb-pdf"
+            name="optipay.report_ipres_view"
+            file="optipay.report_ipres"
+            menu="False"
+    />
+
+    <template id="report_ipres_view">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <table style="width:80%">
+                            <tr>
+                                <td>
+                                    <p>
+                                        <span t-field="res_company.partner_id.street"/>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%">
+                                    <p>B.P:
+                                        <span t-field="res_company.partner_id.zip"/>
+                                    </p>
+                                </td>
+                                <td>Tél:
+                                    <span t-field="res_company.partner_id.phone"/>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%">Fax: <!--<span t-field="res_company.partner_id.fax"/>--></td>
+                                <td>Email:
+                                    <span t-field="res_company.partner_id.email"/>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table style="width:100%">
+                            <tr>
+                                <td align="center">
+                                    <h3>
+                                        <span style="background:#e5e7ea;">Cotisation IPRES</span>
+                                    </h3>
+                                </td>
+                            </tr>
+                            <tr align="center">
+                                <td align="center">
+                                    <h4>
+                                        <span style="background:#e5e7ea;">Période de</span>
+                                        <span style="background:#e5e7ea;" t-esc="data['form']['date_from']"/>
+                                        <span style="background:#e5e7ea;">à</span>
+                                        <span style="background:#e5e7ea" t-esc="data['form']['date_to']"/>
+                                    </h4>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+
+                        <table class="table table-condensed table-bordered">
+                            <tr>
+                                <td style="min-width:50px" align="center">N°</td>
+                                <td style="min-width:50px" colspan="2" align="center">Identification Employé</td>
+                                <td style="min-width:50px" align="center">Brut imposable</td>
+                                <td style="min-width:50px" colspan="4" align="center">IPRES régime général</td>
+                                <td style="min-width:50px" colspan="4" align="center">IPRES régime cadre</td>
+                                <td style="min-width:50px" align="center">Cotisation totale</td>
+                            </tr>
+                            <tr>
+                                <td style="min-width:50px"></td>
+                                <td style="min-width:50px"></td>
+                                <td style="min-width:50px"></td>
+                                <td style="min-width:50px"></td>
+                                <td style="min-width:50px" align="center">Base</td>
+                                <td style="min-width:50px" align="center">Employé</td>
+                                <td style="min-width:50px" align="center">Employeur</td>
+                                <td style="min-width:50px" align="center">Total RG</td>
+                                <td style="min-width:50px" align="center">Base</td>
+                                <td style="min-width:50px" align="center">Employé</td>
+                                <td style="min-width:50px" align="center">Employeur</td>
+                                <td style="min-width:50px" align="center">Total RC</td>
+                                <td style="min-width:50px"></td>
+                            </tr>
+                            <tr t-foreach="lines_data" t-as="r">
+                                <td style="min-width:50px" align="right">
+                                    <span t-esc="r.get('index')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="r.get('matricule')"/>
+                                </td>
+                                <td style="min-width:100px" align="center">
+                                    <span t-esc="r.get('name')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('Brut')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('Base_rg')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('Ipres_rg')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('Ipres_rg_pat')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('total_rg')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('Base_rc')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('Ipres_rc')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('Ipres_rc_pat')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('total_rc')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('Cotisation_totale')).replace(',',' ')"/>
+                                </td>
+                            </tr>
+                            <tr t-foreach="lines_total" t-as="r">
+                                <td style="min-width:50px" colspan="3" align="center">Total</td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('total_brut')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('total_base_rg')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('total_ipres_rg')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('total_ipres_rg_pat')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('total_rg')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('total_base_rc')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('total_ipres_rc')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('total_ipres_rc_pat')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('total_rc')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('total_cotisation')).replace(',',' ')"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

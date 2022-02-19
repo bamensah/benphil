@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_move_payroll_batch_form" model="ir.ui.view">
+            <field name="name">payroll.batch.field.account.move</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <field name="ref" position="after">
+                    <field name="batch_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_account_move_filter_extend_batch_id" model="ir.ui.view">
+            <field name="name">Add pay slip batch group by</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_account_move_filter"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//field[@name='name']" position="after">
+                    <field name="batch_id"/>
+                </xpath>
+                <group expand="0" position="inside">
+                    <filter name="batch_id" string="Payroll Batch" domain="[]" context="{'group_by':'batch_id'}"/>
+                </group>
+            </field>
+        </record>
+
+        <record id="action_hr_batch_account_move_extend" model="ir.actions.act_window">
+            <field name="name">Journal Entry</field>
+            <field name="res_model">account.move</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="domain">[('batch_id', '=', active_id)]</field>
+            <field name="context">{'search_default_group_batch_id':1}</field>
+    </record>
+
+        <record id="hr_batch_account_move_extend_form" model="ir.ui.view">
+            <field name="name">hr.batch.account.move.extend.form</field>
+            <field name="model">hr.payslip.run</field>
+            <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//label"  position="before">
+                    <div class="oe_button_box" name="button_box">
+                        <button name="optipay.action_hr_batch_account_move_extend" type="action" class="oe_stat_button" icon="fa-credit-card" string="Journal Enteries"/>
+                    </div>
+                </xpath>
+            </field>
+    </record>
+
+    </data>
+</odoo>

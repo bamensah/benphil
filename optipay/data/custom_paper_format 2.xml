@@ -1,0 +1,33 @@
+<odoo>
+  <data>
+  <record id="custom_paper_format_for_dads_1" model="report.paperformat">
+      <field name="name">Custom Paper DADS 1</field>
+      <field name="default" eval="False"/>
+      <field name="format">A4</field>
+      <field name="orientation">Portrait</field>
+      <field name="margin_top">2</field>
+      <field name="margin_bottom">25</field>
+      <field name="margin_left">4</field>
+      <field name="margin_right">4</field>
+      <field name="header_line" eval="False"/>
+      <field name="header_spacing">35</field>
+      <field name="dpi">90</field>
+  </record>
+
+
+  <record id="custom_paper_format_for_dads_2" model="report.paperformat">
+      <field name="name">Custom Paper DADS 2</field>
+      <field name="default" eval="False"/>
+      <field name="format">A4</field>
+      <field name="orientation">Landscape</field>
+      <field name="margin_top">2</field>
+      <field name="margin_bottom">25</field>
+      <field name="margin_left">4</field>
+      <field name="margin_right">4</field>
+      <field name="header_line" eval="False"/>
+      <field name="header_spacing">35</field>
+      <field name="dpi">90</field>
+  </record>
+
+  </data>
+</odoo>

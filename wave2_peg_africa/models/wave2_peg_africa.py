@@ -264,7 +264,7 @@ class CustomSaleOrder(models.Model):
     @api.depends('partner_id')
     def _compute_withheld_amount(self):
         for record in self:
-            payments = self.env['account.payment'].search([('sale_order', '=', record.id), ('parent_payment_id', '!=', False), ('state', 'in', ['posted', 'confirmed'])])
+            payments = self.env['account.payment'].search([('sale_order', '=', record.id), ('parent_payment_id', '!=', False), '|', ('state', 'in', ['posted']), ('confirmed', '=', True)])
             if any(payments):
                 withheld_amounts = map(lambda x: x.amount, payments)
                 withheld_total = sum(withheld_amounts)

@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+payslip_simulator_access,hr.payslip.simulator,model_hr_payslip_simulator,hr_payroll.group_hr_payroll_manager,1,1,1,1
+payslip_simulator_line_access,hr.payslip.simulator.line,model_hr_payslip_simulator_line,hr_payroll.group_hr_payroll_manager,1,1,1,1
+payslip_book_access,hr.payslip.book,model_hr_payslip_book,aospay.group_aos_payroll_user,1,1,1,1
+payslip_book_line_access,hr.payslip.book.line,model_hr_payslip_book_line,aospay.group_aos_payroll_user,1,1,1,1
+model_hr_payslip_simulator_worked_days,model_hr_payslip_simulator_worked_days,model_hr_payslip_simulator_worked_days,hr_payroll.group_hr_payroll_manager,1,1,1,1
+model_hr_payslip_simulator_worked_days_user,model_hr_payslip_simulator_worked_days,model_hr_payslip_simulator_worked_days,hr_payroll.group_hr_payroll_user,1,1,1,1
+model_hr_payslip_simulator_input_mgr,hr.payslip.simulator.input,model_hr_payslip_simulator_input,hr_payroll.group_hr_payroll_manager,1,1,1,1
+model_hr_payslip_simulator_input_usr,hr.payslip.simulator.input,model_hr_payslip_simulator_input,hr_payroll.group_hr_payroll_user,1,1,1,1

@@ -1,0 +1,51 @@
+<odoo>
+  <data>
+    <record id="account_department_mapping_action_view" model="ir.actions.act_window">
+      <field name="name">Department Mapping</field>
+      <field name="res_model">account.department_mapping</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="account_account_mapping_action_view">
+      <field name="name">Account Mapping</field>
+      <field name="res_model">account.account_mapping</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.ui.view" id="account_department_mapping_tree_view">
+      <field name="name">Department Mapping List</field>
+      <field name="model">account.department_mapping</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="shortname"/>
+          <field name="groupname"/>
+          <field name="company_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="account_account_mapping_tree_view">
+      <field name="name">Account Mapping List</field>
+      <field name="model">account.account_mapping</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="odoo_account"/>
+          <field name="description"/>
+          <field name="department"/>
+          <field name="department_name"/>
+          <field name="account_department"/>
+          <field name="pl_level1"/>
+          <field name="pl_level2"/>
+          <field name="pl_level3"/>
+          <field name="company_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <menuitem id="account.menu_finance_configuration_mapping" name="Account Mappings" sequence="10" parent="account.menu_finance_configuration"/>
+    <menuitem name="Department Mapping" id="account.department_mapping" parent="account.menu_finance_configuration_mapping" sequence="10" action="account_department_mapping_action_view"/>
+    <menuitem name="Account Mapping" id="account.account_mapping" parent="account.menu_finance_configuration_mapping" sequence="11" action="account_account_mapping_action_view"/>
+
+  </data>
+</odoo>

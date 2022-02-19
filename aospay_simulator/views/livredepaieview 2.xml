@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_appears_on_book" model="ir.actions.server">
+            <field name="name">Mettre dans le livre de Paie</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="model_id" ref="hr_payroll.model_hr_salary_rule"/>
+            <field name="binding_model_id" ref="hr_payroll.model_hr_salary_rule"/>
+            <field name="code">
+                for record in records:
+                    record.write({'appears_on_book':True})
+            </field>
+        </record>
+        <record id="hr_payslip_book_form_view" model="ir.ui.view">
+            <field name="name">hr.payslip.book.form</field>
+            <field name="model">hr.payslip.book</field>
+            <field name="arch" type="xml">
+                <form string="Livre de Paie">
+                    <header>
+                        <button name="generate_lines" string="Génerer Lignes" type="object" groups=""/>
+                        <button name="create_fields" string="Génerer Les colonnes" type="object" groups=""/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="slip_batch"/>
+                            </group>
+                             <group>
+                                 <field name="date_to"/>
+                                 <field name="date_from"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="Lines" string="Lignes">
+                                <field name="line_ids" readonly="1">
+                                        <tree>
+                                            <field name="employee_id"/>
+                                            <field name="numero"/>
+                                            <field name="matricule"/>
+                                            <field name="nom"/>
+                                            <field name="prenom"/>
+                                        </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_payslip_book_tree_view" model="ir.ui.view">
+            <field name="name">hr.payslip.book.tree</field>
+            <field name="model">hr.payslip.book</field>
+            <field name="arch" type="xml">
+                <tree string="Livre de Paie">
+                    <field name="name"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_payslip_book_line_tree_view" model="ir.ui.view">
+            <field name="name">hr.payslip.book.line.tree</field>
+            <field name="model">hr.payslip.book.line</field>
+            <field name="arch" type="xml">
+                <tree string="Ligne de Livre de Paie">
+                    <field name="employee_id"/>
+                     <field name="matricule"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_payslip_book_line_search_view" model="ir.ui.view">
+            <field name="name">hr.payslip.book.line.search</field>
+            <field name="model">hr.payslip.book.line</field>
+            <field name="arch" type="xml">
+                <search string="Ligne de livre de Paie">
+                    <group expand="1" string="Group By">
+                        <filter string="livre" name="Livre" domain="[]"
+                                context="{'group_by':'book_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="hr_payslip_book_act_window" model="ir.actions.act_window">
+            <field name="name">Livre de Paie</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.payslip.book</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new payslip Book.
+                </p>
+            </field>
+        </record>
+            <record id="hr_payslip_book_line_act_window" model="ir.actions.act_window">
+            <field name="name">Lignes des Livre de paie</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.payslip.book.line</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new payslip Book.
+                </p>
+            </field>
+        </record>
+        <menuitem name="Livre de Paie" id="hr_payslip_book_menu_root" parent="hr_payroll.menu_hr_payroll_employees_root" />
+        <menuitem name="Livre de Paie" id="hr_payslip_book_menu" parent="hr_payslip_book_menu_root" action="hr_payslip_book_act_window"/>
+        <menuitem name="Ligne Livre de Paie" id="hr_payslip_book_line_menu" parent="hr_payslip_book_menu_root" action="hr_payslip_book_line_act_window"/>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="hr_salary_rule_book_inherited_view" model="ir.ui.view">
+            <field name="name">hr.salary.rule.book.inherited</field>
+            <field name="model">hr.salary.rule</field>
+            <field name="inherit_id" ref="hr_payroll.hr_salary_rule_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='appears_on_payslip']" position="after">
+                   <field name="appears_on_book" groups="hr.group_hr_manager"/>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

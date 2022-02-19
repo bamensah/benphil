@@ -1,0 +1,91 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* inventory_adjustment_cancel_app
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-11 11:39+0000\n"
+"PO-Revision-Date: 2021-01-11 11:39+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: inventory_adjustment_cancel_app
+#: model_terms:ir.ui.view,arch_db:inventory_adjustment_cancel_app.stock_adjestment_inherit_view_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: inventory_adjustment_cancel_app
+#: model:res.groups,name:inventory_adjustment_cancel_app.group_cancel_inventory
+msgid "Cancel Inventory Adjustment"
+msgstr "Annuler l'ajustement de l'inventaire"
+
+#. module: inventory_adjustment_cancel_app
+#: model:ir.model.fields,field_description:inventory_adjustment_cancel_app.field_account_move__display_name
+#: model:ir.model.fields,field_description:inventory_adjustment_cancel_app.field_stock_inventory__display_name
+#: model:ir.model.fields,field_description:inventory_adjustment_cancel_app.field_stock_move__display_name
+#: model:ir.model.fields,field_description:inventory_adjustment_cancel_app.field_stock_move_line__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: inventory_adjustment_cancel_app
+#: model:ir.model.fields,field_description:inventory_adjustment_cancel_app.field_account_move__id
+#: model:ir.model.fields,field_description:inventory_adjustment_cancel_app.field_stock_inventory__id
+#: model:ir.model.fields,field_description:inventory_adjustment_cancel_app.field_stock_move__id
+#: model:ir.model.fields,field_description:inventory_adjustment_cancel_app.field_stock_move_line__id
+msgid "ID"
+msgstr ""
+
+#. module: inventory_adjustment_cancel_app
+#: model:ir.model,name:inventory_adjustment_cancel_app.model_stock_inventory
+msgid "Inventory"
+msgstr "Inventaire"
+
+#. module: inventory_adjustment_cancel_app
+#: model:ir.model,name:inventory_adjustment_cancel_app.model_account_move
+msgid "Journal Entry"
+msgstr "Pièce comptable"
+
+#. module: inventory_adjustment_cancel_app
+#: model:ir.model.fields,field_description:inventory_adjustment_cancel_app.field_account_move____last_update
+#: model:ir.model.fields,field_description:inventory_adjustment_cancel_app.field_stock_inventory____last_update
+#: model:ir.model.fields,field_description:inventory_adjustment_cancel_app.field_stock_move____last_update
+#: model:ir.model.fields,field_description:inventory_adjustment_cancel_app.field_stock_move_line____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: inventory_adjustment_cancel_app
+#: model:ir.model,name:inventory_adjustment_cancel_app.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Mouvements d'article (Ligne de mouvement de stock)"
+
+#. module: inventory_adjustment_cancel_app
+#: model:ir.model,name:inventory_adjustment_cancel_app.model_stock_move
+msgid "Stock Move"
+msgstr "Stock déplacer"
+
+#. module: inventory_adjustment_cancel_app
+#: code:addons/inventory_adjustment_cancel_app/models/stock_inventory.py:0
+#, python-format
+msgid ""
+"You can not delete product moves if the picking is done. You can only "
+"correct the done quantities."
+msgstr "Vous ne pouvez pas supprimer les déplacements de produits si le prélèvement est terminé. Vous pouvez seulement"
+"corriger les quantités effectuées."
+
+#. module: inventory_adjustment_cancel_app
+#: code:addons/inventory_adjustment_cancel_app/models/stock_inventory.py:0
+#, python-format
+msgid "You cannot cancel a stock move that has been set to 'Done'."
+msgstr "Vous ne pouvez pas annuler un mouvement de stock qui a été défini sur «Terminé»."
+
+#. module: inventory_adjustment_cancel_app
+#: code:addons/inventory_adjustment_cancel_app/models/stock_inventory.py:0
+#, python-format
+msgid "You cannot unreserve a stock move that has been set to 'Done'."
+msgstr "Vous ne pouvez pas annuler la réservation d'un mouvement de stock qui a été défini sur «Terminé»."

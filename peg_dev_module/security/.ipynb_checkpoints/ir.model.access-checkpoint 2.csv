@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_contact_type_all_user,access_contact_type_all_user,model_contact_type,base.group_user,1,0,0,0
+access_contact_type_admin_user,access_contact_type_admin_user,model_contact_type,base.group_partner_manager,1,1,1,1
+
+access_optesis_site_all_user,access_optesis_site_all_user,model_optesis_site,base.group_user,1,0,0,0
+access_optesis_site_admin_user,access_optesis_site_admin_user,model_optesis_site,account.group_account_manager,1,1,1,1
+
+access_optesis_level_all_user,access_optesis_level_all_user,model_optesis_level,base.group_user,1,0,0,0
+access_optesis_level_admin_user,access_optesis_level_admin_user,model_optesis_level,account.group_account_manager,1,1,1,1
+
+access_optesis_room_all_user,access_optesis_room_all_user,model_optesis_room,base.group_user,1,0,0,0
+access_optesis_room_admin_user,access_optesis_room_admin_user,model_optesis_room,account.group_account_manager,1,1,1,1

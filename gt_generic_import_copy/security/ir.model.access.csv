@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_log_management,access.log.management,model_log_management,,1,1,1,1
+access_invoice_wizard,access_invoice_wizard,model_invoice_wizard,base.group_user,1,1,1,1
+access_invoice_order_line_wizard,access_invoice_order_line_wizard,model_invoice_order_line_wizard,base.group_user,1,1,1,1
+access_sale_wizard,access_sale_wizard,model_sale_wizard,base.group_user,1,1,1,1
+access_sale_order_line_wizard,access_sale_order_line_wizard,model_sale_order_line_wizard,base.group_user,1,1,1,1
+access_purchase_wizard,access_purchase_wizard,model_purchase_wizard,base.group_user,1,1,1,1
+access_purchase_order_line_wizard,access_purchase_order_line_wizard,model_purchase_order_line_wizard,base.group_user,1,1,1,1
+access_picking_wizard,access_picking_wizard,model_picking_wizard,base.group_user,1,1,1,1
+access_product_wizard,access_product_wizard,model_product_wizard,base.group_user,1,1,1,1
+access_partner_wizard,access_partner_wizard,model_partner_wizard,base.group_user,1,1,1,1
+access_inventory_wizard,access_inventory_wizard,model_inventory_wizard,base.group_user,1,1,1,1
+access_payment_wizard,access_payment_wizard,model_payment_wizard,base.group_user,1,1,1,1
+access_journal_wizard,access_journal_wizard,model_journal_wizard,base.group_user,1,1,1,1
+access_bank_wizard,access_bank_wizard,model_bank_wizard,base.group_user,1,1,1,1
+access_bank_line_wizard,access_bank_line_wizard,model_bank_line_wizard,base.group_user,1,1,1,1
+access_bom_wizard,access_bom_wizard,model_bom_wizard,base.group_user,1,1,1,1

@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- by khk -->
+<odoo>
+<data>
+
+  <report
+      id="action_report_bulletin"
+      model="hr.payslip"
+      string="Bulletin de Paie"
+      report_type="qweb-pdf"
+      name="optipay.report_bulletin"
+      file="optipay.report_bulletin"
+      groups="optipay.optipay_group_manager"
+
+  />
+
+<template id="report_bulletin">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+          <!--<t t-call="optipay.headerless_layout">-->
+             <t t-call="optipay.custom_external_layout_bulletin">
+                <div class="page">
+                  <t t-call="optipay.header_new"/>
+                  <table class="bpro_contained bpro-width" >
+                    <tr class="bpro_border_head">
+                      <td colspan="5" class="bpro_border_left">
+                        <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 80px;" alt="Logo"/>
+                      </td>
+                      <td colspan="5" align="center" class="table-active align-middle bpro_border_left">
+                        <strong> Période de Paie </strong>
+                      </td>
+                    </tr>
+                    <tr class="bpro_border_head">
+                      <td colspan="5" align="left" class="bpro_border_left">
+                        <span t-field="res_company.street"/> <span t-field="res_company.city"/> <span t-field="res_company.country_id.name"/>
+                      </td>
+                      <td colspan="5" align="center" class="bpro_border_left">
+                        <span t-field="o.date_from"/> au <span t-field="o.date_to"/>
+                      </td>
+                    </tr>
+                    <tr class="bpro_border_head">
+                      <td rowspan="5" colspan="5" align="center" class="align-middle bpro_border_left">
+                        <strong> <h2> BULLETIN DE PAIE </h2> </strong>
+                      </td>
+                      <td colspan="5" style="width:36%" align="center" class="bpro_border_left">
+                        Paiement le <span t-field="o.date_to"/> <!--par <span t-field="o.typePaiement"/>-->
+                      </td>
+                    </tr>
+                    <tr class="bpro_border_head">
+                      <td align="center" colspan="2" class="table-active bpro_border_left bpro_border_right">
+                        <strong> Convention Collective <span t-field="o.contract_id.convention_id.conv_id.name"/></strong>
+                      </td>
+                    </tr>
+                    <tr class="bpro_border_head">
+                      <td align="center" class="bpro_border_left">
+                        <strong> N° IPRES Employeur </strong>
+                      </td>
+                      <td align="center" class="bpro_border_left bpro_border_right">
+                        <strong> N° CSS Employeur </strong>
+                      </td>
+                    </tr>
+                    <tr class="bpro_border_head">
+                      <td align="center" class="bpro_border_left">
+                        <span t-field="o.employee_id.ipres"/>
+                      </td>
+                      <td align="center" class="bpro_border_left bpro_border_right">
+                        <span t-field="o.employee_id.matricule_cnss"/>
+                      </td>
+                    </tr>
+                    <tr >
+                      <td class="table-active bpro_border_left bpro_border_right" colspan="2" height="30">
+                      </td>
+                    </tr>
+
+                    <tr class="bpro_border_head">
+                      <td align="center" class="align-middle bpro_border_left">
+                        <strong> Date d'Entrée </strong>
+                      </td>
+                      <td align="center" class="align-middle bpro_border_left">
+                        <strong> Poste </strong>
+                      </td>
+                      <td align="center" class="align-middle bpro_border_left">
+                        <strong> Catégorie </strong>
+                      </td>
+                      <td align="center" class="align-middle bpro_border_left">
+                        <strong> Ancienneté </strong>
+                      </td>
+                      <td colspan="5" align="center" class="align-middle bpro_border_left">
+                        <strong> <span t-field="o.employee_id.name"/> </strong>
+                      </td>
+                    </tr>
+
+                    <tr class="bpro_border_head">
+                      <td align="center" class="bpro_border_left">
+                        <span t-field="o.contract_id.date_start"/>
+                      </td>
+                      <td align="center" class="bpro_border_left">
+                        <span t-field="o.employee_id.job_id.name"/>
+                      </td>
+                      <td align="center" class="bpro_border_left">
+                        <span t-field="o.contract_id.convention_id.name"/>
+                      </td>
+                      <td align="center" class="align-middle bpro_border_left">
+                        <span t-esc="get_anciennte.get(o.id, [])[0]"/>
+                      </td>
+                      <td colspan="5" rowspan="3" align="center" class="align-middle bpro_border_left">
+                        <span t-esc="o.employee_id.address_home_id.street"/>
+                      </td>
+                    </tr>
+
+                    <tr class="bpro_border_head">
+                      <td align="center" class="align-middle bpro_border_left">
+                        <strong>Matricule </strong>
+                      </td>
+                      <td align="center" class="align-middle bpro_border_left">
+                        <strong> Status </strong>
+                      </td>
+                      <td align="center" class="align-middle bpro_border_left">
+                        <strong> TRIMF </strong>
+                      </td>
+                      <td align="center" class="align-middle bpro_border_left">
+                        <strong> IR </strong>
+                      </td>
+                    </tr>
+
+                    <tr class="bpro_border_head">
+                      <td align="center" class="bpro_border_left">
+                        <span t-field="o.employee_id.num_chezemployeur"/>
+                      </td>
+                      <td align="center" class="bpro_border_left">
+                        <span t-field="o.employee_id.marital"/>
+                      </td>
+                      <td align="center" class="bpro_border_left">
+                        <span t-field="o.employee_id.trimf"/>
+                      </td>
+                      <td align="center" class="bpro_border_left">
+                        <span t-esc="o.employee_id.ir"/>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <br/>
+
+                  <table class="bpro_contained bpro-width">
+                    <tr>
+                      <td rowspan="2" align="center" class="align-middle">
+                        <strong> Code </strong>
+                      </td>
+                      <td rowspan="2" colspan="2" align="center" class="align-middle">
+                        <strong> Libellé </strong>
+                      </td>
+                      <td rowspan="2" align="center" class="align-middle bpro_border_left">
+                        <strong> Nombre </strong>
+                      </td>
+                      <td rowspan="2" align="center" class="align-middle bpro_border_left">
+                        <strong> Base </strong>
+                      </td>
+                      <td rowspan="2" align="center" class="align-middle bpro_border_left">
+                        <strong> Taux </strong>
+                      </td>
+                      <td colspan="2" align="center" class="align-middle bpro_border_left">
+                        <strong> Part Salariale </strong>
+                      </td>
+                      <td colspan="2" align="center" class="align-middle bpro_border_left">
+                        <strong> Charges Patronales </strong>
+                      </td>
+                    </tr>
+                    <tr class="bpro_border_head">
+                      <td align="center" class="align-middle bproll_right_head bpro_head_label_third bpro-background">
+                        <strong> Gains </strong>
+                      </td>
+                      <td align="center" class="align-middle bproll_right_head bpro_head_label_third bpro-background">
+                        <strong> Retenues </strong>
+                      </td>
+                      <td align="center" class="align-middle bproll_right_head bpro_head_label_third bpro-background bpro_border_left">
+                        <strong> Taux </strong>
+                      </td>
+                      <td align="center" class="align-middle bproll_right_head bpro_head_label_third bpro-background">
+                        <strong> Retenues </strong>
+                      </td>
+                    </tr>
+                    <!-- foreach for brut imposable -->
+                    <tr t-foreach="get_payslip_imposable.get(o.id, [])" t-as="p" class="bproll-espace-top">
+                      <td align="center">
+                        <span t-esc="p.code"/>
+                      </td>
+                      <td colspan="2" align="left">
+                        <span t-field="p.name"/>
+                      </td>
+                      <!--section handler nb days if holidays-->
+                      <td t-if="p.salary_rule_id.code == 'C1060'" align="center" class="bpro_border_left">
+                          <span t-field="o.holiday_of_payslip"/>
+                      </td>
+                      <td t-if="p.salary_rule_id.code != 'C1060'" align="center" class="bpro_border_left">
+                        <t t-if="o.worked_days_line_ids">
+                          <span t-field="o.worked_days_line_ids[0].number_of_days"/>
+                        </t>
+                      </td>
+                      <!--end section handler nb days if hilidays-->
+                      <td align="right" class="bpro_border_left">
+                        <span t-esc="'{0:,.0f}'.format(p.amount).replace(',', ' ')"/>
+                      </td>
+                      <!--section for HS-->
+                      <td t-if="p.salary_rule_id.code == 'HS15'" align="right" class="bpro_border_left">
+                      <t t-set="val" t-value="[p for p in o.input_line_ids if p.code == 'HS15']" />
+                        <span t-esc="'{0:,.2f}'.format(val[0].amount).replace(',', ' ')"/>
+                      </td>
+                      <td t-if="p.salary_rule_id.code == 'HS40'" align="right" class="bpro_border_left">
+                      <t t-set="val" t-value="[p for p in o.input_line_ids if p.code == 'HS40']" />
+                        <span t-esc="'{0:,.2f}'.format(val[0].amount).replace(',', ' ')"/>
+                      </td>
+                      <td t-if="p.salary_rule_id.code == 'HS60'" align="right" class="bpro_border_left">
+                      <t t-set="val" t-value="[p for p in o.input_line_ids if p.code == 'HS60']" />
+                        <span t-esc="'{0:,.2f}'.format(val[0].amount).replace(',', ' ')"/>
+                      </td>
+                      <td t-if="p.salary_rule_id.code == 'HS100'" align="right" class="bpro_border_left">
+                      <t t-set="val" t-value="[p for p in o.input_line_ids if p.code == 'HS100']" />
+                        <span t-esc="'{0:,.2f}'.format(val[0].amount).replace(',', ' ')"/>
+                      </td>
+                      <!--end section for HS-->
+                      <td t-if="p.salary_rule_id.code not in ['HS15', 'HS40', 'HS60', 'HS100']" align="right" class="bpro_border_left">
+                        <span t-esc="'{0:,.2f}'.format(p.rate).replace(',', ' ')"/>
+                      </td>
+                      <td align="right" class="bpro_border_left">
+                        <span t-esc="'{0:,.0f}'.format(p.total).replace(',', ' ')"/>
+                      </td>
+                      <td align="center" class="bpro_border_left">
+
+                      </td>
+                      <td align="center" class="bpro_border_left">
+
+                      </td>
+                      <td align="center" class="bpro_border_left">
+
+                      </td>
+                    </tr>
+                    <!-- end foreach for brut imposable -->
+
+                    <!-- foreach for cotisation sociale -->
+                    <tr t-foreach="get_payslip_cotisation.get(o.id, [])" t-as="p">
+                      <td align="center">
+                        <span t-esc="p.code"/>
+                      </td>
+                      <td colspan="2" align="left">
+                        <span t-esc="p.name"/>
+                      </td>
+                      <td align="center" class="bpro_border_left">
+                        <t t-if="o.worked_days_line_ids">
+                          <span t-field="o.worked_days_line_ids[0].number_of_days"/>
+                        </t>
+                      </td>
+                      <td align="right" class="bpro_border_left">
+                        <span t-esc="'{0:,.0f}'.format(p.amount).replace(',', ' ')"/>
+                      </td>
+                      <td align="right" class="bpro_border_left">
+                        <t t-if="p.category_id.code != 'COMP'">
+                          <span t-esc="'{0:,.2f}'.format(p.rate).replace(',', ' ')"/>
+                        </t>
+                      </td>
+                      <td align="center" class="bpro_border_left">
+
+                      </td>
+                      <td align="right" class="bpro_border_left">
+                        <t t-if="p.category_id.code == 'SALC'">
+                          <span t-esc="'{0:,.0f}'.format(p.total).replace(',', ' ')"/>
+                        </t>
+                      </td>
+                      <td align="right" class="bpro_border_left">
+                        <t t-if="p.category_id.code == 'COMP'">
+                          <span t-esc="'{0:,.2f}'.format(p.rate).replace(',', ' ')"/>
+                        </t>
+                      </td>
+                      <td align="right" class="bpro_border_left">
+                        <t t-if="p.category_id.code == 'COMP'">
+                          <span t-esc="'{0:,.0f}'.format(p.total).replace(',', ' ')"/>
+                        </t>
+                      </td>
+                    </tr>
+                    <!-- end foreach for cotisation sociale -->
+
+                    <!-- foreach for rubrique non imposable -->
+                    <tr t-foreach="get_payslip_non_imposable.get(o.id, [])" t-as="p">
+                      <td  align="center">
+                        <span t-esc="p.code"/>
+                      </td>
+                      <td colspan="2" align="left">
+                        <span t-esc="p.name"/>
+                      </td>
+                      <td align="center" class="bpro_border_left">
+                        <t t-if="o.worked_days_line_ids">
+                          <span t-field="o.worked_days_line_ids[0].number_of_days"/>
+                        </t>
+                      </td>
+                      <td align="right" class="bpro_border_left">
+                        <span t-esc="'{0:,.0f}'.format(p.amount).replace(',', ' ')"/>
+                      </td>
+                      <td align="right" class="bpro_border_left">
+                        <span t-esc="'{0:,.2f}'.format(p.rate).replace(',', ' ')"/>
+                      </td>
+                      <td align="right" class="bpro_border_left">
+                        <span t-esc="'{0:,.0f}'.format(p.total).replace(',', ' ')"/>
+                      </td>
+                      <td align="center" class="bpro_border_left">
+
+                      </td>
+                      <td align="center" class="bpro_border_left">
+
+                      </td>
+                      <td align="center" class="bpro_border_left">
+
+                      </td>
+                    </tr>
+                    <!-- end foreach for rubrique non imposable -->
+
+                    <!-- foreach for retenues -->
+                    <tr t-foreach="get_payslip_retenu.get(o.id, [])" t-as="p">
+                      <td align="center">
+                        <span t-field="p.code"/>
+                      </td>
+                      <td colspan="2" align="left">
+                        <span t-esc="p.name"/>
+                      </td>
+                      <td align="center" class="bpro_border_left">
+                        <t t-if="o.worked_days_line_ids">
+                          <span t-field="o.worked_days_line_ids[0].number_of_days"/>
+                        </t>
+                      </td>
+                      <td align="right" class="bpro_border_left">
+                        <span t-esc="'{0:,.0f}'.format(p.amount).replace(',', ' ')"/>
+                      </td>
+                      <td align="right" class="bpro_border_left">
+                        <span t-esc="'{0:,.2f}'.format(p.rate).replace(',', ' ')"/>
+                      </td>
+                      <td align="center" class="bpro_border_left">
+
+                      </td>
+                      <td align="right" class="bpro_border_left">
+                        <span t-esc="'{0:,.0f}'.format(p.total).replace(',', ' ')"/>
+                      </td>
+                      <td align="center" class="bpro_border_left">
+
+                      </td>
+                      <td align="center" class="bpro_border_left">
+
+                      </td>
+                    </tr>
+                    <!-- end foreach for retenues -->
+                    <tr class="bpro_border_balance">
+                      <td></td>
+                      <td colspan="2"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td align="center" class="align-middle bpro_border_left" style="width:10%">
+                        <strong> T. Gains </strong>
+                      </td>
+                      <td align="center" class="align-middle bpro_border_left">
+                        <strong> T. Retenues </strong>
+                      </td>
+                      <td colspan="2" align="center" class="align-middle bpro_border_left">
+                        <strong> T. Charges Patronales </strong>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td></td>
+                      <td colspan="2"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td align="center" class="bpro_border_left">
+                        <span t-esc="get_total_gains.get(o.id)[0]"/>
+                      </td>
+                      <td align="center" class="bpro_border_left">
+                        <span t-esc="get_total_charg_sal.get(o.id)[0]"/>
+                      </td>
+                      <td colspan="2" align="center" class="bpro_border_left">
+                        <span t-esc="get_total_charge_pat.get(o.id)[0]"/>
+                      </td>
+                    </tr>
+                  </table>
+                  <br/>
+
+                  <table class="bpro_contained bpro-width">
+                    <tr class="bpro_border_head">
+                      <td colspan="9" align="center" class="bpro_border_left">
+                        <strong> Cumuls </strong>
+                      </td>
+                      <td colspan="2" rowspan="2" align="center" class="align-middle bpro_border_left bpro_border_right">
+                        <strong> NET A PAYER </strong>
+                      </td>
+                    </tr>
+                    <tr class="bpro_border_head">
+                      <td class="bpro_border_left"></td>
+                      <td colspan="2" align="center" class="align-middle bpro_border_left">
+                        <strong> Salaire Brut Total </strong>
+                      </td>
+                      <td colspan="2" align="center" class="align-middle bpro_border_left">
+                        <strong> Salaire Brut Imposable </strong>
+                      </td>
+                      <td align="center" class="align-middle bpro_border_left">
+                        <strong> Charges Patronales </strong>
+                      </td>
+                      <td align="center" class="align-middle bpro_border_left">
+                        <strong> Charges Salariales </strong>
+                      </td>
+                      <td align="center" class="align-middle bpro_border_left">
+                        <strong> Jours de congés </strong>
+                      </td>
+                      <!--<td align="center" class="align-middle bpro_border_left">
+                        <strong> Montant congés </strong>
+                      </td>-->
+                    </tr>
+
+                    <tr class="bpro_border_head">
+                      <td align="center" style="width:15%" class="bpro_border_left">
+                        <strong> Mois en cours </strong>
+                      </td>
+                      <td colspan="2" align="center" class="align-middle bpro_border_left">
+                        <span t-esc="get_sal_brut.get(o.id)[0]"/>
+                      </td>
+                      <td colspan="2" align="center" class="align-middle bpro_border_left">
+                        <span t-esc="get_sal_brut_imp.get(o.id)[0]"/>
+                      </td>
+                      <td align="center" class="align-middle bpro_border_left">
+                        <span t-esc="get_total_charge_pat.get(o.id)[0]"/>
+                      </td>
+                      <td align="center" class="align-middle bpro_border_left">
+                        <span t-esc="get_total_charg_sal.get(o.id)[0]"/>
+                      </td>
+                      <td align="center" class="align-middle bpro_border_left">
+                        <t t-if="o.worked_days_line_ids">
+                          <span t-esc="o.contract_id.company_id.nbj_alloue"/>
+                        </t>
+                      </td>
+                      <!--<td align="center" class="align-middle bpro_border_left">
+                          <span t-esc="get_base_conges.get(o.id)[0]"/>
+                      </td>-->
+                      <td align="center" rowspan="2" colspan="2" class="align-middle bpro_border_left bpro_border_right">
+                        <span t-esc="get_sal_net.get(o.id)[0]"/>
+                      </td>
+                    </tr>
+
+                    <tr t-foreach="get_val_annuel.get(o.id, [])" t-as="r" class="bpro_border_head">
+                      <td align="center" class="bpro_border_left">
+                        <strong> Année </strong>
+                      </td>
+                      <td colspan="2" align="center" class="bpro_border_left">
+                        <span t-esc="'{0:,.0f}'.format(r.get('sal_brut_an')).replace(',', ' ')"/>
+                      </td>
+                      <td colspan="2" align="center" class="bpro_border_left">
+                        <span t-esc="'{0:,.0f}'.format(r.get('sal_brut_imp_an')).replace(',', ' ')"/>
+                      </td>
+                      <td align="center" class="bpro_border_left">
+                        <span t-esc="'{0:,.0f}'.format(r.get('charg_pat_an')).replace(',', ' ')"/>
+                      </td>
+                      <td align="center" class="bpro_border_left">
+                        <span t-esc="'{0:,.0f}'.format(r.get('charg_sal_an')).replace(',', ' ')"/>
+                      </td>
+                      <td align="center" class="bpro_border_left">
+                        <span t-esc="o.contract_id.nbj_aquis"/>
+                      </td>
+                      <!--<td align="center" class="bpro_border_left">
+                        <span t-esc="'{0:,.0f}'.format(o.contract_id.cumul_mensuel).replace(',', ' ')"/>
+                      </td>-->
+                    </tr>
+
+                  </table>
+                  <br/>
+                  <p><strong> Pour vous aider à faire valoir vos droits, conservez ce bulletin de paie sans limitation de durée. </strong></p>
+                </div>
+            <!-- </t> -->
+          </t>
+        </t>
+    </t>
+</template>
+
+</data>
+</odoo>

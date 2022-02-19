@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record forcecreate="True" id="decimal_unit_price" model="decimal.precision">
+            <field name="name">Product Template Line</field>
+            <field name="digits" eval="6"/>
+        </record>
+    </data>
+</odoo>

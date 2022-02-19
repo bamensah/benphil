@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        
+        
+        <record id="action_landed_cost_line_filtered" model="ir.actions.act_window">
+            <field name="name">Logistic Cost Lines</field>
+            <field name="res_model">stock.landed.cost.lines</field>
+            <!--<field name="view_type">form</field>-->
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="domain">[('cost_id', '=', active_id)]</field>
+            <field name="context">{'search_default_group_cost_id':active_id}</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="landed_cost_list_action">
+            <field name="name">Landed Cost Lines</field>
+            <field name="res_model">stock.landed.cost.lines</field>
+            <!--<field name="view_type">form</field>-->
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_smiling_face">
+                </p>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="stock_landed_cost_lines_lines_tree_view">
+            <field name="name">stock.landed.cost.lines.tree</field>
+            <field name="model">stock.landed.cost.lines</field>
+            <field name="arch" type="xml">
+                <tree string="Landed Cost Tree" >
+                    <field name="product_id"/>
+                    <field name="name"/>
+                    <field name="account_id"/>
+                    <field name="account_analytic_id" />  <!--domain="[('x_studio_type', '=', 'Normal')]"-->
+                    <field name="split_method"/>
+                    <field name="price_unit"/>
+                    <field name="cost_id" widget="many2onebutton"/>
+                    <field name="invoiced"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="stock_landed_cost_tree_view_inherit">
+            <field name="name">stock.landed.cost.tree.view.inherit</field>
+            <field name="model">stock.landed.cost</field>
+            <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="amount_total"/>
+                    <field name="picking_ids" widget="many2many_tags"/>
+                </xpath>
+<!--                W1E-7-add invoiced field landed cost-->
+                <xpath expr="//field[@name='state']" position="after">
+                    <field name="invoiced" />
+                </xpath>
+            </field>
+        </record>
+        
+    <record id="stock_landed_cost_form_inherit" model="ir.ui.view">
+            <field name="name">stock.landed.cost.form.inherit</field>
+            <field name="model">stock.landed.cost</field>
+            <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form"/>
+            <field name="arch" type="xml">
+                <!-- picking_ids attribute is hide becaseu it hide other group fields-->
+                 <!--<xpath expr="//field[@name='picking_ids']" position="attributes">
+                    <attribute name="widget">many2many_default</attribute>
+                </xpath>-->
+                <xpath expr="//field[@name='valuation_adjustment_lines']" position="after">
+                    <group class="oe_subtotal_footer oe_right">
+                        <field name="adjustment_lines_total" widget="monetary"/>
+                    </group>
+                    <!--W1E-74 add bill number to landed cost-->
+                    <notebook>
+                        <page string="Bill Reference">
+                            <field name="bill_ids">
+                                <tree>
+                                    <field name="bill_reference" />
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="bill_reference" />
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </xpath>
+                 <xpath expr="//field[@name='cost_lines']" position="replace">
+                    <field name="cost_lines">
+                            <form string="Cost Lines">
+                                <group>
+                                    <group>
+                                        <field name="product_id" domain="[('landed_cost_ok', '=', True)]" context="{'default_landed_cost_ok': True, 'form_view_ref':'stock_landed_costs.view_stock_landed_cost_type_form'}"/>
+                                        <field name="price_unit"/>
+                                    </group>
+                                    <group>
+                                        <field name="split_method"/>
+                                        <field name="account_id"/>
+                                    </group>
+                                </group>
+                                <label for="name"/>
+                                <field name="name"/>
+                            </form>
+                            <tree string="Cost Lines" editable="bottom">
+                                <field name="product_id" domain="[('landed_cost_ok', '=', True)]" context="{'default_landed_cost_ok': True, 'default_type': 'service',  'form_view_ref':'stock_landed_costs.view_stock_landed_cost_type_form'}"/>
+                                <field name="name"/>
+                                <field name="account_id"/>
+                                <field name="account_analytic_id" />   <!--domain="[('x_studio_type', '=', 'Normal')]"-->
+                                <field name="split_method"/>
+                                <field name="price_unit"/>
+                            </tree>
+                        </field>
+                </xpath>
+                
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="peg_dev_module.action_landed_cost_line_filtered" type="action" class="oe_stat_button" icon="fa-th-list" string="Lignes"/>
+                </xpath>
+                <xpath expr="//button[@name='button_validate']" position="replace">
+                    <button name="button_validate" string="Validate" states="draft" class="oe_highlight" type="object" groups="peg_dev_module.group_sn_finance_controller"/>  <!--stock.group_stock_manager,__export__.res_groups_105_5159c8d3-->
+                </xpath>
+                
+            </field>
+        </record>
+
+        <!-- this action is not used -->
+        <record id="action_stock_landed_cost_tree_form" model="ir.actions.act_window">
+            <field name="name">Landed Costs</field>
+            <field name="res_model">stock.landed.cost</field>
+            <field name="type">ir.actions.act_window</field>
+            <!--<field name="view_type">form</field>-->
+            <field name="view_mode">tree,form</field>
+            <field name="domain"></field>
+            <field name="search_view_id" ref="stock_landed_costs.view_stock_landed_cost_search"/>
+        </record>
+    </data>
+</odoo>

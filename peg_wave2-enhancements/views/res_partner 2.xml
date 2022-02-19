@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_contact_relationships" model="ir.actions.act_window">
+            <field name="name">Contact Relationships</field>
+            <field name="res_model">contact.relationship</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.ui.view" id="res_partner_contacts_inherit_form_view">
+            <field name="name">res.partner.contacts.inherit.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="wave2_peg_africa.res_partner_inherit_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook[last()]" position="inside">
+                    <page name="other_contacts" string="Other contact details">
+                        <group>
+                            <field name="contacts" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="phone_number"/>
+                                    <field name="relationship_id" options="{'no_create_edit':True}"/>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//page[1]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <field name="client_status" position="after">
+                    <field name="manual_block" readonly="1" attrs="{'invisible': [('manual_block','=', False)]}"></field>
+                </field>
+            </field>
+        </record>
+
+        <record id="action_view_res_partner_unblock" model="ir.actions.server">
+            <field name="name">Set to Active</field>
+            <field name="model_id" ref="base.model_res_partner" />
+            <field name="binding_model_id" ref="base.model_res_partner" />
+            <field name="state">code</field>
+            <field name="code">
+if env.user.has_group('__export__.res_groups_108_1e0506ee') or env.user.has_group('wave2_peg_africa.group_credit_team'):
+    for r in records:
+        r.unblock_customer()
+else:
+    raise Warning("You do not have access to trigger this action - Credit Director or Credit Team access required")
+            </field>
+        </record>
+
+        <record id="action_view_res_partner_block" model="ir.actions.server">
+            <field name="name">Block</field>
+            <field name="model_id" ref="base.model_res_partner" />
+            <field name="binding_model_id" ref="base.model_res_partner" />
+            <field name="state">code</field>
+            <field name="code">
+if env.user.has_group('__export__.res_groups_108_1e0506ee') or env.user.has_group('wave2_peg_africa.group_credit_team'):
+    for r in records:
+        r.block_customer()
+else:
+    raise Warning("You do not have access to trigger this action - Credit Director or Credit Team access required")
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_partner_stock_form_inherit">
+            <field name="name">res.partner.warehouse.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="stock.view_partner_stock_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='property_stock_customer']" position="replace">
+                    <field name="property_stock_customer" domain="['|', ('usage','=','customer'), ('usage','=','transit')]"/>
+                </xpath>
+                <xpath expr="//field[@name='property_stock_supplier']" position="replace">
+                    <field name="property_stock_supplier" domain="['|', ('usage','=','supplier'), ('usage','=','transit')]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <menuitem id="menu_contact_relationship_form"
+            action="action_contact_relationships"
+            name="Contact Relationships"
+            sequence="37" parent="contacts.res_partner_menu_config"/>
+    </data>
+</odoo>

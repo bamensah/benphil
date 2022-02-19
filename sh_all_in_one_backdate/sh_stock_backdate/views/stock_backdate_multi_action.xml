@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="model_stock_picking_action_open_backdate_wizard" model="ir.actions.server" >
+        <field name="name">Mass Assign Backdate</field>
+        <field name="model_id" ref="sh_all_in_one_backdate.model_sh_picking_backdate_wizard"/>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="groups_id" eval="[(4, ref('sh_all_in_one_backdate.group_mass_assign_backdate_stock'))]"/>
+		<field name="state">code</field>
+        <field name="binding_view_types">list,form</field>
+         <field name="code">
+            action = model.open_picking_backdate_wizard()
+        </field>
+    </record>
+
+    <record id="model_stock_scrap_action_open_backdate_wizard" model="ir.actions.server" >
+        <field name="name">Mass Assign Backdate</field>
+        <field name="model_id" ref="sh_all_in_one_backdate.model_sh_scrap_backdate_wizard"/>
+        <field name="binding_model_id" ref="stock.model_stock_scrap"/>
+        <field name="groups_id" eval="[(4, ref('sh_all_in_one_backdate.group_mass_assign_backdate_stock'))]"/>
+		<field name="state">code</field>
+        <field name="binding_view_types">list,form</field>
+         <field name="code">
+            action = model.open_scrap_backdate_wizard()
+        </field>
+    </record>
+
+    <record id="model_stock_adjustment_action_open_backdate_wizard" model="ir.actions.server" >
+        <field name="name">Mass Assign Backdate</field>
+        <field name="model_id" ref="sh_all_in_one_backdate.model_sh_adjustment_backdate_wizard"/>
+        <field name="binding_model_id" ref="stock.model_stock_inventory"/>
+        <field name="groups_id" eval="[(4, ref('sh_all_in_one_backdate.group_mass_assign_backdate_stock'))]"/>
+		<field name="state">code</field>
+        <field name="binding_view_types">list,form</field>
+         <field name="code">
+            action = model.open_adjustment_backdate_wizard()
+        </field>
+    </record>
+</odoo>

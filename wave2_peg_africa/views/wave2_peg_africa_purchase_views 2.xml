@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="purchase_order_form_inherit_finance_approval_permission" model="ir.ui.view">
+        <field name="name">purchase.order.form.view.permission</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_tripple_approval.purchase_order_form_inherit_finance_approval"/>
+        <field name="arch" type="xml">
+<!--            <xpath expr="//button[@name='button_approve']" position="attributes">-->
+<!--                <attribute name="groups">purchase_tripple_approval.group_department_manager, wave2_peg_africa.gh_finance_controller, wave2_peg_africa.gh_finance_manager,-->
+<!--                wave2_peg_africa.gh_group_supply_chain_director,wave2_peg_africa.gh_inventory_manager</attribute>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//button[@name='button_finance_approval']" position="attributes">-->
+<!--                <attribute name="groups">account.group_account_manager, wave2_peg_africa.gh_finance_controller, wave2_peg_africa.gh_finance_manager,-->
+<!--                wave2_peg_africa.gh_group_supply_chain_director</attribute>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//button[@name='button_director_approval']" position="attributes">-->
+<!--                <attribute name="groups">purchase_tripple_approval.group_purchase_director, wave2_peg_africa.gh_finance_controller, wave2_peg_africa.gh_finance_manager</attribute>-->
+<!--            </xpath> -->
+            <xpath expr="//field[@name='invoice_status']" position="after">
+                <field name="invoiced_check" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_tree_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.inherit.tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="invoiced_check" />
+            </xpath>
+        </field>
+    </record>
+
+<!--  migrate in v14 later  -->
+<!--    <record model="ir.ui.view" id="purchase_order_search_invoiced_inherit">-->
+<!--        <field name="name">purchase.order.list.select.invoiced.inherit</field>-->
+<!--        <field name="model">purchase.order</field>-->
+<!--        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//filter[@name='invoiced']" position="after">-->
+<!--                <filter name="invoiced_checked" string="Invoiced" domain="[('invoiced_check', '=', True)]"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <record model="ir.ui.view" id="view_purchase_order_filter_inherit">
+        <field name="name">purchase.order.list.select.inherit.tripple.approval</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='to_approve']" position="after">
+                <filter name="purchase_manager" string="Purchase Manager POs"/>
+<!--                domain="['&amp;', ('dept_manager_id', '=', uid), ('state', '=', 'to approve')]"-->
+            </xpath>
+            <xpath expr="//filter[@name='finance_approval']" position="after">
+                <filter name="finance_manager" string="Finance Manager POs"/>
+<!--                domain="['&amp;', ('finance_manager_id', '=', uid), ('state', '=', 'finance_approval')]"-->
+            </xpath>
+            <xpath expr="//filter[@name='to_approve']" position="after">
+                <filter name="company_director" string="Company Director POs"/>
+<!--                domain="['&amp;', ('director_manager_id', '=', uid), ('state', '=', 'director_approval')]"-->
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="purchase_tripple_approval.action_purchase_manager_approve">
+        <field name="context">{'search_default_purchase_manager':1}</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="purchase_tripple_approval.action_finance_manager_approve">
+        <field name="context">{'search_default_finance_manager':1}</field>
+    </record>
+    <record model="ir.actions.act_window" id="purchase_tripple_approval.action_director_manager_approve">
+        <field name="context">{'search_default_company_director':1}</field>
+    </record>
+</odoo>

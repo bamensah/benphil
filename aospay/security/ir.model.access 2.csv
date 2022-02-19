@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+
+access_aos_convention,aos.convention,model_aos_convention,aospay.group_aos_payroll_user,1,1,1,1
+access_line_aos_convention,line.aos.convention,model_line_aos_convention,aospay.group_aos_payroll_user,1,1,1,1

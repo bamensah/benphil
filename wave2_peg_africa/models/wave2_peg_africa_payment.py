@@ -975,24 +975,25 @@ class AccountPaymentInherit(models.Model):
     # @api.multi
     def action_cancel(self):
         self.confirmed = False
-        return super(AccountPaymentInherit, self).action_cancel()
-    #     for rec in self:
-    #         if rec.payment_class == 'deposit':
-    #             rec.sale_order.write({
-    #                 'deposit_invoice_fully_paid': False,
-    #                 'deposit_invoice_fully_paid_date': None
-    #             })
+        result = super(AccountPaymentInherit, self).action_cancel()
+        for rec in self:
+            if rec.payment_class == 'deposit':
+                rec.sale_order.write({
+                    'deposit_invoice_fully_paid': False,
+                    'deposit_invoice_fully_paid_date': None
+                })
 
-    #         if rec.withhold_payment_id:
-    #             rec.withhold_payment_id.action_cancel()
-    # #
-    #         amount_paid = rec.sale_order.amount_paid - rec.sale_order.withheld_payment_amount
-    #         if rec.sale_order.payment_term_id.rate_amount != 0:
-    #             payment_count = int(amount_paid / rec.sale_order.payment_term_id.rate_amount)
-    #         else:
-    #             payment_count = 0
-    #         rec.sale_order.write({
-    #             'outstanding_balance': rec.sale_order.payment_term_id.financed_price - rec.sale_order.total_amount_paid - rec.sale_order.discount_given,
-    #             'amount_pending': amount_paid - (payment_count * rec.sale_order.payment_term_id.rate_amount)
-    #         })
-    # end -------------------------------
+            if rec.withhold_payment_id:
+                rec.withhold_payment_id.action_cancel()
+    #
+            amount_paid = rec.sale_order.amount_paid - rec.sale_order.withheld_payment_amount
+            if rec.sale_order.payment_term_id.rate_amount != 0:
+                payment_count = int(amount_paid / rec.sale_order.payment_term_id.rate_amount)
+            else:
+                payment_count = 0
+            rec.sale_order.write({
+                'outstanding_balance': rec.sale_order.payment_term_id.financed_price - rec.sale_order.total_amount_paid - rec.sale_order.discount_given,
+                'amount_pending': amount_paid - (payment_count * rec.sale_order.payment_term_id.rate_amount)
+            })
+
+        return result

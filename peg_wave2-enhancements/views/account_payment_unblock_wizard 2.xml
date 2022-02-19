@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    
+    <record id="confirm_unblock_wizard_view" model="ir.ui.view">
+        <field name="name">Confirm Unblock Payment(s)</field>
+        <field name="model">comfirm_unblock_payment_wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <p class="oe_grey">
+                        Confirming the selected Payment(s) are unblocked will result in a token generation to the client. 
+                        Would you like to proceed?
+                    </p>
+                    <footer>
+                        <button name="confirm_unblock_payments" string="Confirm" type="object"
+                            class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="action_view_sale_order_cancel" model="ir.actions.act_window">
+        <field name="name">Confirm Unblock</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">comfirm_unblock_payment_wizard</field>
+        <field name="binding_model_id" ref="account.model_account_payment" />
+<!--        <field name="view_type">form</field>-->
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

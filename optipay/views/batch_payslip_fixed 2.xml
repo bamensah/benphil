@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_hr_payslip_by_employees_fix_error" model="ir.ui.view">
+            <field name="name">hr_payroll_payslip_employees</field>
+            <field name="model">hr.payslip.employees</field>
+            <field name="arch" type="xml">
+                <form string="Payslips by Employees">
+                    <header>
+                        <button icon="fa-cogs" string="Generate" name="compute_sheet" type="object" class="oe_highlight"  />
+                    </header>
+                    <group>
+                        <p>This wizard will generate payslips for all selected employee(s) based on the dates and credit note specified on Payslips Run.</p>
+                    </group>
+                    <group colspan="4" >
+                        <separator string="Employees" colspan="4"/>
+                        <newline/>
+                        <field name="employee_ids" nolabel="1"/>
+                    </group>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_hr_payslip_by_employees_fix_error" model="ir.actions.act_window">
+            <field name="name">Generate Payslips</field>
+            <field name="res_model">hr.payslip.employees</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_hr_payslip_by_employees_fix_error"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="hr_payslip_run_form_inherit" model="ir.ui.view">
+            <field name="name">hr.payslip.run.form.inherit</field>
+            <field name="model">hr.payslip.run</field>
+            <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+            <field name="arch" type="xml">
+              <xpath expr="//form/header/button[2]" position="replace">
+                <button name="%(action_hr_payslip_by_employees_fix_error)d" type="action" states="draft" string="Générer les bulletins de paie" class="oe_highlight"/>
+              </xpath>
+            </field>
+        </record>
+
+</odoo>

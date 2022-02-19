@@ -1,0 +1,27 @@
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_company_form_inherit_finance_approval" model="ir.ui.view">
+        <field name="name">res.company.form.view.inherit</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/notebook[last()]" position="inside"> 
+                <page string="Tripple Approval Seting"> 
+                    <group>
+                        <group>
+                            <field name="three_step_validation"/>
+                            <field name="email_template_id" attrs="{'invisible':[('three_step_validation','=',False)]}"/>
+                            <field name="refuse_template_id" attrs="{'invisible':[('three_step_validation','=',False)]}"/>
+                        </group>
+                        <group>
+                            <field name="po_double_validation_amount" attrs="{'invisible':[('three_step_validation','=',False)]}"/>
+                            <field name="finance_validation_amount" attrs="{'invisible':[('three_step_validation','=',False)]}"/>
+                            <field name="director_validation_amount" attrs="{'invisible':[('three_step_validation','=',False)]}"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo> -->

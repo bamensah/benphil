@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data>
+        <record id="view_move_tree" model="ir.ui.view">
+            <field name="name">stock.move.tree</field>
+            <field name="model">stock.move</field>
+            <field ref="stock.view_move_tree" name="inherit_id"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date']" position="before">
+                    <field name="id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+<!--Odoo Studio: stock.move.tree customization-->

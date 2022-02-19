@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="survey_user_input_form_inherit">
+            <field name="name">survey_user_input_form_inherit</field>
+            <field name="model">survey.user_input</field>
+            <field name="inherit_id" ref="survey.survey_user_input_view_form" /> <!--#survey_user_input_form user_input form view id-->
+            <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_print_answers']" position="after">  <!--# button id changed from action_view_answers-->
+               <button name="action_fill_answers" string="Start" type="object"  class="oe_highlight" attrs="{'invisible': [('state', '=', 'done')]}"/>
+               <field name="state" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='answer_type']" position="replace">
+              <field name="answer"/>
+            </xpath>
+            </field>
+    </record>
+    
+    <record model="ir.ui.view" id="survey_form_peg_inherit">
+            <field name="name">Form view for survey</field>
+            <field name="model">survey.survey</field>
+            <field name="inherit_id" ref="survey.survey_form"/>
+            <field name="arch" type="xml">
+              <xpath expr="//button[@name='action_print_survey']" position="after">
+                <button name="action_assign_survey" string="Assign" type="object" class="oe_highlight"  attrs="{'invisible': [('id', '=', False)]}"/>
+              </xpath>
+            </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="survey_assign_contact_form">
+            <field name="name">survey.assign.contact.form</field>
+            <field name="model">survey.assign_contact</field>
+            <field name="arch" type="xml">
+                <form string="Assign Survey to Customer">
+                    <group col="2">
+                        <field name="manual" invisible="1"/>
+                        <field name="survey_id" readonly="context.get('default_survey_id')"/>
+                        <field name="partner_id" attrs="{'readonly':[('manual','=', True)]}" />
+                    </group>
+                    <footer>
+                        <button string="Assign" name="assign_action" type="object" class="btn-primary" />
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+      </record>
+
+      <!--<act_window id="action_assign_survey_customer"
+            name="Survey"
+            src_model="res.partner"
+            res_model="survey.assign_contact"
+            view_mode="form"
+            key2="client_action_multi" target="new"
+      />-->
+
+        <record id="action_assign_survey_customer" model="ir.actions.act_window">
+            <field name="name">Survey Assign Contact</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">survey.assign_contact</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="survey_assign_contact_form"/>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="base.model_res_partner" />
+        </record>
+
+  </data>
+</odoo>
+
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="peg_screening_survey.list">
+      <field name="name">peg_screening_survey list</field>
+      <field name="model">peg_screening_survey.peg_screening_survey</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="peg_screening_survey.action_window">
+      <field name="name">peg_screening_survey window</field>
+      <field name="res_model">peg_screening_survey.peg_screening_survey</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="peg_screening_survey.action_server">
+      <field name="name">peg_screening_survey server</field>
+      <field name="model_id" ref="model_peg_screening_survey_peg_screening_survey"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="peg_screening_survey" id="peg_screening_survey.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="peg_screening_survey.menu_1" parent="peg_screening_survey.menu_root"/>
+    <menuitem name="Menu 2" id="peg_screening_survey.menu_2" parent="peg_screening_survey.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="peg_screening_survey.menu_1_list" parent="peg_screening_survey.menu_1"
+              action="peg_screening_survey.action_window"/>
+    <menuitem name="Server to list" id="peg_screening_survey" parent="peg_screening_survey.menu_2"
+              action="peg_screening_survey.action_server"/>
+    -->
+
+    <!-- Add Button for Assigning to Customer -->

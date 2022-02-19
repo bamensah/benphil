@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="sh_sale_template_product_form_inherit_view" model="ir.ui.view">
+            <field name="name">sale.product.template.form.inherit</field>
+            <field name="model">sale.product.template</field>
+            <field name="inherit_id" ref="sh_sales_custom_product_template.sh_sale_template_product_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='sale_product_template_ids']" position="replace">
+                    <field name="sale_product_template_ids">
+                        <tree editable="bottom">
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="ordered_qty"/>
+                            <field name="unit_price"/>
+                            <field name="tax_id" widget="many2many_tags"
+                                   context="{'search_view_ref': 'account.account_tax_view_search'}"
+                                   options="{'no_create': True}"
+                                   domain="[('type_tax_use','=','sale')]"/>
+                            <field name="account_analytic" />  <!--domain="[('x_studio_type', '=', 'Normal')]"-->
+                            <field name="discount"/>
+                            <field name="product_uom"/>
+                        </tree>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="sh_sale_template_product_form_inherit_view" model="ir.ui.view">
+            <field name="name">stock.picking.type.form.inherit</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.view_picking_type_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='use_existing_lots']" position="after">
+                    <field name="use_import_lots"/>
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

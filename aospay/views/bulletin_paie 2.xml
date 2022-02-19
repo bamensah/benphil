@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- by khk -->
+<odoo>
+<data>
+
+  <report
+      id="action_report_bulletin"
+      model="hr.payslip"
+      string="Bulletin de Paie"
+      report_type="qweb-pdf"
+      name="aospay.report_bulletin"
+      file="aospay.report_bulletin"
+      groups="aospay.group_aos_payroll_user"
+  />
+
+<template id="report_bulletin">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+          <!--<t t-call="optipay.headerless_layout">-->
+             <!--<t t-call="optipay.custom_external_layout_bulletin">-->
+			 <t t-call="web.external_layout">
+                <div class="page">
+					 <strong> <h2 align="center" > BULLETIN DE PAIE </h2> </strong>
+                    <p t-field="o.name"/>
+
+                    <table class="table table-sm table-bordered">
+                        <tr>
+                            <td><strong>Nom et Prénom :</strong></td>
+                            <td><span t-field="o.employee_id"/></td>
+                            <td><strong>Fonction: </strong></td>
+                            <td><span t-field="o.employee_id.job_title"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Situation de Famille :</strong></td>
+                            <td><span t-field="o.employee_id.sitfam"/></td>
+                            <td><strong>Département : </strong></td>
+                            <td><span t-field="o.employee_id.department_id"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Catégorie :</strong></td>
+                            <td><span t-field="o.contract_id.cat"/></td>
+                            <td><strong>Section :</strong></td>
+                            <td><span t-field="o.employee_id.section"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Matricule:</strong></td>
+                            <td><span t-field="o.employee_id.matricule"/></td>
+                            <td><strong>Taux Abat. Impôt:</strong></td>
+                            <td><span t-field="o.employee_id.tauxabat"/><span>%</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>N° Sécu. Sociale:</strong></td>
+                            <td><span t-field="o.employee_id.secu_social"/></td>
+                            <td><strong>Date D'embauche: </strong></td>
+                            <td><span t-field="o.contract_id.date_start"/></td>
+                        </tr>
+                    </table>
+                 
+
+                  <br/>
+
+                  <table class="table table-sm table-bordered">
+                    <tr>
+                      <td align="left" width="30%" >
+                        <strong> Libellés </strong>
+                      </td>
+                      <td  align="center" width="11.66%">
+                        <strong> Base </strong>
+                      </td>
+                      <td align="center" width="11.66%">
+                        <strong> Taux </strong>
+                      </td>
+                      <td  align="center" width="11.66%">
+                        <strong> Gains </strong>
+                      </td>
+                      <td  align="center" width="11.66%">
+                        <strong> Retenues salariales </strong>
+                      </td>
+					  <td align="center" width="11.66%">
+                        <strong> Taux charges patronales </strong>
+                      </td>
+					  <td align="center" width="11.67%">
+                        <strong> Charges patronales </strong>
+                      </td>
+                    </tr>
+                    <!-- foreach pour libelle -->
+                    <tr t-foreach="get_payslip_libelle_salaire.get(o.id, [])" t-as="p" >
+                      <td align="left" width="20%" >
+                        <span t-field="p.name"/>
+                      </td>
+					  <td  align="left" width="11.66%">
+                        <span> </span>
+                      </td>
+					  <td align="left" width="11.66%">
+                        <span> </span>
+                      </td>
+					  <td align="right" width="11.66%">
+                         <span t-esc="'{0:,.0f}'.format(p.amount).replace(',', ' ')"/>
+                      </td>
+					  <td  align="left" width="11.66%">
+                       <span> </span>
+                      </td>
+					  <td  align="left" width="11.66%">
+                        <span> </span>
+                      </td>
+					  <td align="left" width="11.66%">
+                        <span> </span>
+                      </td>
+					</tr>
+					<!-- Salaire brut -->
+					<tr>
+                      <td align="left" width="20%">
+                        <span>Salaire Brut</span>
+                      </td>
+					  <td  align="left" width="11.66%">
+                        <span> </span>
+                      </td>
+					  <td align="left" width="11.66%">
+                        <span> </span>
+                      </td>
+					  <td align="right" width="11.66%">
+                         <span t-esc="get_sal_brut.get(o.id)[0]"/>
+                      </td>
+					  <td  align="left" width="11.66%">
+                       <span> </span>
+                      </td>
+					  <td  align="left" width="11.66%">
+                        <span> </span>
+                      </td>
+					  <td align="left" width="11.67%">
+                        <span> </span>
+                      </td>
+					</tr>
+					<!-- INPS -->
+					<tr >
+                      <td align="left" >
+                        <span>INPS</span>
+                      </td>
+					  <td  align="right">
+                        <span t-esc="get_base_inps.get(o.id)[0]"/>
+                      </td>
+					  <td align="right">
+                        <span t-esc="get_taux_salarie_inps.get(o.id)[0]"/><span>%</span>
+                      </td>
+					  <td  align="left">
+                       <span> </span>
+                      </td>
+					  <td align="right" >
+                         <span t-esc="get_montant_salarie_inps.get(o.id)[0]"/>
+                      </td>
+					  <td  align="right">
+                        <span t-esc="get_taux_patronales_inps.get(o.id)[0]"/><span>%</span>
+                      </td>
+					  <td align="right">
+                        <span t-esc="get_montant_patronales_inps.get(o.id)[0]"/>
+                      </td>
+					</tr>
+					<!-- AMO -->
+					<tr >
+                      <td align="left">
+                        <span>AMO</span>
+                      </td>
+					  <td  align="right">
+                        <span t-esc="get_base_inps.get(o.id)[0]"/>
+                      </td>
+					  <td align="right">
+                        <span t-esc="get_taux_salarie_amo.get(o.id)[0]"/><span>%</span>
+                      </td>
+					  <td  align="left">
+                       <span> </span>
+                      </td>
+					  <td align="right" >
+                         <span t-esc="get_montant_salarie_amo.get(o.id)[0]"/>
+                      </td>
+					  <td  align="right">
+                        <span t-esc="get_taux_patronales_amo.get(o.id)[0]"/><span>%</span>
+                      </td>
+					  <td align="right">
+                        <span t-esc="get_montant_patronales_amo.get(o.id)[0]"/>
+                      </td>
+					</tr>
+					<!-- ITS -->
+					<tr >
+                      <td align="left">
+                        <span>ITS</span>
+                      </td>
+					  <td  align="right">
+                        <span t-esc="get_base_its.get(o.id)[0]"/>
+                      </td>
+					  <td align="right">
+                        <span> </span>
+                      </td>
+					  <td  align="left">
+                       <span> </span>
+                      </td>
+					  <td align="right" >
+                         <span t-esc="get_montant_its.get(o.id)[0]"/>
+                      </td>
+					  <td  align="right">
+                        <span> </span>
+                      </td>
+					  <td align="right">
+                        <span> </span>
+                      </td>
+					</tr>
+					<!-- Total retenues-->
+					<tr >
+                      <td align="left">
+                        <span>Total retenues</span>
+                      </td>
+					  <td  align="right">
+                        <span> </span>
+                      </td>
+					  <td align="right">
+                        <span> </span>
+                      </td>
+					  <td  align="left">
+                       <span> </span>
+                      </td>
+					  <td align="right" >
+                         <span t-esc="get_total_retenues.get(o.id)[0]"/>
+                      </td>
+					  <td  align="right">
+                        <span> </span>
+                      </td>
+					  <td align="right">
+                        <span> </span>
+                      </td>
+					</tr>
+					 <!-- foreach pour Contribution société -->
+                    <tr t-foreach="get_contribution_salaire.get(o.id, [])" t-as="p" >
+                      <td align="left">
+                        <span t-field="p.name"/>
+                      </td>
+					  <td  align="right">
+                        <span t-esc="'{0:,.0f}'.format(p.amount).replace(',', ' ')"/>
+                      </td>
+					  <td align="left">
+                        <span> </span>
+                      </td>
+					  <td align="right">
+                         <span> </span>
+                      </td>
+					  <td  align="right">
+                       <span> </span>
+                      </td>
+					  <td  align="right">
+                       <span t-esc="'{0:,.2f}'.format(p.rate).replace(',', ' ')"/><span>%</span>
+                      </td>
+					  <td align="right">
+                        <span t-esc="'{0:,.0f}'.format(p.total).replace(',', ' ')"/>
+                      </td>
+					</tr>
+					<!-- Total charges patronales-->
+					<tr >
+                      <td align="left">
+                        <span>Total charges patronales</span>
+                      </td>
+					  <td  align="right">
+                        <span> </span>
+                      </td>
+					  <td align="right">
+                        <span> </span>
+                      </td>
+					  <td  align="left">
+                       <span> </span>
+                      </td>
+					  <td align="right" >
+                         <span> </span>
+                      </td>
+					  <td  align="right">
+                        <span> </span>
+                      </td>
+					  <td align="right">
+                        <span t-esc="get_total_charges_patronales.get(o.id)[0]"/>
+                      </td>
+					</tr>
+					<!-- Cout Total employe-->
+					<tr >
+                      <td align="left">
+                        <span>Coût total employé</span>
+                      </td>
+					  <td  align="right">
+                        <span> </span>
+                      </td>
+					  <td align="right">
+                        <span> </span>
+                      </td>
+					  <td  align="left">
+                       <span> </span>
+                      </td>
+					  <td align="right" >
+                         <span> </span>
+                      </td>
+					  <td  align="right">
+                        <span> </span>
+                      </td>
+					  <td align="right">
+                        <span t-esc="get_cout_total_employe.get(o.id)[0]"/>
+                      </td>
+					</tr>
+                  </table>
+				  <table class="table table-sm table-bordered">
+					<tr >
+                      <td align="left" width="30%">
+                        <span> </span>
+                      </td>
+					   <td align="left" width="55%">
+                        <span> NET A PAYER </span>
+                      </td>
+					  <td align="right" width="15%">
+                        <span t-esc="get_net_apayer.get(o.id)[0]"/> <span> CFA</span>
+                      </td>
+					</tr>
+				  </table>
+					
+                
+                  <br/>
+                  <p><strong> Pour vous aider à faire valoir vos droits, conservez ce bulletin de paie sans limitation de durée. </strong></p>
+                </div>
+            <!-- </t> -->
+          </t>
+        </t>
+    </t>
+</template>
+
+</data>
+</odoo>

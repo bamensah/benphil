@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    
+    <record id="account_move_inherit_view_form" model="ir.ui.view">
+        <field name="name">account.move.inherit.view.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <field name = "payment_reference" position = "after">
+                <field name = "remarks" attrs="{'invisible': [('is_remarks','=',False)],'required':[('is_remarks_mandatory','=',True),('is_boolean','=',True)]}"/>
+                <field name = "is_remarks" invisible = "1"/>
+                <field name = "is_remarks_mandatory" invisible = "1"/>
+                <field name = "is_boolean" invisible = "1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="sh_account_move_line_inherit_view_form" model="ir.ui.view">
+        <field name="name">account.move.line.inherit.view.form</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_form"/>
+        <field name="arch" type="xml">
+            <field name = "date" position = "after">
+                <field name = "remarks" attrs="{'invisible': [('remarks','=',False)]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>

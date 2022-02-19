@@ -11,7 +11,7 @@ class LandedCostInherit(models.Model):
     _inherit = "stock.landed.cost"
 
     adjustment_lines_total = fields.Float('Total', compute='_compute_adjustment_lines_total', digits=0)
-    bill_ids = fields.One2many('stock.landed.cost.bill', 'landed_cost_id', 'Bill References', required=True)#W1E-74 add bill number to landed cost
+    # bill_ids = fields.One2many('stock.landed.cost.bill', 'landed_cost_id', 'Bill References', required=True)#W1E-74 add bill number to landed cost
     invoiced = fields.Boolean(string="Invoiced", readonly=True, compute='_compute_invoiced')#W1E-7-add invoiced field landed cost
 
 
@@ -35,11 +35,11 @@ class LandedCostInherit(models.Model):
         self.adjustment_lines_total = total
 
 #    W1E-74 add bill number to landed cost
-    @api.model
-    def create(self, vals):
-        if not vals.get("bill_ids"):#[DT-320]-add return and improve bill ref check
-            raise UserError('A landed cost must have atleast one bill reference')
-        return super(LandedCostInherit, self).create(vals)
+    # @api.model
+    # def create(self, vals):
+    #     if not vals.get("bill_ids"):#[DT-320]-add return and improve bill ref check
+    #         raise UserError('A landed cost must have atleast one bill reference')
+    #     return super(LandedCostInherit, self).create(vals)
     
 #    @api.multi
 #    def compute_landed_cost(self):
@@ -169,16 +169,16 @@ class LandedCostInherit(models.Model):
 
 
 #W1E-74 add bill number to landed cost
-class LandedCostBill(models.Model):
-    _name = "stock.landed.cost.bill"
+# class LandedCostBill(models.Model):
+#     _name = "stock.landed.cost.bill"
 
-    bill_reference = fields.Char(required=True, string="Bill Reference")
-    landed_cost_id = fields.Many2one("stock.landed.cost", string="Landed Cost")
+#     bill_reference = fields.Char(required=True, string="Bill Reference")
+#     landed_cost_id = fields.Many2one("stock.landed.cost", string="Landed Cost")
 
-    _sql_constraints = [ 
-        ('unique_landed_cost_bill', 'UNIQUE (bill_reference, landed_cost_id)', 'A bill reference can only be used once on a landed cost'),
-        ('unique_bill_reference', 'UNIQUE (bill_reference)', 'A bill reference cannot be used on more than one landed cost')	
-    ]
+#     _sql_constraints = [ 
+#         ('unique_landed_cost_bill', 'UNIQUE (bill_reference, landed_cost_id)', 'A bill reference can only be used once on a landed cost'),
+#         ('unique_bill_reference', 'UNIQUE (bill_reference)', 'A bill reference cannot be used on more than one landed cost')	
+#     ]
 
 
 class StockLandedCostInherit(models.Model):

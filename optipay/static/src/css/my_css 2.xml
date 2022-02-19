@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="header_new">
+      <style type="text/css">
+        .bpro_footer_table {
+          border-collapse: collapse;
+        }
+        .breport-colums-livre-paie {
+          border-right:1px solid;
+          text-align:right;
+          padding-right:2px;
+        }
+
+        .bpro_header_left {
+          border: 1px solid black;
+          width: 56%;
+          height: 260px;
+          float:left;
+          margin-bottom:1%;
+        }
+        .bpro_header_livre-paie {
+          border: 1px solid black;
+          width: 100%;
+          height: 100px;
+          float:left;
+          margin-bottom:1%;
+        }
+
+        .bpro_header_right {
+          border: 1px solid black;
+          width: 43%;
+          height: 260px;
+          margin-left: 10px;
+          float: right;
+          margin-bottom:1%;
+        }
+
+        .bpro_line {
+          height: 50px;
+          padding-top: 50px;
+          padding-right: 30px;
+          padding-bottom: 30px;
+          padding-left: 110px;
+          font-size: 25px;
+        }
+
+        .bpro_header_border {
+          border-top: 1px solid black;
+          border-bottom: 1px solid black;
+        }
+
+        .bpro_contained {
+          border-collapse: collapse;
+          border: 1px solid #242526;
+        }
+
+        .bpro_border_left {
+          border-left: 1px solid #242526;
+        }
+
+        .bpro_border_right {
+          border-right: 1px solid #242526;
+        }
+
+        .bpro_label_second > td {
+          border: 1px solid black;
+        }
+
+        .bpro_head {
+          text-align: center;
+        }
+
+        .bpro_space {
+          padding-right: 5px;
+        }
+
+        .bprol_width_footer {
+          width: 8.5%;
+          font-size: 11px;
+          padding-top: 10px;
+        }
+
+        .bpro_label_footer_first > td {
+          border-left: 1px solid;
+        }
+
+        .bpro_footer_border > td {
+          border-left: 1px solid black;
+          border-right: 1px solid black;
+          border-bottom: 1px solid black;
+        }
+
+        .bpro_text_italic {
+          font-style: italic;
+        }
+        .bpro_padding_left {
+          padding-left: 5px;
+        }
+
+        .bpro_head_period {
+          border-bottom: 1px solid black;
+        }
+
+        .bpro_detail {
+          height: 50px;
+          padding-left: 29px;
+          padding-top: 15px;
+        }
+
+        .bpro_head_label_first {
+          width: 42%;
+        }
+
+        .bpro_head_label_second {
+          width: 12%;
+        }
+
+        .bpro_head_label_third {
+          width: 8%;
+        }
+
+        .bprol_head_label_fourth {
+            width: 33%
+
+        }
+
+        .bpro_content_padding_top {
+          height:  15px !important;
+          padding: 2px;
+        }
+
+        .bpro_blank_line {
+          color: white;
+        }
+
+        .bpro_content_padding_bottom {
+          padding-bottom: 15px;
+        }
+
+        .bpro_space_bottom {
+          padding-bottom: 15%;
+        }
+
+        .bpro_font_size_detail {
+          font-size: 11px;
+        }
+
+        .bpro_footer_table_first {
+          border-collapse: collapse;
+          height: 100px;
+          border: 1px solid;
+        }
+
+        .bpro_footer_head_first {
+          width: 20.5%;
+        }
+
+        .bpro_footer_second {
+          width: 30.2%;
+          padding-left: 10px;
+        }
+
+        .bpro_footer_third {
+          width: 12.5%;
+        }
+
+        .bpro_footer_fourth {
+          width: 17.3%;
+        }
+
+        .bpro_font_balance {
+          font-weight: bold;
+        }
+
+        .bpro_padding_bottom_footer {
+          padding-top: 10px;
+        }
+
+        .bpro_footer_table_second {
+          border-collapse: collapse;
+          height: 100px;
+        }
+
+        .bpro_label_cash {
+          padding-bottom: 2px;
+          padding-left: 5px;
+        }
+
+        .bpro-width {
+          width: 100%;
+        }
+        .bpro-background {
+          background-color: #f2f2f2;
+        }
+
+        .bpro_padding_imp {
+          padding-right: 80px;
+        }
+
+        .bpro_left_date {
+          left: 10px;
+          width: 20%;
+        }
+
+        .bpro_padding_category {
+          padding-left: 20px;
+        }
+
+        .bpro_right {
+          right: 10px;
+        }
+
+        .bpro_padding_right {
+          padding-right: 10px;
+        }
+
+        .bpro_qualification {
+          height: 30px;
+        }
+
+        .bpro_padding_convention {
+          height: 25px;
+          padding-left: 10px;
+          text-align: left
+        }
+        .bpro_padding_convention-right {
+          height: 25px;
+          padding-right: 10px;
+          text-align: right
+        }
+
+        .bpro_padding_issued {
+          padding-left: 25px;
+        }
+
+        .bpro_border_head {
+          border-bottom: 1px solid #242526;
+        }
+
+        .bpro_div_bottom {
+          margin-top: 2%;
+        }
+
+        .bpro_border_balance {
+          border-top: 1px solid #242526;
+        }
+
+        .bpro_padding_year {
+          padding-left: 8px;
+        width: 20.5%
+        }
+
+        .bpro_padding_top {
+          padding-top: 2px;
+        border-top:1px solid;
+        }
+
+        .bpro_padding_top_Net {
+          padding-top: 5px;
+          height: 10px;
+        }
+
+        .bpro_width_sitfam {
+          width: 20%;
+          padding-right: 10px;
+        }
+
+        .padding_top_detail {
+           padding-top: 5px;
+        }
+
+        .padding-right-security {
+           padding-right: 50px;
+        }
+
+        .padding-right-retreat {
+           padding-right: 40px;
+        }
+
+        .padding-right-sitfam {
+           padding-right: 20px;
+        }
+
+        .padding-left-cotegory {
+           padding-left: 30px;
+        }
+
+        .padding-left-year-td {
+           padding-left: 10px;
+        }
+
+        .bproll-espace-top {
+           height: 10px;
+        }
+
+        .bproll-espace-bottom {
+           height: 150px;
+        }
+        .bproll-header-padding {
+            padding-top: 2px;
+        }
+
+        .bproll_right_head {
+            padding-right: 25px;
+        }
+
+        .table-bordered {
+          border: 1px solid #242526;
+        }
+
+        .table-bordered th,
+        .table-bordered td {
+          border: 1px solid #242526;
+        }
+
+        .table-bordered thead th,
+        .table-bordered thead td {
+          border-bottom-width: 2px;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+          background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .table-active,
+        .table-active > th,
+        .table-active > td {
+        background-color: rgba(0, 0, 0, 0.075);
+        }
+
+        .table-hover .table-active:hover {
+        background-color: rgba(0, 0, 0, 0.075);
+        }
+
+        .table-hover .table-active:hover > td,
+        .table-hover .table-active:hover > th {
+        background-color: rgba(0, 0, 0, 0.075);
+        }
+
+        .align-middle {
+        vertical-align: middle !important;
+        }
+
+        p {
+          font-size: 14px;
+        }
+
+        .round {
+                background: white;
+                padding: 35px;
+                margin: 5px;
+                border: solid 1px black;
+                -moz-border-radius: 35px;
+                -webkit-border-radius: 35px;
+                -o-border-radius: 80px;
+                -ms-border-radius: 80px;
+                border-radius: 90%;
+                box-shadow: 0 0 3px #ccc;
+                width: 30%;
+                float: right;
+          }
+
+      </style>
+    </template>
+    <template id="headerless_layout">
+      <!-- Multicompany -->
+      <t t-if="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id"></t>
+      </t>
+      <t t-if="not o or not 'company_id' in o">
+        <t t-set="company" t-value="res_company"></t>
+      </t>
+
+      <t t-call="web.external_layout"/>
+      <t t-raw="0"/>
+    </template>
+  </data>
+</odoo>

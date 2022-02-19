@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_employee_extend" model="ir.ui.view">
+            <field name="name">hr.employee.form.extend</field>
+            <field name="model">hr.employee</field>
+	    <field name="groups_id" eval="[(4, ref('aospay.group_aos_payroll_user'))]" />
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='children']" position="after">
+				  <field name="tauxabat" readonly="1"  force_save="1" />
+				  <field name="sitfam" readonly="1"  force_save="1" />
+				</xpath>
+				<xpath expr="//field[@name='department_id']" position="after">
+				  <field name="section" />
+				</xpath>
+				<xpath expr="//field[@name='work_location']" position="after">
+				  <field name="matricule" />
+				  <field name="secu_social"/>
+				</xpath>
+            </field>
+			
+        </record>
+
+    </data>
+</odoo>

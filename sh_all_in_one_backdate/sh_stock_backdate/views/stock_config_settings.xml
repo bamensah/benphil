@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sh_stock_backdate_res_config_settings" model="ir.ui.view">
+        <field name="name">Stock Backdate Settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="stock.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='stock']" position="inside">
+                <h2>Stock Backdate Picking Settings</h2>
+                
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="backdate_for_picking" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="backdate_for_picking" />
+                            <div class="text-muted">
+                               
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="remark_for_picking" attrs="{'invisible': [('backdate_for_picking','=',False)]}" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="remark_for_picking" attrs="{'invisible': [('backdate_for_picking','=',False)]}"/>
+                            <div class="text-muted">
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="remark_mandatory_for_picking" attrs="{'invisible': ['|',('remark_for_picking','=',False),('backdate_for_picking','=',False)]}"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="remark_mandatory_for_picking" attrs="{'invisible': ['|',('remark_for_picking','=',False),('backdate_for_picking','=',False)]}"/>
+                            <div class="text-muted">
+                               
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                        </div>
+                        <div class="o_setting_right_pane">
+                        </div>
+                    </div>
+
+                </div>
+                
+                <h2>Stock Backdate Adjustment Settings</h2>
+
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="backdate_for_adjustment" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="backdate_for_adjustment" />
+                            <div class="text-muted">
+                               
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="remark_for_adjustment" attrs="{'invisible': [('backdate_for_adjustment','=',False)]}" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="remark_for_adjustment" attrs="{'invisible': [('backdate_for_adjustment','=',False)]}"/>
+                            <div class="text-muted">
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="remark_mandatory_for_adjustment" attrs="{'invisible': ['|',('remark_for_adjustment','=',False),('backdate_for_adjustment','=',False)]}"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="remark_mandatory_for_adjustment" attrs="{'invisible': ['|',('remark_for_adjustment','=',False),('backdate_for_adjustment','=',False)]}"/>
+                            <div class="text-muted">
+                               
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                        </div>
+                        <div class="o_setting_right_pane">
+                        </div>
+                    </div>
+
+                </div>
+
+                <h2>Stock Backdate Scrap Settings</h2>
+
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="backdate_for_scrap" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="backdate_for_scrap" />
+                            <div class="text-muted">
+                               
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="remark_for_scrap" attrs="{'invisible': [('backdate_for_scrap','=',False)]}" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="remark_for_scrap" attrs="{'invisible': [('backdate_for_scrap','=',False)]}"/>
+                            <div class="text-muted">
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="remark_mandatory_for_scrap" attrs="{'invisible': ['|',('remark_for_scrap','=',False),('backdate_for_scrap','=',False)]}"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="remark_mandatory_for_scrap" attrs="{'invisible': ['|',('remark_for_scrap','=',False),('backdate_for_scrap','=',False)]}"/>
+                            <div class="text-muted">
+                               
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                        </div>
+                        <div class="o_setting_right_pane">
+                        </div>
+                    </div>
+
+                </div>
+
+            </xpath>
+            
+        </field>
+    </record>
+
+</odoo>

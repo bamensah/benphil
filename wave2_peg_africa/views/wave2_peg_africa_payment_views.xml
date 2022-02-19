@@ -36,7 +36,8 @@
                     <button name="action_cancel" attrs="{'invisible': ['|', '|',('withhold_payment_id','!=', False),('parent_payment_id','!=', False),('state', 'in', ['draft','cancel'])]}" string="Cancel" type="object"/>
                     <button name="action_cancel" attrs="{'invisible': ['|', '|',('withhold_payment_id','=', False),('parent_payment_id','!=', False),('state', 'in', ['draft','cancel'])]}" confirm="Warning: Cancelling this Payment will delete its related Withheld Payment" string="Cancel" type="object"/>
                     <button name="action_cancel" attrs="{'invisible': ['|',('parent_payment_id','=', False),('state', 'in', ['draft','cancel'])]}" string="Cancel" type="object"/>
-                    <button name="action_cancel" attrs="{'invisible': ['|',('confirmed','=', False),('state', '!=', 'draft')]}" string="Cancel" type="object"/>
+                    <button name="action_cancel" attrs="{'invisible': ['|', '|',('withhold_payment_id','=', False), ('confirmed','=', False),('state', '!=', 'draft')]}" string="Cancel" type="object" confirm="Warning: Cancelling this Payment will delete its related Withheld Payment"/>
+                    <button name="action_cancel" attrs="{'invisible': ['|', '|',('withhold_payment_id','!=', False), ('confirmed','=', False),('state', '!=', 'draft')]}" string="Cancel" type="object"/>
 <!--                    groups="__export__.res_groups_98_1ebb9fae"-->
                 </xpath>
                 <xpath expr="//field[@name='move_id']" position="after">

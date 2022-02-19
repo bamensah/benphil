@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+    <data>
+
+        <record id="import_wizared_invoice_customer_form" model="ir.ui.view">
+            <field name="name">invoice.wizard</field>
+            <field name="model">invoice.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Invoice">
+                    <header>
+                        Import Invoice
+                    </header>
+                    <group>
+	                    <group col="2">
+	                    	<field name="select_file" widget="radio" required="1"/>
+	                   	</group>
+	                     <group col="2">
+	                         <field name="type" widget="radio" required="1"/>
+	                    </group>
+                    </group>
+                     <group>
+	                    <group col="2">
+	                    	<field name="seq_opt" widget="radio" required="1"/>
+	                   	</group>
+	                     <group col="2">
+	                         <field name="account_option" widget="radio" required="1"/>
+	                    </group>
+                    </group>
+                    <group>
+                        <field name="imp_product_by" widget="radio" required="1"/>
+                    </group>
+                    <group>
+	                     <group col="2">
+	                       <field name="data_file" filename="name"/>
+	                    </group>
+	                    <group col="2">
+	                        <field name="state" widget="radio" required="1"/>
+	                    </group>
+                    </group>
+                    <footer>
+                        <button name="Import_customer_invoice" string="Import" type="object"  class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_invoice_customer" model="ir.actions.act_window">
+            <field name="name">Import Invoice</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">invoice.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+   <menuitem id="import_invoice_file" name="Import Invoice" action="action_wizard_invoice_customer" parent="account.menu_finance_configuration"/>
+
+
+
+
+
+        <record id="import_payment_form" model="ir.ui.view">
+            <field name="name">payment.wizard</field>
+            <field name="model">payment.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Payment">
+                    <header>
+                        Import Payment
+                    </header>
+                    <group>
+                        <field name="payment_type" widget="radio" required="1"/>
+                    </group>
+                    <group>
+                        <field name="data_file" filename="name"/>
+                    </group>
+
+                    <footer>
+                        <button name="Import_payment" string="Import" type="object"  class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_payment" model="ir.actions.act_window">
+            <field name="name">Import Payment</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">payment.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+   <menuitem id="import_payment_file" name="Import Payment" action="action_wizard_payment" parent="account.menu_finance_configuration"/>
+
+
+        <record id="import_wizared_sale_form" model="ir.ui.view">
+            <field name="name">sale.wizard</field>
+            <field name="model">sale.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Sale">
+                    <header>
+                        Import Sale Order
+                    </header>
+                    <group>
+                        <field name="select_file" widget="radio" required="1"/>
+                    </group>
+                    <group>
+                        <field name="data_file" filename="name"/>
+                    </group>
+                    <group>
+                        <field name="seq_opt"/>
+                    </group>
+
+                    <group>
+                        <field name="import_state"/>
+                    </group>
+
+                    <footer>
+                        <button name="Import_sale_order" string="Import" type="object"  class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_sale_order" model="ir.actions.act_window">
+            <field name="name">Import Sale Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+   <menuitem id="import_sale_order_file" name="Import Sales Order" action="action_wizard_sale_order" parent="sale.menu_sale_config"/>
+
+
+
+
+
+
+        <record id="import_wizared_inventory_form" model="ir.ui.view">
+            <field name="name">inventory.wizard</field>
+            <field name="model">inventory.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Inventory">
+                    <header>
+                        Import Inventory
+                    </header>
+                    <group>
+                        <field name="inv_name"/>
+                        <field name="file_type"  widget="radio" required="1"/>
+                        <field name="ser_no_lot_expi"/>
+                    </group>
+                    <group>
+                        <field name="loc_name"/>
+                        <field name="imp_product_by"  widget="radio" required="1"/>
+                        <field name="data_file"/>
+                    </group>
+
+                    <footer>
+                        <button name="Import_inventory" string="Import" type="object"  class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_inventory_order" model="ir.actions.act_window">
+            <field name="name">Import Inventory</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">inventory.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+       <menuitem id="import_inventory_file" name="Import Inventory" action="action_wizard_inventory_order" parent="stock.menu_stock_inventory_control"/>
+
+
+
+
+
+
+
+
+
+        <record id="import_wizared_purchase_form" model="ir.ui.view">
+            <field name="name">purchase.wizard</field>
+            <field name="model">purchase.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Purchase Order">
+                    <header>
+                        Import Purchase
+                    </header>
+                    <group>
+                        <field name="select_file" widget="radio" required="1"/>
+                    </group>
+                    <group>
+                        <field name="data_file" filename="name"/>
+                    </group>
+                    <group>
+                        <field name="state_stage" widget="radio" required="1"/>
+                    </group>
+                    <group>
+                        <field name="seq_opt"/>
+                    </group>
+
+                    <footer>
+                        <button name="Import_purchase_order" string="Import" type="object"  class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_purchase" model="ir.actions.act_window">
+            <field name="name">Import Purchase Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+   <menuitem id="import_purchase_order_file" name="Import Purchase Order" action="action_wizard_purchase" parent="purchase.menu_purchase_config"/>
+
+
+
+
+
+
+
+    <record id="import_wizared_picking_form" model="ir.ui.view">
+            <field name="name">picking.wizard</field>
+            <field name="model">picking.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Shipments and Delivery Order">
+                    <header>
+                        Import Shipments and Delivery Order
+                    </header>
+                    <group>
+                        <field name="select_file" widget="radio" required="1"/>
+                    </group>
+                    <group>
+                        <field name="data_file" filename="name"/>
+                    </group>
+                    <group>
+                        <field name="source_loc" required="1"/>
+                    </group>
+                    <group>
+                        <field name="destination_loc" required="1"/>
+                    </group>
+                    <group>
+                        <field name="picking_type"/>
+                    </group>
+
+
+                    <footer>
+                        <button name="Import_picking_order" string="Import" type="object"  class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_picking" model="ir.actions.act_window">
+            <field name="name">Import Picking Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">picking.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+   <menuitem id="import_picking_order_file" name="Import Shipments/Delivery Order" action="action_wizard_picking" parent="stock.menu_stock_warehouse_mgmt"/>
+
+
+
+
+
+        <record id="import_wizared_product_form" model="ir.ui.view">
+            <field name="name">product.wizard</field>
+            <field name="model">product.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Product">
+                    <header>
+                        Import Product
+                    </header>
+                    <group>
+                        <field name="select_file" widget="radio" required="1"/>
+                    </group>
+                    <group>
+                        <field name="data_file" filename="name"/>
+                    </group>
+
+
+                    <footer>
+                        <button name="Import_product_order" string="Import" type="object"  class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_product" model="ir.actions.act_window">
+            <field name="name">Import Products </field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="import_product_file" name="Import Product" action="action_wizard_product" parent="sale.menu_sale_config"/>
+
+
+
+
+
+
+        <record id="import_wizared_partner_form" model="ir.ui.view">
+            <field name="name">partner.wizard</field>
+            <field name="model">partner.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Partner">
+                    <header>
+                        Import Partner
+                    </header>
+                    <group>
+                        <field name="select_file" widget="radio" required="1"/>
+                    </group>
+                    <!--<group>-->
+                        <!--<field name="crt_upt_file"/>-->
+                    <!--</group>-->
+
+                    <group>
+                        <field name="data_file" filename="name"/>
+                    </group>
+
+
+                    <footer>
+                        <button name="Import_partner" string="Import" type="object"  class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_partner" model="ir.actions.act_window">
+            <field name="name">Import Partner</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">partner.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="import_partner_file" name="Import Partner" action="action_wizard_partner" parent="sale.menu_sale_config"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <record id="import_wizared_journal_form" model="ir.ui.view">
+            <field name="name">journal.wizard</field>
+            <field name="model">journal.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Journal">
+                    <header>
+                        Import Journal
+                    </header>
+                    <group>
+                        <field name="select_file" widget="radio" required="1"/>
+                    </group>
+                    <!--<group>-->
+                        <!--<field name="crt_upt_file"/>-->
+                    <!--</group>-->
+
+                    <group>
+                        <field name="data_file" filename="name"/>
+                    </group>
+
+
+                    <footer>
+                        <button name="Import_journal" string="Import" type="object"  class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_journal" model="ir.actions.act_window">
+            <field name="name">Import Journal</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">journal.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+
+        <record id="view_import_button_import_journal" model="ir.ui.view">
+            <field name="name">button.import.inherit.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form" />
+            <field name="arch" type="xml">
+                <!--<xpath expr="//header/button[@name='action_confirm'][1]" position="after">-->
+                 <xpath expr="//header" position="inside">
+                    <button string="Import Journal"  name="%(action_wizard_journal)d" type="action"  class="btn btn-sm btn-default oe_highlight"/>
+                </xpath>
+            </field>
+        </record>
+
+
+
+
+
+
+
+
+        <record id="import_bank_ac_form" model="ir.ui.view">
+            <field name="name">import_bank_ac_form</field>
+            <field name="model">bank.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Bank Account">
+                    <header>
+                        Import Bank Statement Lines
+                    </header>
+                    <group>
+                        <field name="select_file" widget="radio" required="1"/>
+                    </group>
+
+                    <group>
+                        <field name="data_file" filename="name"/>
+                    </group>
+
+
+                    <footer>
+                        <button name="Import_Bank_AC" string="Import" type="object"  class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_import_bank_ac_form" model="ir.actions.act_window">
+            <field name="name">Import Bank Account Statement Line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bank.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+        <record id="inherit_account_add_bank" model="ir.ui.view">
+            <field name="name">account.bank.button.inherit</field>
+            <field name="model">account.bank.statement</field>
+            <field name="inherit_id" ref="account.view_bank_statement_form" />
+            <field name="arch" type="xml">
+                <!--<xpath expr="//header/button[@name='action_confirm'][1]" position="after">-->
+                 <xpath expr="//header" position="inside">
+                    <button string="Add Line"  name="%(action_import_bank_ac_form)d" type="action"  class="btn btn-sm btn-default oe_highlight"/>
+                </xpath>
+            </field>
+        </record>
+
+
+
+
+
+
+
+
+        <record id="import_wizared_bom_form" model="ir.ui.view">
+            <field name="name">bom.wizard</field>
+            <field name="model">bom.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import BOM">
+                    <header>
+                        Import BOM
+                    </header>
+                    <group>
+                        <field name="select_file" widget="radio" required="1"/>
+                    </group>
+
+                    <group>
+                        <field name="bom_type"/>
+                    </group>
+
+                    <group>
+                        <field name="data_file" filename="name"/>
+                    </group>
+
+
+                    <footer>
+                        <button name="Import_BOM" string="Import" type="object"  class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_bom" model="ir.actions.act_window">
+            <field name="name">Import BOM</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bom.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="import_bom_file" name="Import BOM" action="action_wizard_bom" parent="mrp.menu_mrp_configuration"/>
+
+
+
+
+
+
+
+
+
+
+    </data>
+</openerp>

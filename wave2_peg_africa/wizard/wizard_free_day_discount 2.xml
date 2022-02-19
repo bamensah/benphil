@@ -1,0 +1,58 @@
+<odoo>
+
+    <record id='view_free_days_form' model="ir.ui.view">
+        <field name="name">Free days</field>
+        <field name="model">free.days.discount</field>
+        <field name="arch" type="xml">
+            <form string="free days">
+                <group>
+                    <field name="delayed_days" required="1"/>
+                    <field name="note"/>
+                    <field name="tag_ids" widget="many2many_tags" required="1"/>
+                    <field name="sale_order" invisible="1"/>
+                </group>
+                <footer>
+                    <button name="confirm_free_days" string="confirm" type="object"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id='view_discount_days_form' model="ir.ui.view">
+        <field name="name">Discount days</field>
+        <field name="model">free.days.discount</field>
+        <field name="arch" type="xml">
+            <form string="Discount days">
+                <group>
+                    <field name="discounted_days"/>
+                    <field name="note"/>
+                </group>
+                <footer>
+                    <button name="action_confirm" string="confirm"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <record id='free_day_id' model="ir.actions.act_window">
+        <field name="name">Free days</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">free.days.discount</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_free_days_form"/>
+        <field name="context">{'default_sale_order': active_id}</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id='discount_id' model="ir.actions.act_window">
+        <field name="name">Discount days</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">free.days.discount</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_discount_days_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

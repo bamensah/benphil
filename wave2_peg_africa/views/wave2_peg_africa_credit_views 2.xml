@@ -1,0 +1,196 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_credit_token_form">
+            <field name="name">credit.token.form</field>
+            <field name="model">credit.token</field>
+            <field eval="10" name="priority"/>
+            <field name="arch" type="xml">
+                <form string="Tokens" create="false" edit="false" delete="false">
+                    <sheet>
+                        <field name="loan_id"/>
+                        <field name="amount"/>
+                        <field name="token_index"/>
+                        <field name="code"/>
+                        <field name="credit_end_date"/>
+                        <field name="generated_date"/>
+                        <field name="phone_number"/>
+                        <field name="phone_number_partner"/>
+                        <field name="salesperson"/>
+                        <field name="partner_id"/>
+                        <field name="token_type"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="sale_order_unlock_token_confirmation_view" model="ir.ui.view">
+            <field name="name">sale.order.unlock.token.confirmation.form</field>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+                <form string="Get Unlock Token">
+                    <p>
+                        Are you sure you want to get an unlock token? 
+                        Once done, the customer will be able to use the battery without any restriction.
+                    </p>
+                    <footer>
+                        <button string="YES" name="generate_unlock_token" type="object" default_focus="1"
+                                class="btn-primary"/>
+                        <button string="CANCEL" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_credit_token_code_form">
+            <field name="name">credit.token.code.form</field>
+            <field name="model">credit.token</field>
+            <field eval="20" name="priority"/>
+            <field name="arch" type="xml">
+                <form string="Unlock Token" create="false" edit="false" delete="false">
+                    <p>
+                        <field name="code" readonly="1"/>
+                    </p>
+                    <footer>
+                        <button string="CLOSE" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_credit_token_tree">
+            <field name="name">credit.token.tree</field>
+            <field name="model">credit.token</field>
+            <field eval="10" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Tokens" create="0" delete="0">
+                    <field name="loan_id"/>
+                    <field name="amount"/>
+                    <field name="token_index"/>
+                    <field name="code"/>
+                    <field name="days_of_light"/>
+                    <field name="credit_end_date"/>
+                    <field name="generated_date"/>
+                    <field name="phone_number"/>
+                    <field name="phone_number_partner"/>
+                    <field name="salesperson"/>
+                    <field name="partner_id"/>
+                    <field name="token_type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="credit_token_search_view" model="ir.ui.view">
+            <field name="name">credit.token.search</field>
+            <field name="model">credit.token</field>
+            <field eval="10" name="priority"/>
+            <field name="arch" type="xml">
+                <search string="Tokens">
+                    <field name="loan_id"/>
+                    <field name="amount"/>
+                    <field name="token_index"/>
+                    <field name="code"/>
+                    <field name="credit_end_date"/>
+                    <field name="generated_date"/>
+                    <field name="phone_number"/>
+                    <field name="salesperson"/>
+                    <field name="partner_id"/>
+                    <field name="token_type"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_credit_sms_form">
+            <field name="name">credit.sms.form</field>
+            <field name="model">credit.sms</field>
+            <field eval="10" name="priority"/>
+            <field name="arch" type="xml">
+                <form string="SMS" create="false" edit="false" delete="false">
+                    <sheet>
+                        <field name="partner_id"/>
+                        <field name="msg_id"/>
+                        <field name="content"/>
+                        <field name="phone_number"/>
+                        <field name="sent"/>
+                        <field name="status"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_credit_sms_tree">
+            <field name="name">credit.sms.tree</field>
+            <field name="model">credit.sms</field>
+            <field eval="10" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="SMS" create="0" delete="0">
+                    <field name="msg_id"/>
+                    <field name="sent"/>
+                    <field name="content"/>
+                    <field name="phone_number"/>
+                    <field name="partner_id"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="credit_sms_search_view" model="ir.ui.view">
+            <field name="name">credit.sms.search</field>
+            <field name="model">credit.sms</field>
+            <field eval="10" name="priority"/>
+            <field name="arch" type="xml">
+                <search string="SMS">
+                    <field name="sent"/>
+                    <!-- <field name="message_type"/> -->
+                    <field name="content"/>
+                    <field name="phone_number"/>
+                    <field name="status"/>
+                    <field name="partner_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_credit_loan_tree">
+            <field name="name">credit.loan.tree</field>
+            <field name="model">sale.order</field>
+            <field eval="10" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Credit" editable="bottom" create="0" delete="0">
+                    <field name="name" string="Sales order number" readonly="1"/>
+                    <field name="invoice_id" string="Invoice number" readonly="1"/>
+                    <field name="contract_status" readonly="1"/>
+                    <field name="credit_end_date" readonly="1"/>
+                    <field name="stock_action" readonly="1"/>
+                    <field name="written_off_flag" readonly="1"/>
+                    <field name="wasted_sales" readonly="1"/>
+                    <field name="free_days_taken" readonly="1"/>
+                    <field name="discount_given" readonly="1"/>
+                    <field name="dol" readonly="1"/>
+                    <field name="expected_amount_due" readonly="1"/>
+                    <field name="amount_paid" readonly="1"/>
+                    <field name="arrears" readonly="1"/>
+                    <field name="state" invisible="1"/>
+                    <field name="withheld_payment_amount" widget='monetary' options="{'currency_field': 'currency_id'}" />
+                    <field name="outstanding_balance" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    <field name="amount_to_be_paid"/>
+                    <field name="total_amount_paid"/>
+                    <field name="amount_pending"/>
+                </tree>
+            </field>
+        </record>
+
+
+<!--migrate in v14 late-->
+        <record id="view_credit_loan_tree_admin" model="ir.ui.view">
+            <field name="name">credit.loan.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="wave2_peg_africa.view_credit_loan_tree" />
+<!--            <field name="groups_id" eval="[(4, ref('wave2_peg_africa.group_credit_team')), (4, ref('__export__.res_groups_108_57104734'))]"/>-->
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='wasted_sales']" position="attributes">
+                    <attribute name="readonly">False</attribute>
+                </xpath>
+            </field>
+        </record>
+    
+
+    </data>
+</odoo>

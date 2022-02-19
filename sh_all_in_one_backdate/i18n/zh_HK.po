@@ -1,0 +1,556 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sh_all_in_one_backdate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-19 07:38+0000\n"
+"PO-Revision-Date: 2021-10-19 07:38+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_company__backdate_for_bill
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_config_settings__backdate_for_bill
+msgid "Bill has Same Backdate"
+msgstr "賬單有相同的支持"
+
+#. module: sh_all_in_one_backdate
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_backdate.mrp_production_backdate_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_backdate.purchase_order_backdate_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_backdate.sale_order_backdate_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_backdate.stock_picking_backdate_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_backdate.stock_scrap_backdate_wizard_view_form
+msgid "Cancel"
+msgstr "取消"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model,name:sh_all_in_one_backdate.model_res_company
+msgid "Companies"
+msgstr "公司"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_mrp_backdate_wizard__company_id
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_picking_backdate_wizard__company_id
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_purchase_backdate_wizard__company_id
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_sale_backdate_wizard__company_id
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_scrap_backdate_wizard__company_id
+msgid "Company"
+msgstr "公司"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model,name:sh_all_in_one_backdate.model_res_config_settings
+msgid "Config Settings"
+msgstr "配置設置"
+
+#. module: sh_all_in_one_backdate
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_backdate.mrp_production_backdate_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_backdate.purchase_order_backdate_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_backdate.sale_order_backdate_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_backdate.stock_picking_backdate_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_backdate.stock_scrap_backdate_wizard_view_form
+msgid "Confirm"
+msgstr "確認"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_mrp_backdate_wizard__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_picking_backdate_wizard__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_purchase_backdate_wizard__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_sale_backdate_wizard__create_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_scrap_backdate_wizard__create_uid
+msgid "Created by"
+msgstr "由...製作"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_mrp_backdate_wizard__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_picking_backdate_wizard__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_purchase_backdate_wizard__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_sale_backdate_wizard__create_date
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_scrap_backdate_wizard__create_date
+msgid "Created on"
+msgstr "創建於"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_scrap_backdate_wizard__date_done
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move_line__date
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_scrap__date_done
+msgid "Date"
+msgstr "日期"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_company__backdate_for_stock_move
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_config_settings__backdate_for_stock_move
+msgid "Delivery Order has Same Backdate "
+msgstr "交貨訂單有相同的餘額"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_mrp_backdate_wizard__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_picking_backdate_wizard__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_purchase_backdate_wizard__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_sale_backdate_wizard__display_name
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_scrap_backdate_wizard__display_name
+msgid "Display Name"
+msgstr "顯示名稱"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_company__enable_backdate_for_mrp
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_config_settings__enable_backdate_for_mrp
+msgid "Enable Backdate for MRP"
+msgstr "啟用MRP的備份"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_company__backdate_for_picking
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_config_settings__backdate_for_picking
+msgid "Enable Backdate for Picking"
+msgstr "啟用備份以便採摘"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_company__backdate_for_purchase_order
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_config_settings__backdate_for_purchase_order
+msgid "Enable Backdate for Purchase Order"
+msgstr "為採購訂單啟用備份"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_company__backdate_for_sale_order
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_config_settings__backdate_for_sale_order
+msgid "Enable Backdate for Sale Order"
+msgstr "啟用備份訂單"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_company__backdate_for_scrap
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_config_settings__backdate_for_scrap
+msgid "Enable Backdate for Scrap"
+msgstr "啟用廢料備份"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_company__remark_for_mrp_production
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_config_settings__remark_for_mrp_production
+msgid "Enable Remark for MRP Production"
+msgstr "為MRP生產提供評論"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_company__remark_for_picking
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_config_settings__remark_for_picking
+msgid "Enable Remark for Picking"
+msgstr "啟用揀選備註"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_company__remark_for_purchase_order
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_config_settings__remark_for_purchase_order
+msgid "Enable Remark for Purchase Order"
+msgstr "為採購訂單提供備註"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_company__remark_for_sale_order
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_config_settings__remark_for_sale_order
+msgid "Enable Remark for Sale Order"
+msgstr "啟用銷售訂單備註"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_company__remark_for_scrap
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_config_settings__remark_for_scrap
+msgid "Enable Remark for Scrap"
+msgstr "為廢料啟用備註"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_mrp_backdate_wizard__id
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_picking_backdate_wizard__id
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_purchase_backdate_wizard__id
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_sale_backdate_wizard__id
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_scrap_backdate_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_company__backdate_for_invoice
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_config_settings__backdate_for_invoice
+msgid "Invoice has Same Backdate"
+msgstr "發票具有相同的餘額"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_mrp_production__is_boolean
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_purchase_order__is_boolean
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sale_order__is_boolean
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_mrp_backdate_wizard__is_boolean
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_picking_backdate_wizard__is_boolean
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_purchase_backdate_wizard__is_boolean
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_sale_backdate_wizard__is_boolean
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_scrap_backdate_wizard__is_boolean
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_picking__is_boolean
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_scrap__is_boolean
+msgid "Is Boolean"
+msgstr "是布爾"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_mrp_production__is_remarks
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_purchase_order__is_remarks
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sale_order__is_remarks
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_mrp_backdate_wizard__is_remarks
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_picking_backdate_wizard__is_remarks
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_purchase_backdate_wizard__is_remarks
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_sale_backdate_wizard__is_remarks
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_scrap_backdate_wizard__is_remarks
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_picking__is_remarks
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_scrap__is_remarks
+msgid "Is Remarks"
+msgstr "是備註"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move__is_remarks_for_mrp
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move_line__is_remarks_for_mrp
+msgid "Is Remarks for MRP"
+msgstr "是MRP的評論"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_account_bank_statement_line__is_remarks_for_purchase
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_account_move__is_remarks_for_purchase
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_account_payment__is_remarks_for_purchase
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move__is_remarks_for_purchase
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move_line__is_remarks_for_purchase
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_picking__is_remarks_for_purchase
+msgid "Is Remarks for Purchase"
+msgstr "是購買的備註"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_account_bank_statement_line__is_remarks_for_sale
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_account_move__is_remarks_for_sale
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_account_payment__is_remarks_for_sale
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move__is_remarks_for_sale
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_picking__is_remarks_for_sale
+msgid "Is Remarks for Sale"
+msgstr "是出售的評論"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move__is_remarks_for_picking
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move_line__is_remarks_for_picking
+msgid "Is Remarks for picking"
+msgstr "是採摘的備註"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move_line__is_remarks_for_sale
+msgid "Is Remarks for sale"
+msgstr "是出售的評論"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move__is_remarks_for_scrap
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move_line__is_remarks_for_scrap
+msgid "Is Remarks for scrap"
+msgstr "是廢料的備註"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_mrp_production__is_remarks_mandatory
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_purchase_order__is_remarks_mandatory
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sale_order__is_remarks_mandatory
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_mrp_backdate_wizard__is_remarks_mandatory
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_picking_backdate_wizard__is_remarks_mandatory
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_purchase_backdate_wizard__is_remarks_mandatory
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_sale_backdate_wizard__is_remarks_mandatory
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_scrap_backdate_wizard__is_remarks_mandatory
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_picking__is_remarks_mandatory
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_scrap__is_remarks_mandatory
+msgid "Is remarks mandatory"
+msgstr "備註是強制性的"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model,name:sh_all_in_one_backdate.model_account_move
+msgid "Journal Entry"
+msgstr "日記入學"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_mrp_backdate_wizard____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_picking_backdate_wizard____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_purchase_backdate_wizard____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_sale_backdate_wizard____last_update
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_scrap_backdate_wizard____last_update
+msgid "Last Modified on"
+msgstr "最後修改了"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_mrp_backdate_wizard__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_picking_backdate_wizard__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_purchase_backdate_wizard__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_sale_backdate_wizard__write_uid
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_scrap_backdate_wizard__write_uid
+msgid "Last Updated by"
+msgstr "最後更新"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_mrp_backdate_wizard__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_picking_backdate_wizard__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_purchase_backdate_wizard__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_sale_backdate_wizard__write_date
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_scrap_backdate_wizard__write_date
+msgid "Last Updated on"
+msgstr "上次更新了"
+
+#. module: sh_all_in_one_backdate
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_backdate.sh_mrp_backdate_res_config_settings
+msgid "MRP Backdate Settings"
+msgstr "MRP次輔助設置"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model,name:sh_all_in_one_backdate.model_sh_mrp_backdate_wizard
+msgid "MRP Backdate Wizard"
+msgstr "MRP陪同巫師"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.actions.server,name:sh_all_in_one_backdate.model_mrp_production_action_open_backdate_wizard
+#: model:ir.actions.server,name:sh_all_in_one_backdate.model_purchase_order_action_open_backdate_wizard
+#: model:ir.actions.server,name:sh_all_in_one_backdate.model_sale_order_action_open_backdate_wizard
+#: model:ir.actions.server,name:sh_all_in_one_backdate.model_stock_picking_action_open_backdate_wizard
+#: model:ir.actions.server,name:sh_all_in_one_backdate.model_stock_scrap_action_open_backdate_wizard
+msgid "Mass Assign Backdate"
+msgstr "大眾分配餘額"
+
+#. module: sh_all_in_one_backdate
+#: model:res.groups,name:sh_all_in_one_backdate.group_mass_assign_backdate_mrp
+msgid "Mass Assign Backdate(MRP)"
+msgstr "大眾分配餘額（MRP）"
+
+#. module: sh_all_in_one_backdate
+#: model:res.groups,name:sh_all_in_one_backdate.group_mass_assign_backdate_purchase
+msgid "Mass Assign Backdate(Purchase)"
+msgstr "大規模分配底頁（購買）"
+
+#. module: sh_all_in_one_backdate
+#: model:res.groups,name:sh_all_in_one_backdate.group_mass_assign_backdate_sale
+msgid "Mass Assign Backdate(Sale)"
+msgstr "大眾分配餘額（銷售）"
+
+#. module: sh_all_in_one_backdate
+#: model:res.groups,name:sh_all_in_one_backdate.group_mass_assign_backdate_stock
+msgid "Mass Assign Backdate(Stock)"
+msgstr "大規模分配餘額（股票）"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_mrp_backdate_wizard__mrp_production_ids
+msgid "Mrp Production"
+msgstr "MRP生產"
+
+#. module: sh_all_in_one_backdate
+#: code:addons/sh_all_in_one_backdate/sh_stock_backdate/models/stock_scrap.py:0
+#, python-format
+msgid "New"
+msgstr "新的"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_sale_backdate_wizard__date_order
+msgid "Order Date"
+msgstr "訂購日期"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model,name:sh_all_in_one_backdate.model_sh_picking_backdate_wizard
+msgid "Picking Backdate Wizard"
+msgstr "挑選回溯巫師"
+
+#. module: sh_all_in_one_backdate
+#: code:addons/sh_all_in_one_backdate/sh_purchase_backdate/models/purchase_order.py:0
+#, python-format
+msgid "Please define an accounting purchase journal for the company %s (%s)."
+msgstr "請為公司％s（％s）定義會計購買日記。"
+
+#. module: sh_all_in_one_backdate
+#: code:addons/sh_all_in_one_backdate/sh_sale_backdate/models/sale_order.py:0
+#, python-format
+msgid "Please define an accounting sales journal for the company %s (%s)."
+msgstr "請為公司％s（％s）定義會計銷售期刊。"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model,name:sh_all_in_one_backdate.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "產品移動（庫存移動線）"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model,name:sh_all_in_one_backdate.model_mrp_production
+msgid "Production Order"
+msgstr "產品訂單"
+
+#. module: sh_all_in_one_backdate
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_backdate.sh_purchase_backdate_res_config_settings
+msgid "Purchase Backdate Settings"
+msgstr "購買餘額設置"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model,name:sh_all_in_one_backdate.model_sh_purchase_backdate_wizard
+msgid "Purchase Backdate Wizard"
+msgstr "購買陪審巫師"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model,name:sh_all_in_one_backdate.model_purchase_order
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_purchase_backdate_wizard__purchase_order_ids
+msgid "Purchase Order"
+msgstr "採購訂單"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_purchase_backdate_wizard__date_planned
+msgid "Receipt Date"
+msgstr "收據日期"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_company__remark_mandatory_for_mrp_production
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_config_settings__remark_mandatory_for_mrp_production
+msgid "Remark Mandatory for MRP Production"
+msgstr "備註MRP生產強制性"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_company__remark_mandatory_for_picking
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_config_settings__remark_mandatory_for_picking
+msgid "Remark Mandatory for Picking"
+msgstr "備註採摘強制性"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_company__remark_mandatory_for_purchase_order
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_config_settings__remark_mandatory_for_purchase_order
+msgid "Remark Mandatory for Purchase Order"
+msgstr "採購訂單的備註強制性"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_company__remark_mandatory_for_sale_order
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_config_settings__remark_mandatory_for_sale_order
+msgid "Remark Mandatory for Sale Order"
+msgstr "備註強制性待售訂單"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_company__remark_mandatory_for_scrap
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_res_config_settings__remark_mandatory_for_scrap
+msgid "Remark Mandatory for Scrap"
+msgstr "備註廢料強制性"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_mrp_production__remarks
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_purchase_order__remarks
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sale_order__remarks
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_mrp_backdate_wizard__remarks
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_picking_backdate_wizard__remarks
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_purchase_backdate_wizard__remarks
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_sale_backdate_wizard__remarks
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_scrap_backdate_wizard__remarks
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_picking__remarks
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_scrap__remarks
+msgid "Remarks"
+msgstr "評論"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move__remarks_for_mrp
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move_line__remarks_for_mrp
+msgid "Remarks for MRP"
+msgstr "MRP的備註"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_account_bank_statement_line__remarks_for_purchase
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_account_move__remarks_for_purchase
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_account_payment__remarks_for_purchase
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move__remarks_for_purchase
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move_line__remarks_for_purchase
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_picking__remarks_for_purchase
+msgid "Remarks for Purchase"
+msgstr "購買備註"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_account_bank_statement_line__remarks_for_sale
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_account_move__remarks_for_sale
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_account_payment__remarks_for_sale
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move__remarks_for_sale
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_picking__remarks_for_sale
+msgid "Remarks for Sale"
+msgstr "備註出售"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move__remarks_for_picking
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move_line__remarks_for_picking
+msgid "Remarks for picking"
+msgstr "挑選備註"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move_line__remarks_for_sale
+msgid "Remarks for sale"
+msgstr "備註出售"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move__remarks_for_scrap
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move_line__remarks_for_scrap
+msgid "Remarks for scrap"
+msgstr "廢料的備註"
+
+#. module: sh_all_in_one_backdate
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_backdate.sh_sale_backdate_res_config_settings
+msgid "Sale Backdate Settings"
+msgstr "銷售餘額設置"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model,name:sh_all_in_one_backdate.model_sh_sale_backdate_wizard
+msgid "Sale Backdate Wizard"
+msgstr "銷售備用巫師"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_sale_backdate_wizard__sale_order_ids
+msgid "Sale Order"
+msgstr "銷售訂單"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model,name:sh_all_in_one_backdate.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr "銷售提前付款發票"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model,name:sh_all_in_one_backdate.model_sale_order
+msgid "Sales Order"
+msgstr "銷售訂單"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_mrp_backdate_wizard__date_planned_start
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_picking_backdate_wizard__scheduled_date
+msgid "Scheduled Date"
+msgstr "約定的日期"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,help:sh_all_in_one_backdate.field_stock_move_line__date
+msgid "Scheduled date until move is done, then date of actual move processing"
+msgstr "預定日期直到移動完成，然後是實際移動處理的日期"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model,name:sh_all_in_one_backdate.model_stock_scrap
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_scrap_backdate_wizard__scrap_ids
+msgid "Scrap"
+msgstr "廢料"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model,name:sh_all_in_one_backdate.model_sh_scrap_backdate_wizard
+msgid "Scrap Backdate Wizard"
+msgstr "廢料回溯巫師"
+
+#. module: sh_all_in_one_backdate
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_backdate.sh_stock_backdate_res_config_settings
+msgid "Stock Backdate Picking Settings"
+msgstr "庫存後退採摘設置"
+
+#. module: sh_all_in_one_backdate
+#: model_terms:ir.ui.view,arch_db:sh_all_in_one_backdate.sh_stock_backdate_res_config_settings
+msgid "Stock Backdate Scrap Settings"
+msgstr "庫存介紹廢料設置"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model,name:sh_all_in_one_backdate.model_stock_move
+msgid "Stock Move"
+msgstr "股票飛"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_sh_picking_backdate_wizard__stock_picking_ids
+msgid "Stock Picking"
+msgstr "股票採摘"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model,name:sh_all_in_one_backdate.model_stock_picking
+msgid "Transfer"
+msgstr "轉移"
+
+#. module: sh_all_in_one_backdate
+#: model:ir.model.fields,field_description:sh_all_in_one_backdate.field_stock_move__scrap_id
+msgid "scrap id"
+msgstr "廢料ID."

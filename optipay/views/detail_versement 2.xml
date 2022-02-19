@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- by khk -->
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="optesis_detail_versement_form_view">
+            <field name="name">optesis.detail.versement.form</field>
+            <field name="model">optesis.detail.versement</field>
+            <field name="arch" type="xml">
+	            <form string="Details de Versement">
+                <sheet>
+                    <group>
+                        <field name="name" class="oe_inline bar" required="True"/>
+                    </group>
+                    <group>
+                        <field name="company_id" readonly="True"/>
+                    </group>
+                    <notebook>
+                        <page>
+                            <field name="detail_versement_line">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="date_versement"/>
+                                    <field name="montant_versement" readonly="True"/>
+                                    <field name="montant_ir"/>
+                                    <field name="montant_trimf"/>
+                                    <field name="montant_cfce"/>
+                                    <field name="numero_quitance"/>
+                                    <field name="observation"/>
+                                    <field name="year" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+
+    <record id="optesis_detail_versement_tree" model="ir.ui.view">
+        <field name="name">optesis.detail.versement.tree</field>
+        <field name="model">optesis.detail.versement</field>
+        <field name="arch" type="xml">
+            <tree string="Details Versement">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="detail_versement_action" model="ir.actions.act_window">
+            <field name="name">Details Versement</field>
+            <field name="res_model">optesis.detail.versement</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form,search</field>
+    </record>
+
+    <menuitem id="detail_versement_menu"
+         parent="hr_payroll.menu_hr_payroll_employees_root"
+         action="detail_versement_action"
+         groups="optipay.optipay_group_manager"
+         sequence="19"/>
+
+
+    <record id="optipay_detail_versement_company" model="ir.rule">
+        <field name="name">Detail Salary of my Company</field>
+        <field name="model_id" ref="optipay.model_optesis_detail_versement"/>
+        <field eval="False" name="global"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+
+</odoo>

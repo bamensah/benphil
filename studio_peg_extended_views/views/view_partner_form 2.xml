@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data>
+        <record id="view_partner_form" model="ir.ui.view">
+            <field name="name">partner.form.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <!--<xpath expr="//field[@name='category_id']" position="replace">
+                    <field name="x_studio_spoken_language" string="Spoken language"/>
+                    <field name="x_studio_genre" string="Genre"/>
+                    <field name="x_studio_birthday" string="Birthday"/>
+                </xpath>-->
+                <xpath expr="//form[1]/sheet[1]/group[1]/group[1]/div[1]/field[@name='state_id']" position="attributes">
+                    <attribute name="placeholder">Region</attribute>
+                </xpath>
+<!--                <xpath expr="//field[@name='vat']" position="after">-->
+<!--                    <field name="id" string="Odoo ID"/>-->
+                    <!--<xpath expr="//field[@name='ref']" position="move"/>
+                    <field name="type_of_product" widget="many2many_tags" string="Type of product"/>
+                    <field name="type" widget="many2many_tags" attrs="{}" invisible="1"/>
+                    <field name="refered_by" string="Referred by" domain="[[&quot;customer&quot;,&quot;=&quot;,True]]"/>
+                    <field name="after_sales_sc_suppor" string="Service Center"/>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/field[@name='function']" position="after">-->
+<!--                    <field name="x_studio_number_for_mobile_payments" string="Number for mobile payments" widget="phone" attrs="{}" invisible="1"/>-->
+<!--                </xpath>--> <!--studio customization module has this fields but not installable-->
+                <xpath expr="//field[@name='website']" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </xpath>
+                <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/field[@name='title']" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </xpath>
+                <!--<xpath expr="//form[1]/sheet[1]/group[1]/group[2]/field[@name='lang']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="string">Written language</attribute>
+                </xpath>-->
+                <xpath expr="//field[@name='property_payment_term_id']" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </xpath>
+                <!--<xpath expr="//field[@name='property_product_pricelist']" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </xpath>--><!--field cant be loated in parent-->
+<!--                <xpath expr="//field[@name='barcode']" position="before">-->
+<!--                    <field name="x_studio_contract_id" string="Contract id" attrs="{}" invisible="1"/>-->
+<!--                </xpath>-->
+               <!-- <xpath expr="//page[@name='geo_location']" position="attributes">
+                    <attribute name="string">Geolocation</attribute>
+                </xpath>--> <!--not -->
+                <!--<xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='geo_location']/group[1]/separator[1]" position="before">
+                    <field name="x_studio_geolocation" string="Geolocation"/>
+                </xpath>-->
+                <!--<xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+                    <page name="studio_page_0das1" string="Attachement check list">
+                        <group name="studio_group_0das1">
+                            <group name="studio_group_0das1_left" string="Partners">
+                                <field name="x_studio_contract" string="Copy of contract"/>
+                                <field name="x_studio_photo_of_place_to_install_panel" string="Photo of ID"/>
+                                <field name="x_studio_ninea" string=" NINEA"/>
+                            </group>
+                            <group name="studio_group_0das1_right" string="Customer">
+                                <field name="x_studio_photo_of_id" string="Photo of ID"/>
+                                <field name="x_studio_photo_of_customer" string="Photo of customer"/>
+                                <field name="x_studio_photo_of_contract" string="Photo of contract"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>--><!--not defined fields-->
+                <xpath expr="//field[@name='ref']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="readonly">1</attribute>
+                    <attribute name="string">Old Customer_id</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+<!--Odoo Studio: res.partner.form customization-->

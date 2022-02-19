@@ -67,11 +67,6 @@
                         </group>
                     </page>
                 </xpath>--><!--not defined fields-->
-                <xpath expr="//field[@name='ref']" position="attributes">
-                    <attribute name="attrs">{}</attribute>
-                    <attribute name="readonly">1</attribute>
-                    <attribute name="string">Old Customer_id</attribute>
-                </xpath>
             </field>
         </record>
     </data>

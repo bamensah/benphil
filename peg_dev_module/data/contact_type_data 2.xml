@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+        <record id="default_contact_type_ABM" model="contact.type">
+            <field name="id">1</field>
+            <field name="name">ABM/SFM</field>
+        </record>
+        <record id="default_contact_type_DSR" model="contact.type">
+            <field name="id">2</field>
+            <field name="name">DSR</field>
+        </record>
+        <record id="default_contact_type_RBM" model="contact.type">
+            <field name="id">3</field>
+            <field name="name">RBM</field>
+        </record>
+        <record id="default_contact_type_Customer" model="contact.type">
+            <field name="id">4</field>
+            <field name="name">Customer</field>
+        </record>
+        <record id="default_contact_type_Business_Partner" model="contact.type">
+            <field name="id">5</field>
+            <field name="name">Business Partner</field>
+        </record>
+        <record id="default_contact_type_Technician" model="contact.type">
+            <field name="id">6</field>
+            <field name="name">Technician</field>
+        </record>
+        <record id="default_contact_type_Payment_Recovery_Agent" model="contact.type">
+            <field name="id">7</field>
+            <field name="name">Payment Recovery Agent</field>
+        </record>
+        <record id="default_contact_type_Employee" model="contact.type">
+            <field name="id">8</field>
+            <field name="name">Employee</field>
+        </record>
+        <record id="default_contact_type_Vendor" model="contact.type">
+            <field name="id">9</field>
+            <field name="name">Vendor</field>
+        </record>
+        <record id="default_contact_type_HSO" model="contact.type">
+            <field name="id">10</field>
+            <field name="name">HSO</field>
+        </record>
+  </data>
+
+</odoo>

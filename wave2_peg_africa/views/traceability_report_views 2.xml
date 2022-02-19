@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="traceability_report_partner_view" inherit_id="stock.report_stock_inventory">
+        <xpath expr="//table//thead//tr[@class='o_report_header']//th[6]" position="replace">
+            <th class="o_report_line_header">Partner</th>
+        </xpath>
+        <xpath expr="//table//thead//tr[@class='o_report_header']//th[7]" position="replace">
+            <th class="o_report_line_header">To</th>
+        </xpath>
+        <xpath expr="//table//thead//tr[@class='o_report_header']//th[7]" position="after">
+            <th class="o_report_line_header">Partner</th>
+        </xpath>
+        <xpath expr="//table//thead//tr[@class='o_report_header']//th[8]" position="after">
+            <th class="o_report_line_header">Quantité</th>
+        </xpath>
+    </template>
+
+</odoo>
+
+
+

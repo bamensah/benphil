@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data>
+        <record id="purchase_order_form_inherit_uQVgD" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_order']" position="after">
+                    <field name="field_uQVgD" string="Ref PEG"/>
+                </xpath><!--x_studio_field_uQVgD renamed-->
+            </field>
+        </record>
+    </data>
+</odoo>
+<!--Odoo Studio: purchase.order.form customization-->

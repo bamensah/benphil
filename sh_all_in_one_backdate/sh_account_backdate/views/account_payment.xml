@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    
+    <record id="account_payment_inherit_view_form" model="ir.ui.view">
+        <field name="name">account.payment.inherit.view.form</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <field name = "date" position = "after">
+                <field name = "remarks" attrs="{'invisible': [('is_remarks','=',False)],'required':[('is_remarks_mandatory','=',True),('is_boolean','=',True)]}"/>
+                <field name = "is_remarks" invisible = "1"/>
+                <field name = "is_remarks_mandatory" invisible = "1"/>
+                <field name = "is_boolean" invisible = "1"/>
+            </field>
+        </field>
+    </record>
+</odoo>

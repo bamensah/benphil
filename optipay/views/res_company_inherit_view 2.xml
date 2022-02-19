@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="optesis_res_company_view_form_inherit" model="ir.ui.view">
+            <field name="name">opt.res.company.form.inherit</field>
+            <field name="model">res.company</field>
+            <field name="priority" eval="50"/>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//notebook[last()]" position="inside">
+                    <page string='Informations sur les versements'>
+                        <group>
+                            <field name="sigle"/>
+                            <field name="profession"/>
+                            <field name="localite"/>
+                            <field name="nom_adress_comptable"/>
+                        </group>
+                    </page>
+                    <page string='Informations sur les Contrats' invisible="1">
+                        <group string="Allocation">
+                            <group>
+                                <field name="nbj_alloue"/>
+                            </group>
+                            <group>
+                                <field name="nbj_travail"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

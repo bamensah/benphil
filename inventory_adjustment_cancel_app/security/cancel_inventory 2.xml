@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="group_cancel_inventory" model="res.groups">
+		<field name="name">Cancel Inventory Adjustment</field>
+		<field name="implied_ids" eval="[(4,ref('base.group_user'))]"/>
+	</record>
+
+</odoo>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hr_loan_submit" model="mail.template">
+            <field name="name">Loan submit</field>
+            <field name="model_id" ref="mail.model_mail_notification"/>
+            <field name="subject">Nouvelle demande de prêt</field>
+            <field name="email_from">${object.message_id.email_from|safe}</field>
+            <field name="email_to"></field>
+            <field name="body_html">
+                <![CDATA[<p>
+                    Bonjour, <br/>
+                    <strong> ${object.record.employee_id.name} </strong> a introduit une Demande de prêt de type ${object.record.type.name}.<br/>
+                    <strong> Numéro de la demande :</strong>  ${object.record.name} .<br/>
+                    <table cellspacing="0" cellpadding="0" style="width:600px;border-collapse:collapse;background:inherit;color:inherit">
+                        <tbody>
+                        <tr>
+                            <td valign="center" align="right" width="340" style="padding:10px 10px 10px 5px; font-size: 12px;">
+                                <p>
+                                    <a href="${object.record_access_link}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; color:black;vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #FF9933; border: 1px solid #875A7B; border-radius:3px">Veuillez suivre ce lien si vous souhaitez poursuivre le traitement.</a>
+                                </p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </p>
+                ]]>
+            </field>
+        </record>
+
+        <record id="hr_loan_approve_1" model="mail.template">
+            <field name="name">Loan approve pdg</field>
+            <field name="model_id" ref="mail.model_mail_notification"/>
+            <field name="subject">Demande de prêt</field>
+            <field name="email_from">${object.message_id.email_from|safe}</field>
+            <field name="email_to"></field>
+            <field name="body_html">
+                <![CDATA[<p>
+                    Bonjour, <br/>
+                    La demande de prêt de <strong> ${object.record.employee_id.name} </strong> sous le numéro <strong>${object.record.name} </strong> vient d'être approuvée par le PDG.<br/>
+                    <table cellspacing="0" cellpadding="0" style="width:600px;border-collapse:collapse;background:inherit;color:inherit">
+                        <tbody>
+                        <tr>
+                            <td valign="center" align="right" width="340" style="padding:10px 10px 10px 5px; font-size: 12px;">
+                                <p>
+                                    <a href="${object.record_access_link}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; color:black;vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #FF9933; border: 1px solid #875A7B; border-radius:3px">Veuillez suivre ce lien si vous souhaitez poursuivre le traitement.</a>
+                                </p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </p>
+                ]]>
+            </field>
+        </record>
+
+        <record id="hr_loan_valid" model="mail.template">
+            <field name="name">Loan validate</field>
+            <field name="model_id" ref="mail.model_mail_notification"/>
+            <field name="subject">$Demande de prêt</field>
+            <field name="email_from">${object.message_id.email_from|safe}</field>
+            <field name="email_to"></field>
+            <field name="body_html">
+                <![CDATA[<p>
+                    Bonjour ${object.record.employee_id.name} , <br/><br/>
+                    Votre demande de prêt  sous le numéro <strong> ${object.record.name} </strong> vient d'être approuvée.<br/>
+                    <table cellspacing="0" cellpadding="0" style="width:600px;border-collapse:collapse;background:inherit;color:inherit">
+                        <tbody>
+                        <tr>
+                            <td valign="center" align="right" width="340" style="padding:10px 10px 10px 5px; font-size: 12px;">
+                                <p>
+                                    <a href="${object.record_access_link}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; color:black;vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #FF9933; border: 1px solid #875A7B; border-radius:3px">Veuillez suivre ce lien pour plus de détails.</a>
+                                </p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </p>
+                ]]>
+            </field>
+        </record>
+
+        <record id="hr_loan_refuse" model="mail.template">
+            <field name="name">Loan refuse</field>
+            <field name="model_id" ref="mail.model_mail_notification"/>
+            <field name="subject">Demande de prêt</field>
+            <field name="email_from">${object.message_id.email_from|safe}</field>
+            <field name="email_to"></field>
+            <field name="body_html">
+                <![CDATA[<p>
+                    Bonjour ${object.record.employee_id.name} , <br/><br/>
+                    Votre demande de prêt  sous le numéro <strong> ${object.record.name} </strong> vient d'être rejetée.<br/>
+                    <table cellspacing="0" cellpadding="0" style="width:600px;border-collapse:collapse;background:inherit;color:inherit">
+                        <tbody>
+                        <tr>
+                            <td valign="center" align="right" width="340" style="padding:10px 10px 10px 5px; font-size: 12px;">
+                                <p>
+                                    <a href="${object.record_access_link}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; color:black;vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #FF9933; border: 1px solid #875A7B; border-radius:3px">Veuillez suivre ce lien pour plus de détails.</a>
+                                </p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </p>
+                ]]>
+            </field>
+        </record>
+        <!-- need details for migration(commented line)-->
+        <record id="mt_loan_submit" model="mail.message.subtype">
+            <field name="name">Loan submit</field>
+            <field name="res_model">hr.loan</field>
+            <field name="default" eval="True"/>
+            <field name="description">Loan submit</field>
+<!--            <field name="template_id" ref="hr_loan_submit"/>-->
+        </record>
+
+        <record id="mt_hr_loan_approve_1" model="mail.message.subtype">
+            <field name="name">Loan approve_1</field>
+            <field name="res_model">hr.loan</field>
+            <field name="default" eval="True"/>
+            <field name="description">Hr loan approve_1</field>
+<!--            <field name="template_id" ref="hr_loan_approve_1"/>-->
+        </record>
+        <record id="mt_hr_loan_valid" model="mail.message.subtype">
+            <field name="name">Loan valid</field>
+            <field name="res_model">hr.loan</field>
+            <field name="default" eval="True"/>
+            <field name="description">Loan Valid</field>
+<!--            <field name="template_id" ref="hr_loan_valid"/>-->
+        </record>
+
+        <record id="mt_hr_expense_refuse" model="mail.message.subtype">
+            <field name="name">Loan refuse</field>
+            <field name="res_model">hr.loan</field>
+            <field name="default" eval="True"/>
+            <field name="description">Loan refuse</field>
+<!--            <field name="template_id" ref="hr_loan_refuse"/>-->
+        </record>
+    </data>
+</odoo>

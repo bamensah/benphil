@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- by khk -->
+<odoo>
+    <data>
+
+      <report
+      id="transfer_order"
+      model="hr.contribution.register"
+      string="Ordre de virement"
+      report_type="qweb-pdf"
+      name="optipay.report_transfer_order_view"
+      file="optipay.report_transfer_order"
+      menu="False"
+      />
+
+      <template id="report_transfer_order_view">
+          <t t-call="web.html_container">
+              <t t-foreach="docs" t-as="o">
+                  <t t-call="web.external_layout">
+                      <div class="page">
+                        <table width="259" align="right">
+                          <tbody>
+                            <tr>
+                              <td width="259">
+                              <p><span t-esc="company_bank_name"/></p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td width="259">
+                              <p><span t-esc="company_bank_street"/></p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td width="259">
+                              <p><span t-esc="company_bank_zip"/></p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td width="259">
+                              <p><span t-esc="company_bank_city"/></p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td width="259">
+                              <span t-esc="date"/>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <p><br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> </p>
+                          <p/>
+                          <p/>
+                          <p/>
+                          <p/>
+                        <p>Object: Ordre de virement</p>
+                        <p>Par le débit de notre compte n° <span t-esc="company_bank_number"/> ouvert dans vos livres, nous vous prions de vouloir efféctuer les virements pour les titulaires de compte ci-dessous en réglement de leur rénumérations du mois de <span t-esc="month"/>.</p>
+                        <table class="table table-condensed table-bordered">
+                          <tbody>
+                            <tr>
+                              <th/>
+                              <th>Prénom-Nom</th>
+                              <th>Domiciliation</th>
+                              <th>N° Compte</th>
+                              <th>Montant FCFA</th>
+                            </tr>
+                          <tr t-foreach="lines_data" t-as="r">
+                            <td width="121">
+                              <span t-esc="r.get('index')"/>
+                            </td>
+                            <td width="121">
+                              <span t-esc="r.get('mane')"/>
+                            </td>
+                            <td width="121">
+                              <span t-esc="r.get('domiciliation')"/>
+                            </td>
+                            <td width="121">
+                              <span t-esc="r.get('numero_compte')"/>
+                            </td>
+                            <td width="121">
+                              <span t-esc="'{:,}'.format(r.get('total')).replace(',',' ')"/>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="4">Total <span t-esc="max_index"/></td>
+                            <td><span t-esc="'{:,}'.format(total_net).replace(',',' ')"/></td>
+                          </tr>
+                          </tbody>
+                        </table>
+                        <p/>
+                        <p/>
+                        <p>Veuillez agréer, Monsieur, l'expression de notre parfaite considération.</p>
+                      </div>
+                  </t>
+              </t>
+          </t>
+      </template>
+    </data>
+</odoo>

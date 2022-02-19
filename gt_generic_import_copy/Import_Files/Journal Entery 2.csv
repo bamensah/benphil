@@ -1,0 +1,3 @@
+Name,Partner,Journal,Reference,Date,Analytic account ,Date Maturity,Debit ,Credit,Label,Currency,Account Code
+Move1,Sam,Miscellaneous Operations,Opening balance,09-10-2018,Test Account,09-10-2018,100,0,remark,USD,101120
+Move1,Sam,Miscellaneous Operations,Opening balance,09-10-2018,Test Account,08-10-2018,0,100,remark,USD,101300

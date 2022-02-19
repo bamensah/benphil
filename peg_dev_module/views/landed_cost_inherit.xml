@@ -71,7 +71,7 @@
                         <field name="adjustment_lines_total" widget="monetary"/>
                     </group>
                     <!--W1E-74 add bill number to landed cost-->
-                    <notebook>
+                    <!--<notebook>
                         <page string="Bill Reference">
                             <field name="bill_ids">
                                 <tree>
@@ -84,7 +84,7 @@
                                 </form>
                             </field>
                         </page>
-                    </notebook>
+                    </notebook>-->
                 </xpath>
                  <xpath expr="//field[@name='cost_lines']" position="replace">
                     <field name="cost_lines">

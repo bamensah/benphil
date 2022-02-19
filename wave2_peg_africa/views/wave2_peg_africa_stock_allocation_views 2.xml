@@ -1,0 +1,388 @@
+<odoo>
+    <data>
+
+        <record id="view_picking_form" model="ir.ui.view">
+            <field name="name">stock.picking.form - stock_picking_filter_lot</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name='lot_ids_list' invisible="1"/>
+                    <field name='location_type' invisible="1"/>
+                </xpath>
+                <!--            migrate in v14 later -->
+                <!--                <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='lot_ids']" position="after">-->
+                <!--                    &lt;!&ndash;                <field name='lot_ids' invisible="1"/>&ndash;&gt;-->
+                <!--                    <field name='base_unit'/>-->
+                <!--                </xpath>-->
+                <!--            <xpath expr="//field[@name='move_line_ids_without_package']/tree/field[@name='lot_id']" position="attributes">-->
+                <!--                <attribute name="domain">[('product_id','=', product_id),('id', 'in', lot_ids)]</attribute>-->
+                <!--                <attribute name="options">{'no_create': True, 'no_create_edit':True}</attribute>-->
+                <!--            </xpath>-->
+                <!--            end      -->
+            </field>
+        </record>
+
+        <record id="view_stock_move_line_detailed_operation_tree_inherit_peg" model="ir.ui.view">
+            <field name="name">stock.move.line - view_stock_move_line_detailed_operation_tree</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_stock_move_line_detailed_operation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_uom_id']" position="after">
+                    <field name='base_unit'/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_stock_move_line_operation_tree" model="ir.ui.view">
+            <field name="name">stock.move.line.operations.tree - stock_picking_filter_lot</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree"/>
+            <field name="priority">1001</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='lot_id']" position="after">
+                    <field name='lot_ids' invisible="1"/>
+                </xpath>
+                <!--            migrate in v14 later-->
+                <!--            <xpath expr="//field[@name='lot_id']" position="attributes">-->
+                <!--                <attribute name="domain">[('product_id','=', product_id),('id', 'in', lot_ids)]</attribute>-->
+                <!--                <attribute name="options">{'no_create': True, 'no_create_edit':True}</attribute>-->
+                <!--            </xpath>-->
+                <!--            end -->
+            </field>
+        </record>
+
+        <record id="view_stock_move_line_operation_tree" model="ir.ui.view">
+            <field name="name">stock.move.line.operations.tree - stock_picking_filter_lot</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='lot_id']" position="after">
+                    <field name='lot_ids' invisible="1"/>
+                </xpath>
+                <!--                migrate in v14 later-->
+                <!--                <xpath expr="//field[@name='lot_id']" position="attributes">-->
+                <!--                    <attribute name="domain">[('product_id','=', product_id),('id', 'in', lot_ids)]</attribute>-->
+                <!--                </xpath>-->
+                <!--                end   -->
+            </field>
+        </record>
+
+        <record id="view_delivery_return_product_form" model="ir.ui.view">
+            <field name="name">Return lines</field>
+            <field name="model">stock.return.picking</field>
+            <field name="inherit_id" ref="stock.view_stock_return_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='location_id']" position="after">
+                    <field name="partner_id"/>
+                </xpath>
+                <field name="to_refund" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+
+            </field>
+        </record>
+
+        <!-- 45_operation_type and 46_location_view(inventory): inherit view and add domain attribute -->
+        <record id="view_transfer_picking_form" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group/group[1]" position="replace">
+                    <group>
+                        <field name="partner_id"/>
+                        <field name="picking_type_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <field name="location_id" groups="stock.group_stock_multi_locations"
+                               attrs="{'invisible': [('picking_type_code', '=', 'incoming')]}"
+                               domain="[('usage', '!=', 'view')]"/>
+                        <field name="location_dest_id" groups="stock.group_stock_multi_locations"
+                               domain="[('usage', '!=', 'view')]"/>
+                        <field name="backorder_id" readonly="1" attrs="{'invisible': [('backorder_id','=',False)]}"/>
+                    </group>
+                </xpath>
+                <xpath expr="//field[@name='location_dest_id']" position="after">
+                    <field name="source_individual_id"
+                           attrs="{'invisible': [('source_location_individual', '=', False)], 'required':[('source_location_individual', '=', True)]}"/>
+                    <!--                    migrate in v14 later-->
+                    <!--                    -->
+                    <field name="destination_individual_id"
+                           attrs="{'invisible': [('destination_location_individual', '=', False)], 'required':[('destination_location_individual', '=', True)]}"/>
+                    <!--                    migrate in v14 later-->
+
+                    <!--                    -->
+                    <field name="source_location_individual" invisible="1"/>
+                    <field name="destination_location_individual" invisible="1"/>
+                    <!--                    <field name="qty_model" />-->
+                    <!--                    migrate in v14 later-->
+
+                    <!--                    attrs="{'readonly': [('picking_type_code', '=', 'outgoing')]}"-->
+                    <!--                    <field name="product_template_id"/>-->
+                    <!--                    migrate in v14 later-->
+
+                    <!--                    attrs="{'readonly':['|', ('picking_type_id', '=', False), ('picking_type_code', '=', 'outgoing')]}"-->
+                </xpath>
+                <!--                    migrate in v14 later-->
+
+<!--                <xpath expr="//field[@name='origin']" position="attributes">-->
+<!--                    <attribute name="readonly">[('picking_type_code', '=', 'outgoing')]</attribute>-->
+<!--                </xpath>-->
+            </field>
+        </record>
+
+<!--         46_location_view(repair): Inherit Repair view and add domain attribute -->
+        <record id="view_repair_restriction_form" model="ir.ui.view">
+            <field name="name">repair.form</field>
+            <field name="model">repair.order</field>
+            <field name="inherit_id" ref="repair.view_repair_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='lot_id']" position="attributes">
+                    <attribute name="options">{'no_create': True, 'no_create_edit':True}</attribute>
+                </xpath>
+                                    <!--                    migrate in v14 later-->
+
+<!--                <xpath expr="//button[@name='action_validate']" position="attributes">-->
+<!--                    <attribute name="groups">stock.group_stock_manager, sales_team.group_sale_manager,-->
+<!--                    wave2_peg_africa.gh_inventory_manager, wave2_peg_africa.gh_group_supply_chain_director, wave2_peg_africa.gh_group_logistics_manager,-->
+<!--                    wave2_peg_africa.gh_group_snr_operations_analyst, wave2_peg_africa.gh_group_operations_analyst, wave2_peg_africa.gh_group_repair_supervisor,-->
+<!--                    wave2_peg_africa.gh_group_snr_repair_technician, wave2_peg_africa.gh_group_css_outbound</attribute>-->
+<!--                </xpath>-->
+                <xpath expr="//sheet/group/group[2]/field[@name='location_id']" position="replace">
+                    <field name="location_id" string="Source Location" domain="[('usage', '!=', 'view')]" />
+                </xpath>
+                <field name="location_id" position="before">
+                    <field name="picking_type_id" />
+                </field>
+                <field name="location_id" position="after">
+                    <field name="location_dest_id" />
+                </field>
+                <xpath expr="//page/field[@name='operations']/tree/field[@name='location_id']" position="replace">
+                    <field name="location_id" domain="[('usage', '!=', 'view')]" />
+                                        <!--                    migrate in v14 later-->
+
+<!--                    groups="stock.group_stock_multi_locations"-->
+                </xpath>
+                <xpath expr="//page/field[@name='operations']/tree/field[@name='location_dest_id']" position="replace">
+                    <field name="location_dest_id" domain="[('usage', '=', 'customer')]" />
+                                        <!--                    migrate in v14 later-->
+
+<!--                    groups="stock.group_stock_multi_locations"-->
+                </xpath>
+                <xpath expr="//sheet/group/group[2]/field[@name='invoice_method']" position="after">
+                    <field name="token"/>
+                    <field name="sale_order_ids_list" invisible="1"/>
+                    <field name="sale_order" domain="[('id', 'in', sale_order_ids_list)]" options="{'no_create': True, 'no_quick_create': True, 'no_create_edit':True}" attrs="{'readonly': [('state', '!=', 'draft')], 'required': 1 }"/>
+                </xpath>
+                                    <!--                    migrate in v14 later-->
+
+<!--                <xpath expr="//page/field[@name='operations']/tree/field[@name='name']" position="after">-->
+<!--                    <field name="analytic_account_id" />-->
+<!--                     domain="[('is_used_in_repairs', '=', True)]"-->
+<!--                </xpath>-->
+                <field name="guarantee_limit" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <!--                                                        migrate in v14 later-->
+        <!--        <record id="view_repair_order_form_new_access" model="ir.ui.view">-->
+        <!--            <field name="name">repair.form</field>-->
+        <!--            <field name="model">repair.order</field>-->
+        <!--            <field name="inherit_id" ref="peg_dev_module.view_repair_order_form_inherited" />-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <xpath expr="//button[@name='action_validate']" position="attributes">-->
+        <!--                    <attribute name="groups">stock.group_stock_manager, sales_team.group_sale_manager, -->
+        <!--                    wave2_peg_africa.gh_inventory_manager, wave2_peg_africa.gh_group_supply_chain_director, wave2_peg_africa.gh_group_logistics_manager,-->
+        <!--                    wave2_peg_africa.gh_group_snr_operations_analyst, wave2_peg_africa.gh_group_operations_analyst, wave2_peg_africa.gh_group_repair_supervisor, -->
+        <!--                    wave2_peg_africa.gh_group_snr_repair_technician, wave2_peg_africa.gh_group_css_outbound</attribute>-->
+        <!--                </xpath>-->
+        <!--            </field>-->
+        <!--        </record>-->
+
+        <!-- 47_Destination_location: Remove "internal" id in "required" -->
+        <record id="view_operation_type_form" model="ir.ui.view">
+            <field name="name">Operation Types</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.view_picking_type_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='default_location_dest_id']" position="replace">
+                    <field name="default_location_dest_id" attrs="{'required': [('code', 'in', ('incoming'))]}" />
+                </xpath>
+            </field>
+        </record>
+
+        <!-- 52_Swap_Process: Inherit Repair view and add domain attribute -->
+        <record id="view_repair_line_form" model="ir.ui.view">
+            <field name="name">repair.form</field>
+            <field name="model">repair.order</field>
+            <field name="inherit_id" ref="repair.view_repair_order_form" />
+            <field name="arch" type="xml">
+                        <!--                                                        migrate in v14 later-->
+
+                <xpath expr="//page/field[@name='operations']" position="attributes">
+                    <attribute name="context">{'default_location_id': location_id, 'default_product_uom_qty': product_qty}</attribute>
+                </xpath>
+                <xpath expr="//page/field[@name='operations']/tree/field[@name='location_id']" position="replace">
+                    <field name="location_id" domain="[('usage', '!=', 'view')]" />
+                            <!--                                                        migrate in v14 later-->
+
+<!--                    groups="stock.group_stock_multi_locations"-->
+                </xpath>
+                <xpath expr="//page/field[@name='operations' ]/tree/field[@name='location_dest_id']" position="replace">
+                    <field name="location_dest_id" domain="[('usage', '!=', 'customer')]" />
+                            <!--                                                        migrate in v14 later-->
+
+<!--                    groups="stock.group_stock_multi_locations"-->
+                </xpath>
+                <xpath expr="//page/field[@name='operations' ]/tree/field[@name='lot_id']"
+                       position="replace">
+                    <field name="lot_id"/>
+                            <!--                                                        migrate in v14 later-->
+
+<!--                    domain="[('product_id', '=', product_id), ('status','in',['warranty stock', 'sale stock'])]"
+                           options="{'no_create': True, 'no_create_edit':True}" context="{'default_product_id': product_id}" groups="stock.group_production_lot"-->
+                </xpath>
+                <xpath expr="//field[@name='lot_id']" position="attributes">
+                    <attribute name="domain">[('product_id','=', product_id)]</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_account_analytic_account_form" model="ir.ui.view">
+            <field name="name">account.analytic.account.form</field>
+            <field name="model">account.analytic.account</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+            <field name="arch" type="xml">
+                <field name="group_id" position="after">
+                    <field name="is_used_in_repairs" string="Used in Repairs"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Add Stock info, SMS records and Tokens sent, client status  button in contact page -->
+        <record model="ir.ui.view" id="res_partner_inherit_form_view">
+            <field name="name">res.partner.stock.inherit.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button" type="object" name="action_get_tokens_sent_tree_views"
+                            icon="fa-clock-o"
+                            context="{'search_default_partner_id': active_id, 'partner_id': active_id}">
+                        <!--                                                        migrate in v14 later-->
+
+                        <!--                        domain="[('search_default_partner_id', '=', active_id)]"-->
+                        <div class="o_stat_info">
+                            <span class="o_stat_text">Tokens sent</span>
+                        </div>
+                    </button>
+                    <button class="oe_stat_button" type="object" name="action_get_sms_sent_tree_views"
+                            icon="fa-envelope"
+                            context="{'search_default_partner_id': active_id, 'partner_id': active_id}">
+                        <!--                                                        migrate in v14 later-->
+
+                        <!--                        domain="[('search_default_partner_id', '=', active_id)]"-->
+                        <div class="o_stat_info">
+                            <span class="o_stat_text">SMS sent</span>
+                        </div>
+                    </button>
+                    <button class="oe_stat_button o_res_partner_tip_opp" type="action"
+                            name="%(crm.crm_lead_opportunities)d" icon="fa-star"
+                            context="{'search_default_partner_id': active_id}">
+                        <!--                                                        migrate in v14 later-->
+
+                        <!--                        groups="sales_team.group_sale_salesman" -->
+                        <!--                        attrs="{'invisible': [('customer', '=', False)]}"-->
+                        <field string="Opportunities" name="opportunity_count" widget="statinfo"/>
+                    </button>
+                </xpath>
+                <xpath expr="//button[@name='%(crm.crm_lead_opportunities)d']" position="replace">
+                    <button type="object" class="oe_stat_button" name="action_get_credit_tree_views" icon="fa-table"
+                            context="{'search_default_partner_id': active_id, 'partner_id': active_id}">
+                        <!--                                                        migrate in v14 later-->
+                        <!--                        domain="[('search_default_partner_id', '=', active_id)]"-->
+                        <div class="o_stat_info">
+                            <span class="o_stat_text">Credit</span>
+                        </div>
+                    </button>
+                </xpath>
+                <xpath expr="//field[@name='function']" position="before">
+                    <field name="client_status"/>
+                    <field name="is_base_user" invisible="1"/>
+                    <field name="has_paid_sale" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='phone']" position="attributes">
+                    <attribute name='string'>Primary mobile number</attribute>
+                    <attribute name='widget'>phone</attribute>
+                    <!--                                                        migrate in v14 later-->
+                    <!--                    <attribute name="attrs">{'readonly': [('id', '!=', False), ('is_base_user','=', True), ('has_paid_sale','=', True), ('customer','=', True)]}</attribute>-->
+                </xpath>
+                <xpath expr="//field[@name='mobile']" position="attributes">
+                    <attribute name='string'>Secondary mobile number</attribute>
+                    <attribute name='widget'>phone</attribute>
+                </xpath>
+                <!--                                                        migrate in v14 later-->
+                <!--                <xpath expr="//field[@name='name']" position="attributes">-->
+                <!--&lt;!&ndash;                    <attribute name="attrs">{'readonly': [('id', '!=', False), ('is_base_user','=', True), ('has_paid_sale','=', True), ('customer','=', True)]}</attribute>&ndash;&gt;-->
+                <!--                </xpath>-->
+
+                <!--                xpath view change as not in v14-->
+                <page name="geo_location" position="after">
+                    <page name="geotag_fields" string="W3W">
+                        <group>
+                            <field name="screening_w3w"/>
+                            <field name="post_installation_w3w"/>
+                            <field name="w3w_validation"/>
+                        </group>
+                    </page>
+                </page>
+
+            </field>
+        </record>
+
+
+        <!--                                                        migrate in v14 later-->
+        <!--        <record model="ir.ui.view" id="res_partner_view_form_inherit">-->
+        <!--            <field name="name">res.partner.view.form</field>-->
+        <!--            <field name="model">res.partner</field>-->
+        <!--            <field name="inherit_id" ref="base.view_partner_form"/>-->
+        <!--            <field name="priority" eval="11"/>-->
+        <!--            <field name="groups_id" eval="[(4, ref('account.group_account_invoice')), (4, ref('sales_team.group_sale_salesman'))]"/>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <button name="toggle_active" position="before">-->
+        <!--                    <button type="object" class="oe_stat_button" name="open_action_followup" icon="fa-list" attrs="{'invisible': [('total_due', '=', 0)]}">-->
+        <!--                        <div class="o_field_widget o_stat_info">-->
+        <!--                            <span class="o_stat_value"><field name="total_due" widget='monetary' options="{'currency_field': 'currency_id'}"/></span>-->
+        <!--                            <span class="o_stat_text">Due</span>-->
+        <!--                        </div>-->
+        <!--                    </button>-->
+        <!--                </button>-->
+        <!--            </field>-->
+        <!--        </record>-->
+
+
+        <!-- Add Stock status -->
+        <record id="view_product_status_form" model="ir.ui.view">
+            <field name="name">stock.production.lot.form</field>
+            <field name="model">stock.production.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='ref']" position="after">
+                    <field name="status"/>
+                    <field name="partner_id" readonly="1"/>
+                    <field name="sale_order_id" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--                                                        migrate in v14 later-->
+
+        <!--        &lt;!&ndash; Remove default group by in Inventory report action &ndash;&gt;-->
+        <!--        <record model="ir.actions.act_window" id="stock.quantsact">-->
+        <!--            <field name="context">{'search_default_internal_loc': 0}</field>-->
+        <!--        </record>-->
+
+    </data>
+</odoo>

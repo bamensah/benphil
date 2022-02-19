@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data>
+        <record id="view_location_form_inherit_allow_negative_stud" model="ir.ui.view">
+            <field name="name">stock.location.form</field>
+            <field name="model">stock.location</field>
+            <field name="inherit_id" ref="stock.view_location_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='allow_negative_stock']" position="attributes">
+                    <attribute name="groups">base.group_erp_manager</attribute>
+                </xpath>
+            </field>
+        </record><!--thid field is defined on stock_no_negative-->
+        <!--Odoo Studio: stock.location.form customization-->
+
+        <record id="view_location_tree2_inherit_id_stud" model="ir.ui.view">
+            <field name="name">stock.location.tree</field>
+            <field name="model">stock.location</field>
+            <field name="inherit_id" ref="stock.view_location_tree2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='active']" position="after">
+                    <field name="id"/>
+                </xpath>
+            </field>
+        </record>
+        <!--Odoo Studio: stock.location.tree customization-->
+    </data>
+</odoo>

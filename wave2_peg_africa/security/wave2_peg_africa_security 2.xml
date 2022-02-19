@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Multi - Company Rules -->
+        <record id="discount_tag_rule" model="ir.rule">
+            <field name="name">Discount Tag</field>
+            <field ref="model_discount_tag" name="model_id"/>
+            <field name="domain_force">['|',('company_id', '=', False),('company_id', 'child_of', [user.company_id.id]),]</field>
+            <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
+        </record>
+        <record model="ir.module.category" id="module_category_group">
+            <field name="name">Group</field>
+            <field name="description">Category for Group Accesses</field>
+        </record>
+        <record id="group_pricelist_access" model="res.groups">
+            <field name="name">PriceList Access</field>
+            <field name="category_id" ref="module_category_group"/>
+        </record>
+    </data>
+</odoo>

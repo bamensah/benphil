@@ -1,0 +1,49 @@
+<odoo>
+
+    <record id='view_invoice_stock_action_form' model="ir.ui.view">
+        <field name="name">Stock Action</field>
+        <field name="model">invoice.stock.action</field>
+        <field name="arch" type="xml">
+            <form string="Stock Action">
+                <group>
+                    <field name="invoice_id" invisible="1"/>
+                </group>
+                <notebook>
+                    <page string="Stock Action lines" name="stock_action_lines">
+                        <field 
+                            name="stock_action_lines"
+                        >
+                            <tree
+                                create="false"
+                                delete="false"
+                                name="Stock Action lines"
+                                editable="bottom"
+                            >
+                                <field name="product_id" readonly="1"/>
+                                <field name="device_serial" readonly="1"/>
+                                <field name="status" readonly="1"/>
+                            </tree>
+                        </field>
+                        
+                    </page>
+                </notebook>
+                <footer>
+                    <button name="action_validate" string="Validate" type="object"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_invoice_stock_action_form_admin" model="ir.ui.view">
+        <field name="name">Stock Action</field>
+        <field name="model">invoice.stock.action</field>
+        <field name="inherit_id" ref="wave2_peg_africa.view_invoice_stock_action_form" />
+<!--        <field name="groups_id" eval="[(4, ref('wave2_peg_africa.group_credit_team')), (4, ref('__export__.res_groups_108_57104734'))]"/>-->
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='status']" position="attributes">
+                <attribute name="readonly">False</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

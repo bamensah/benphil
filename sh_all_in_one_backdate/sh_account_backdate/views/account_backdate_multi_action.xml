@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="model_account_move_action_open_backdate_wizard" model="ir.actions.server" >
+        <field name="name">Mass Assign Backdate</field>
+        <field name="model_id" ref="sh_all_in_one_backdate.model_sh_invoice_backdate_wizard"/>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="groups_id" eval="[(4, ref('sh_all_in_one_backdate.group_mass_assign_backdate'))]"/>
+		<field name="state">code</field>
+        <field name="binding_view_types">list,form</field>
+         <field name="code">
+            action = model.open_invoice_backdate_wizard()
+        </field>
+    </record>
+
+    <record id="model_account_payment_action_open_backdate_wizard" model="ir.actions.server" >
+        <field name="name">Mass Assign Backdate</field>
+        <field name="model_id" ref="sh_all_in_one_backdate.model_sh_payment_backdate_wizard"/>
+        <field name="binding_model_id" ref="account.model_account_payment"/>
+        <field name="groups_id" eval="[(4, ref('sh_all_in_one_backdate.group_mass_assign_backdate'))]"/>
+		<field name="state">code</field>
+        <field name="binding_view_types">list,form</field>
+         <field name="code">
+            action = model.open_payment_backdate_wizard()
+        </field>
+    </record>
+</odoo>

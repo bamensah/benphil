@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+,,,,,,,
+access_optesis_relation,optesis.relation,model_optesis_relation,base.group_user,1,1,1,1
+access_hr_employee_bonus,hr.employee.bonus,model_hr_employee_bonus,base.group_user,1,1,1,1
+access_optesis_convention,optesis.convention,model_optesis_convention,base.group_user,1,1,1,1
+access_line_optesis_convention,line.optesis.convention,model_line_optesis_convention,base.group_user,1,1,1,1
+acces_optesis_save_alloc_mensuel, optesis.save.alloc.mensuel,model_optesis_save_alloc_mensuel,base.group_user,1,1,1,1
+access_optesis_detail_versement,optesis.detail.versement,model_optesis_detail_versement,base.group_user,1,1,1,1
+access_optesis_detail_versement_line,optesis.detail.versement.line,model_optesis_detail_versement_line,base.group_user,1,1,1,1
+access_employee_worked_days,employee.worked.days,model_employee_worked_days,base.group_user,1,1,1,1
+access_optesis_optipay_holidays_tracking,optipay.holidays.tracking,model_optipay_holidays_tracking,base.group_user,1,1,1,1
+model_payslip_simulation,model_payslip_simulation,model_payslip_simulation,hr_payroll.group_hr_payroll_manager,1,1,1,1
+model_payslip_simulation_user,model_payslip_simulation,model_payslip_simulation,hr_payroll.group_hr_payroll_user,1,1,1,1

@@ -1,0 +1,241 @@
+<odoo>
+    <template id="peg_contactus_form" inherit_id="website_crm.contactus_form" name="Peg Contact Form" >
+        <xpath expr="//div[hasclass('form-group')][1]" position="replace">
+            <div class="form-group col-12 s_website_form_field s_website_form_required">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="name">Name of Customer</label>
+                <div class="col-lg-7 col-md-8">
+                    <input type="text" class="form-control o_website_form_input" name="name" t-att-value="request.params.get('name', '')" required=""/>
+                </div>
+            </div>        
+        </xpath>
+        <xpath expr="//div[hasclass('form-group')][2]" position="before">
+            <div class="form-group col-12 s_website_form_field s_website_form_required">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="type_of_product">Product</label>
+                <div class="col-lg-7 col-md-8">
+                    <select name="type_of_product" class="form-control" data-placeholder="Select a product" required="required">
+                        <t t-foreach="product_types" t-as="product">
+                            <option t-att-value="product.id" t-esc="product.name"/>
+                        </t>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-12 s_website_form_field">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="date_of_birth">Date of Birth</label>
+                <div class="col-lg-7 col-md-8">
+                    <input type="date" name="date_of_birth" class="form-control o_website_form_date" data-date-format="YYYY-MM-DD"/>
+                </div>
+            </div>
+            <div class="form-group col-12 s_website_form_field">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="type_of_product">Sex</label>
+                <div class="col-lg-7 col-md-8">
+                    <select name="sex" class="form-control">
+                        <option></option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//label[@for='opportunity2']" position="replace">
+            <label class="col-lg-5 col-md-4 s_website_form_label" for="phone">Tel</label>
+        </xpath>
+        <xpath expr="//div[hasclass('form-group')][6]" position="replace">
+            <div class="form-group col-12 s_website_form_field">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="email_from">Email</label>
+                <div class="col-lg-7 col-md-8">
+                    <input type="text" class="form-control o_website_form_input" name="email_from" t-att-value="request.params.get('email_from', '')" />
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('form-group')][7]" position="replace">
+        </xpath>
+<!--        <xpath expr="//div[hasclass('form-group', 'row', 'form-field')][7]" position="replace">-->
+<!--        </xpath>-->
+<!--        <xpath expr="//div[hasclass('form-group', 'row', 'form-field')][7]" position="replace">-->
+<!--        </xpath>-->
+        <xpath expr="//div[hasclass('form-group')][6]" position="before">
+            <div class="form-group col-12 s_website_form_field">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="phone">Alternate Tel</label>
+                <div class="col-lg-7 col-md-8">
+                    <input type="text" class="form-control o_website_form_input" name="phone" t-att-value="request.params.get('phone', '')" />
+                </div>
+            </div>
+            <div class="form-group col-12 s_website_form_field">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="phone">Attachments</label>
+                <div class="col-lg-7 col-md-8">
+                    <input type="file" class="form-control o_website_form_input" name="image_attach"/>
+                </div>
+            </div>            
+        </xpath>
+        <xpath expr="//div[hasclass('form-group')][8]" position="after">
+            <div class="form-group col-12 s_website_form_field">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="address">Address</label>
+                <div class="col-lg-7 col-md-8">
+                    <textarea class="form-control o_website_form_input" name="address"><t t-esc="request.params.get('address', '')"/></textarea>
+                </div>
+            </div>
+            <div class="form-group col-12 s_website_form_field s_website_form_required">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="region">Region</label>
+                <div class="col-lg-7 col-md-8">
+                    <select name="region" class="form-control" required="required">
+                        <option value="Ahafo">Ahafo</option>
+                        <option value="Ashanti">Ashanti</option>
+                        <option value="Bono">Bono</option>
+                        <option value="Bono East">Bono East</option>
+                        <option value="Central">Central</option>
+                        <option value="Eastern">Eastern</option>
+                        <option value="Greater Accra">Greater Accra</option>
+                        <option value="Northern">Northern</option>
+                        <option value="North East">North East</option>
+                        <option value="Oti">Oti</option>
+                        <option value="Savannah">Savannah</option>
+                        <option value="Upper East">Upper East</option>
+                        <option value="Upper West">Upper West</option>
+                        <option value="Volta">Volta</option>
+                        <option value="Western">Western</option>
+                        <option value="Western North">Western North</option>               
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-12 s_website_form_field">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="id_number">ID Card Number</label>
+                <div class="col-lg-7 col-md-8">
+                    <input type="text" class="form-control o_website_form_input" name="id_number" t-att-value="request.params.get('id_number', '')" />
+                </div>
+            </div>
+            <div class="form-group col-12 s_website_form_field">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="id_type">ID Type</label>
+                <div class="col-lg-7 col-md-8">
+                    <input type="text" class="form-control o_website_form_input" name="id_type" t-att-value="request.params.get('id_type', '')" />
+                </div>
+            </div>
+            <div class="form-group col-12 s_website_form_field">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="grid_status">Grid Status</label>
+                <div class="col-lg-7 col-md-8">
+                    <select name="grid_status" class="form-control">
+                        <option></option>
+                        <option value="Off-Grid">Off-Grid</option>
+                        <option value="Weak Grid">Weak Grid</option>
+                        <option value="Good Grid">Good Grid</option>            
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-12 s_website_form_field s_website_form_required">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="farm_type">Type of Farm</label>
+                <div class="col-lg-7 col-md-8">
+                    <select name="farm_type" class="form-control" required="required">
+                        <option value="Crop">Crop</option>
+                        <option value="Livestock">Livestock</option>
+                        <option value="Poultry">Poultry</option>
+                        <option value="Residential">Residential</option>
+                        <option value="Other">Other</option>         
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-12 s_website_form_field">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="crop_list">List of Crops (if crops)</label>
+                <div class="col-lg-7 col-md-8">
+                    <textarea class="form-control o_website_form_input" name="crop_list"><t t-esc="request.params.get('crop_list', '')"/></textarea>
+                </div>
+            </div>
+            <div class="form-group col-12 s_website_form_field">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="livestock_list">List of Livestock (if livestock)</label>
+                <div class="col-lg-7 col-md-8">
+                    <textarea class="form-control o_website_form_input" name="livestock_list"><t t-esc="request.params.get('livestock_list', '')"/></textarea>
+                </div>
+            </div>
+            <div class="form-group col-12 s_website_form_field">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="water_source">Source of water</label>
+                <div class="col-lg-7 col-md-8">
+                    <select name="water_source" class="form-control">
+                        <option></option>
+                        <option value="Borehole">Borehole</option>
+                        <option value="Dam">Dam</option>
+                        <option value="Hand-dug well">Hand-dug well</option>
+                        <option value="Pond">Pond</option>
+                        <option value="River">River</option>
+                        <option value="Other">Other</option>       
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-12 s_website_form_field">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="water_source_depth">Depth (meters) of water source (if borehole or hand_dug well)</label>
+                <div class="col-lg-7 col-md-8">
+                    <input type="number" name="water_source_depth" class="form-control o_website_form_input" step="any"/>
+                </div>
+            </div>
+            <div class="form-group col-12 s_website_form_field s_website_form_required">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="irr_land_size">Total land size for irrigation (acres)</label>
+                <div class="col-lg-7 col-md-8">
+                    <input type="number" name="irr_land_size" class="form-control o_website_form_input" step="any" required=""/>
+                </div>
+            </div>
+            <div class="form-group col-12 s_website_form_field s_website_form_required">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="irr_system_type">Irrigation System Type</label>
+                <div class="col-lg-7 col-md-8">
+                    <select name="irr_system_type" class="form-control" required="required">
+                        <option value="Drip">Drip</option>
+                        <option value="Sprinkler">Sprinkler</option>
+                        <option value="Hand-dug well">Open field irrigation</option>
+                        <option value="Pond">Other</option>    
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-12 s_website_form_field">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="tank_size">Size(litres) of storage tank, if applicable</label>
+                <div class="col-lg-7 col-md-8">
+                    <input type="number" name="tank_size" class="form-control o_website_form_input" step="any"/>
+                </div>
+            </div>
+            <div class="form-group col-12 s_website_form_field">
+                <label class="col-lg-5 col-md-4 s_website_form_label" for="pump_type">Pump type</label>
+                <div class="col-lg-7 col-md-8">
+                    <select name="pump_type" class="form-control">
+                        <option></option>
+                        <option value="W-Starter">W-Starter</option>
+                        <option value="W-Classic">W-Classic</option>
+                        <option value="W-Premium">W-Premium</option>
+                        <option value="B-Starter">B-Starter</option>
+                        <option value="B-Classic">B-Classic</option>
+                        <option value="B-Premium">B-Premium</option>
+                        <option value="SUNFLEX 750C2">SUNFLEX 750C2</option>
+                        <option value="SUNFLEX 1100C3">SUNFLEX 1100C3</option>
+                        <option value="SUNFLEX 1100C8">SUNFLEX 1100C8</option>
+                        <option value="SUNFLEX 1500C5">SUNFLEX 1500C5</option>
+                        <option value="SUNFLEX 2200C9">SUNFLEX 2200C9</option>
+                        <option value="Sunverter 1.5kw">Sunverter 1.5kw</option>
+                        <option value="Sunverter 2.2kw">Sunverter 2.2kw</option>
+                        <option value="Sunverter 3.7kw 1PH">Sunverter 3.7kw 1PH</option>
+                        <option value="Sunverter 3.7kw 3PH">Sunverter 3.7kw 3PH</option>
+                        <option value="Sunverter 5.5kw">Sunverter 5.5kw</option>                                                       
+                    </select>
+                </div>
+            </div>                                                                                                                                            
+        </xpath>          
+    </template>
+
+    <!--<template id="portal_sign_in_alert" inherit_id="portal.frontend_layout" name="Sign In Alert">
+        <xpath expr="//li[hasclass('nav-item')][4]" position="after">
+            <li class="nav-item">
+                <div class="o_tooltip bottom o_animated" style="top: 40px; left: -46px; opacity: 1; position: relative;" t-ignore="true" t-if="user_id._is_public()">
+                </div>
+            </li>
+        </xpath>
+    </template>-->
+
+    <template id="portal_home_page" inherit_id="portal.frontend_layout" name="PEG Home Page">
+        <xpath expr="//main" position="inside">
+            <div class="align-items-center" t-ignore="true" t-if="pageName == 'homepage'">
+                <div class="col">
+                    <hr class="my-4" />
+                    <h1 style="color:#f28e1e; text-align:center">Welcome to PEGasus</h1>
+                    <p style="text-align:center" t-ignore="true" t-if="user_id._is_public()">Click on menu item to sign in</p>
+                    <hr class="my-4" />
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//footer" position="replace">
+        </xpath>
+    </template>
+    
+</odoo>

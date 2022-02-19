@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    
+    <record id="stock_move_line_inherit_view_form" model="ir.ui.view">
+        <field name="name">stock.move.line.inherit.view.form</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_form"/>
+        <field name="arch" type="xml">
+            <field name = "lot_id" position = "after">
+                <field name = "remarks_for_picking" attrs="{'invisible': ['|',('is_remarks_for_picking','=',False),('remarks_for_picking','=',False)]}"/>
+                <field name = "is_remarks_for_picking" invisible = "1"/>
+
+                <field name = "remarks_for_adjustment" attrs="{'invisible': ['|',('is_remarks_for_adjustment','=',False),('remarks_for_adjustment','=',False)]}"/>
+                <field name = "is_remarks_for_adjustment" invisible = "1"/>
+
+                <field name = "remarks_for_scrap" attrs="{'invisible': ['|',('is_remarks_for_scrap','=',False),('remarks_for_scrap','=',False)]}"/>
+                <field name = "is_remarks_for_scrap" invisible = "1"/>
+            </field>
+            
+        </field>
+    </record>    
+</odoo>

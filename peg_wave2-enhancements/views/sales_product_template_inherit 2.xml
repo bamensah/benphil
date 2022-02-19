@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+
+        <record id="sale_order_template_form_inherit_type_of_product" model="ir.ui.view">
+            <field name="name">sale.order.template.form.inherit.type_of_product</field>
+            <field name="model">sale.order.template</field>
+            <field name="inherit_id" ref="sale_management.sale_order_template_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="before">
+                        <field name="type_of_product_id" required="1"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="stock_picking_list_inherit_view" model="ir.ui.view">
+            <field name="name">stock.picking.list.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree[1]/field[@name='partner_id']" position="after">
+                    <field name="landed_costs" widget="many2many_tags"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="stock_picking_form_inherit_view" model="ir.ui.view">
+            <field name="name">stock.picking.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                
+                <xpath expr="//form/header" position="replace">
+                    <header>
+                        <field name="id" invisible="1"/>
+                        <field name="is_locked" invisible="1"/>
+                        <field name="show_mark_as_todo" invisible="1"/>
+                        <field name="show_check_availability" invisible="1"/>
+                        <field name="show_validate" invisible="1"/>
+                        <field name="show_lots_text" invisible="1"/>
+                        <button name="action_confirm" attrs="{'invisible': [('show_mark_as_todo', '=', False)]}" string="Mark as Todo" type="object" class="oe_highlight" groups="base.group_user"/>
+                        <button name="action_assign" attrs="{'invisible': [('show_check_availability', '=', False)]}" string="Check Availability" type="object" class="oe_highlight" groups="base.group_user"/>
+						<button name="check_serial_number_availability" attrs="{'invisible': [('show_check_availability', '=', False)]}" string="Check SERIAL Availability" type="object" class="oe_highlight" groups="base.group_user"/>
+						<button name="button_first_validate" attrs="{'invisible': [('state', 'not in', ('waiting','confirmed','assigned'))]}" string="First Validate" type="object" groups="stock.group_stock_user,peg_dev_module.group_sn_finance_controller" class="oe_highlight"/>
+                        <!--<button name="button_validate" attrs="{'invisible': ['|', ('state', 'in', ('first_done','confirmed'))]}" string="Validate" type="object" class="oe_highlight" groups="stock.group_stock_user"/>-->
+                        <button name="button_validate" attrs="{'invisible': [('state', '!=', 'first_done')]}" string="Validate" type="object" groups="stock.group_stock_user,peg_dev_module.group_sn_finance_controller" class="oe_highlight"/>
+                        <button name="do_print_picking" string="Print" groups="stock.group_stock_user" type="object" attrs="{'invisible': ['|', ('state', 'not in', ('assigned', 'partially_available')), ('is_locked', '=', False)]}"/>
++                       <button name="%(stock.action_report_delivery)d" string="Print" attrs="{'invisible': ['|', ('state', '!=', 'done'), ('is_locked', '=', False)]}" type="action" groups="base.group_user"/>
++                       <button name="%(stock.act_stock_return_picking)d" string="Return" attrs="{'invisible': ['|', ('state', '!=', 'done'), ('is_locked', '=', False)]}" type="action" groups="base.group_user"/>
+                        <button name="action_cancel" attrs="{'invisible': ['|', ('state', 'not in', ('assigned', 'confirmed', 'partially_available', 'draft', 'waiting','first_done')), ('is_locked', '=', False)]}" string="Cancel" groups="base.group_user" type="object"/>
+                        <field name="picking_type_code" invisible="1"/>
+                        <button name="do_unreserve" string="Unreserve" groups="base.group_user" type="object" attrs="{'invisible': ['|', '|', '|', ('picking_type_code', '=', 'incoming'), ('is_locked', '=', False), '&amp;', ('state', 'not in', ('assigned', 'partially_available')), ('move_type', '!=', 'one'), '&amp;', ('state', 'not in', ('assigned', 'partially_available', 'confirmed')), ('move_type', '=', 'one')]}"/>
+                        <field name="show_operations" invisible="1" readonly="1"/>
+                        <field name="move_line_exist" invisible="1"/>
+                        <field name="has_packages" invisible="1"/>
+                        <button name="button_scrap" type="object" string="Scrap" attrs="{'invisible': ['|', '|', '&amp;', ('picking_type_code', '!=', 'incoming'), ('state', 'in', ('draft', 'cancel', 'waiting')), '&amp;', ('picking_type_code', '=', 'incoming'), ('state', '!=', 'done'), ('is_locked', '=', False)]}" groups="stock.group_stock_manager"/><!--  __export__.res_groups_105_5159c8d3, -->
+<!--                        <button name="action_toggle_is_locked" attrs="{'invisible': ['|', ('state', 'in', ('draft','cancel')), ('is_locked', '=', False)]}" string="Unlock" groups="base.group_erp_manager" type="object" help="If the picking is unlocked you can edit initial demand (for a draft picking) or done quantities (for a done picking)."/>-->
+<!--                        [W2E-523] Added group for only Unlock button-->
+                        <button name="action_toggle_is_locked" attrs="{'invisible': ['|', ('state', 'in', ('draft','cancel')), ('is_locked', '=', False)]}" string="Unlock" groups="peg_dev_module.picking_unlock_button" type="object" help="If the picking is unlocked you can edit initial demand (for a draft picking) or done quantities (for a done picking)."/>
+
+                        <button name="action_toggle_is_locked" attrs="{'invisible': [('is_locked', '=', True)]}" string="Lock" class="oe_highlight" groups="stock.group_stock_manager" type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,partially_available,assigned,first_done,done"/>
+                        <field name="picking_type_entire_packs" invisible="1"/>
+                    </header>
+                </xpath>
+                
+                <xpath expr="//button[@name='action_toggle_is_locked']" position="after">
+                    <field name="landed_cost_count" invisible="1"/>
+                    <button name="action_create_landed_cost" string="Create Landed Cost" type="object" attrs="{'invisible': ['|', ('landed_cost_count', '>', 0), ('state', '!=', 'done')]}"/>
+                </xpath>
+                
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button type="object" name="action_view_landed_cost" class="oe_stat_button fa fa-list" attrs="{'invisible': [('landed_cost_count', '=', 0)]}">
+                        <field name="landed_cost_count" widget="statinfo" string="Landed Cost"/>
+                    </button>
+                </xpath>
+
+         <!--expr="//button[@name='320']"-->
+                
+<!--                <xpath expr="//field[@name='picking_type_id']" position="after">-->
+<!--                    <field name="qty_model"/> peg/client said to remove it-->
+<!--                    <field name="product_template_id"/>-->
+<!--                </xpath>       -->
+<!--                <xpath expr="//field[@name='product_template_id']" position="attributes">-->
+<!--                    <attribute name="attrs">{'readonly': ['|', ('state', 'in', ('sale', 'done')), ('picking_type_id', '=', False)]}</attribute>-->
+<!--                </xpath>-->
+                <xpath expr="//field[@name='date_done']" position="replace">
+                    <field name="date_done" string="Effective Date" attrs="{'readonly': ['|', ('id', '=', False), ('state', 'in', ('done', 'cancel'))]}"/>
+                </xpath>
+            </field>
+        </record>
+
+<!--        W1E-63 bulk unreserve-->
+        <record id="stock_picking_bulk_unreserve_action_peg_dev" model="ir.actions.server">
+            <field name="name">Bulk Unreserve</field>
+            <field name="binding_model_id" ref="stock.model_stock_picking" />
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="state">code</field>
+            <field name="code">
+                records.bulk_unreserve()
+            </field>
+        </record>
+        
+
+    </data>
+</odoo>

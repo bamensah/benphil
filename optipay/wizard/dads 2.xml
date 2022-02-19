@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--by khk-->
+<odoo>
+    <data>
+        <record id="view_optesis_dads_wizard" model="ir.ui.view">
+            <field name="name">optesis.dads.report</field>
+            <field name="model">optesis.dads.report</field>
+            <field name="arch" type="xml">
+            <form string="Rapport DADS">
+                <group col="4" colspan="6">
+                    <field name="year"/>
+                    <field name="page"/>
+                </group>
+                <footer>
+                    <button name="print_report" string="Imprimer" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Annuler" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+            </field>
+        </record>
+        <!--act_window id="launch_dads_report_wizard"
+                   name="Rapport DADS"
+                   src_model="hr.contribution.register"
+                   res_model="optesis.dads.report"
+                   view_mode="form"
+                   target="new"
+                   key2="client_print_multi"/-->
+    </data>
+</odoo>

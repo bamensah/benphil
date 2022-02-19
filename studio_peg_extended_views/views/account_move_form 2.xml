@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <record id="view_account_move_form_inherit_date_stud" model="ir.ui.view">
+        <field name="name">Account Move</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_origin']" position="before">
+                <xpath expr="//field[@name='date']" position="move"/>
+            </xpath><!--renae origin with invoice_origin field not in v14-->
+              <xpath expr="//form[1]/sheet[1]/notebook[1]/page[1]/field[@name='invoice_line_ids']/tree[1]/field[@name='account_id']" position="attributes">
+                <attribute name="groups"/>
+              </xpath>
+              <xpath expr="//form[1]/sheet[1]/notebook[1]/page[1]/field[@name='invoice_line_ids']/tree[1]" position="after">
+                <form>
+                  <field name="display_type" invisible="1"/>
+                  <!--
+                                    We need the sequence field to be here for new lines to be added at the correct position.
+                                    TODO: at some point we want to fix this in the framework so that an invisible field is not required.
+                                -->
+                  <field name="sequence" invisible="1"/>
+                  <group attrs="{'invisible': [('display_type', '!=', False)]}" name="studio_group_6388ac">
+                    <group name="studio_group_4703aa">
+                      <field name="partner_id" invisible="1"/>
+                      <!--<field name="invoice_type" invisible="1"/>-->
+                      <field name="company_id" invisible="1"/>
+                      <field name="product_id" context="{'partner_id': partner_id}"/>
+                      <label for="quantity"/>
+                      <div name="studio_div_5ff954">
+                        <field name="quantity" class="oe_inline"/>
+                        <!--uom_id not in account.move.line-->
+                        <!--<field name="uom_id" class="oe_inline" groups="uom.group_uom"/>-->
+                      </div>
+                      <field name="price_unit"/>
+                      <field name="discount" /> <!--groups="sale.group_discount_per_so_line"--><!--group not defined-->
+                      <field name="currency_id" invisible="1"/>
+                    </group>
+                    <group name="studio_group_808bc2">
+                      <field name="analytic_tag_ids" groups="analytic.group_analytic_accounting" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                      <!--<field name="purchase_id" invisible="context.get('type') in ('out_invoice', 'out_refund')"/>-->
+                      <!--purchase_id not in v14 on account.move.line-->
+                      <field domain="[('company_id', '=', company_id)]" name="account_id" groups="account.group_account_user"/>
+                      <!--<field name="invoice_line_tax_ids" context="{'type': invoice_type}" domain="[('type_tax_use','!=','none'),('company_id', '=', company_id)]" widget="many2many_tags" options="{'no_create': True}"/>-->
+                      <!--invoice_type is not in v14-->
+                      <!--<field domain="[('company_id', '=', company_id)]" name="account_analytic_id" groups="analytic.group_analytic_accounting"/>-->
+                      <!--account_analytic_id not in v14 on account.move.line-->
+                      <field name="analytic_tag_ids" widget="many2many_tags" groups="analytic.group_analytic_tags"/>
+                      <field name="company_id" groups="base.group_multi_company" readonly="1"/>
+                    </group>
+                  </group>
+                  <label for="name" string="Description" attrs="{'invisible': [('display_type', '!=', False)]}"/>
+                  <label for="name" string="Section" attrs="{'invisible': [('display_type', '!=', 'line_section')]}"/>
+                  <label for="name" string="Note" attrs="{'invisible': [('display_type', '!=', 'line_note')]}"/>
+                  <field name="name"/>
+                </form>
+              </xpath>
+              <xpath expr="//field[@name='date']" position="attributes">
+                <attribute name="groups">account.group_account_manager</attribute> <!--__export__.res_groups_56_e719c764,__import__.readonly_account-->
+              </xpath>
+        </field>
+    </record>
+  <!--Odoo Studio: account.invoice.supplier.form customization-->
+</odoo>

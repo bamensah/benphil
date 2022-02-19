@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        
+        <record id="account_move_line_inherit_form_view" model="ir.ui.view">
+            <field name="name">account.move.line.form_inherit</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_move_line_form" />
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="payment_type_class" />
+                </field>
+            </field>
+        </record>
+        
+
+<!--            REMVED THIS VIEW WE NEED DETAILS WHY NEED TO ADD IN V14 IT'S Deleted Invoice Lines-->
+<!--        <record id="account_move_inherit_form_view_move_line" model="ir.ui.view">-->
+<!--            <field name="name">account.move.line.form_inherit_move_line</field>-->
+<!--            <field name="model">account.move</field>-->
+<!--            <field name="inherit_id" ref="account.view_move_form" />-->
+<!--            <field name="arch" type="xml">-->
+<!--                <notebook>-->
+<!--                    <page string="Journals">-->
+<!--                        <field name="line_ids" widget="one2many_list" context="{'line_ids': line_ids, 'journal_id': journal_id }">-->
+<!--                            <tree editable="bottom" string="Journal Items">-->
+<!--                                <field name="tax_line_id" invisible="1"/>-->
+<!--                                <field name="account_id" domain="[('company_id', '=', parent.company_id), ('deprecated', '=', False)]"/>-->
+<!--                                <field name="partner_id" domain="['|', ('parent_id', '=', False), ('is_company', '=', True)]"/>-->
+<!--                                <field name="name"/>-->
+<!--                                <field name="payment_type_class"/>-->
+                                <!--domain="[('x_studio_type', '=', 'Normal')]"-->
+<!--                                <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>-->
+<!--                                <field name="analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags"/>-->
+<!--                                <field name="amount_currency" groups="base.group_multi_currency"/>-->
+<!--                                <field name="company_currency_id" invisible="1"/>-->
+<!--                                <field name="company_id" invisible="1"/>-->
+<!--                                <field name="currency_id" options="{'no_create': True}" groups="base.group_multi_currency"/>-->
+<!--                                <field name="debit" sum="Total Debit"/>-->
+<!--                                <field name="credit" sum="Total Credit"/>-->
+<!--                                <field name="tax_ids" string="Taxes Applied" widget="many2many_tags" options="{'no_create': True}"/>-->
+                                <!-- domain="[('type_tax_use', '=?', parent.tax_type_domain)]" context="{'append_type_to_tax_name': not parent.tax_type_domain}" -->
+<!--                                <field name="date_maturity" required="0" invisible="context.get('view_no_maturity', False)"/>-->
+<!--                                <field name="recompute_tax_line" invisible="1" readonly="1"/>-->
+                                <!-- <field name="tax_line_grouping_key" invisible="1" readonly="1"/> -->
+<!--                            </tree>-->
+                            <!-- Form view to cover mobile use -->
+<!--                            <form>-->
+<!--                              <group>-->
+<!--                                <field name="tax_line_id" invisible="1"/>-->
+<!--                                <field name="account_id" domain="[('company_id', '=', parent.company_id), ('deprecated', '=', False)]"/>-->
+<!--                                <field name="partner_id" domain="['|', ('parent_id', '=', False), ('is_company', '=', True)]"/>-->
+<!--                                <field name="name"/>-->
+<!--                                <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>-->
+<!--                                <field name="analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags"/>-->
+<!--                                <field name="amount_currency" groups="base.group_multi_currency"/>-->
+<!--                                <field name="company_currency_id" invisible="1"/>-->
+<!--                                <field name="company_id" invisible="1"/>-->
+<!--                                <field name="currency_id" options="{'no_create': True}" groups="base.group_multi_currency"/>-->
+<!--                                <field name="debit" sum="Total Debit"/>-->
+<!--                                <field name="credit" sum="Total Credit"/>-->
+<!--                                <field name="tax_ids" string="Taxes Applied" widget="many2many_tags" options="{'no_create': True}"/>-->
+                                <!-- domain="[('type_tax_use', '=?', parent.tax_type_domain)]" context="{'append_type_to_tax_name': not parent.tax_type_domain}" -->
+<!--                                <field name="date_maturity" required="0" invisible="context.get('view_no_maturity', False)"/>-->
+<!--                                <field name="recompute_tax_line" invisible="1" readonly="1"/>-->
+                                <!-- <field name="tax_line_grouping_key" invisible="1" readonly="1"/> -->
+<!--                              </group>-->
+<!--                            </form>-->
+<!--                        </field>-->
+<!--                        <field name="narration" colspan="4" placeholder="Add an internal note..." nolabel="1" height="50"/>-->
+<!--                    </page>-->
+                    <!-- <page string="Other Info">
+                        <group>
+                            <field name="auto_reverse" attrs="{'readonly':[('reverse_entry_id', '!=', False)]}"/>
+                            <field name="reverse_date" attrs="{'invisible':[('auto_reverse', '=', False)], 'required':[('auto_reverse', '=', True)],'readonly':[('reverse_entry_id', '!=', False)]}"/>
+                            <field name="reverse_entry_id" attrs="{'invisible':True}"/>
+                        </group>
+                    </page> -->
+<!--                </notebook>-->
+                
+<!--            </field>-->
+            
+<!--        </record>-->
+
+    </data>
+
+</odoo>

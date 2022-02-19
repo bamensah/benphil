@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="bulk_stock_scrap_search_view" model="ir.ui.view">
+            <field name="name">bulk.stock.scrap.search</field>
+            <field name="model">scrap.products.by.quantity</field>
+            <field name="arch" type="xml">
+                <search string="Search Bulk Scrap">
+                    <field name="name"/>
+                    <field name="scrap_line" string="Product" filter_domain="[('scrap_line.product_id', 'ilike', self)]"/>
+                    <field name="date"/>
+                    <field name="src_location_id"/>
+                    <field name="dest_location_id"/>
+                    <field name="state"/>
+                    <field name="date_done"/>
+                    <filter string="Draft" name="draft_state" domain="[('state', '=', 'draft')]"/>
+                    <filter string="Done" name="done_state" domain="[('state', '=', 'done')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="State" name="state" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Source Location" name="location" domain="[]" context="{'group_by':'src_location_id'}"/>
+                        <filter string="Scrap Location" name="scrap_location" domain="[]" context="{'group_by':'dest_location_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+    <record id="scrap_product_tree_view" model="ir.ui.view">
+        <field name="name">Scrap Products By Quantity</field>
+        <field name="model">scrap.products.by.quantity</field>
+        <field name="arch" type="xml">
+            <tree string="Scrap Products">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="src_location_id"/>
+                <field name="dest_location_id"/>
+                <field name="state"/>
+                <field name="date_done"/>
+                <field name="company_id" readonly="1" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="scrap_product_form_view" model="ir.ui.view">
+        <field name="name">Scrap Products By Quantity</field>
+        <field name="model">scrap.products.by.quantity</field>
+        <field name="arch" type="xml">
+            <form string="Scrap Products Form">
+                <header>
+                    <button name="action_done" type="object" states="draft" string="Scrap All" class="oe_highlight"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="action_get_stock_move_lines"
+                                string="Traceability" type="object"
+                                states="done" icon="fa-exchange"/>
+                    </div>
+                    <h1>
+                        <field name="name" nolabel="1" readonly="1"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="src_location_id"/>
+                            <field name="dest_location_id"/>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="date" attrs="{'invisible': [('state', '=', 'done')]}"/>
+                            <field name="date_done" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <field name="scrap_line" context="{'default_src_loc_id':src_location_id,'default_dest_loc_id':dest_location_id}">
+                        <tree string="Scrap Product Lines" editable='bottom'>
+                            <field name="product_id"/>
+                            <field name="available_qty"/>
+                            <field name="quantity"/>
+                            <field name="product_uom"/>
+                            <field name="src_loc_id" widget="selection" options="{'no_create': True, 'no_open': True}" groups="stock.group_stock_multi_locations"/>
+                            <field name="dest_loc_id" widget="selection" options="{'no_create': True, 'no_open': True}" groups="stock.group_stock_multi_locations"/>
+                        </tree>
+                    </field>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="scrap_products_form_action" model="ir.actions.act_window">
+        <field name="name">Scrap Bulk Products</field>
+        <field name="res_model">scrap.products.by.quantity</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to Bulk Scrap Process.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_scrap_products" 
+              name="Bulk Scrap"
+              action="scrap_products_form_action" 
+              parent="stock.menu_stock_warehouse_mgmt"
+              sequence="134"/>
+</odoo>

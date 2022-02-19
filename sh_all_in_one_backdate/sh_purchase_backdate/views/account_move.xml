@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    
+    <record id="account_move_inherit_view_form_purchase" model="ir.ui.view">
+        <field name="name">account.move.inherit.view.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <field name = "payment_reference" position = "after">
+                <field name="remarks_for_purchase" attrs="{'invisible': ['|',('is_remarks_for_purchase','=',False),('remarks_for_purchase','=',False)]}"/>
+                <field name="is_remarks_for_purchase" invisible="1"/>
+            </field>
+        </field>
+    </record>
+</odoo>

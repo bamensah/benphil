@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="import_wizared_inventory_form" model="ir.ui.view">
+            <field name="name">inventory.wizard</field>
+            <field name="model">inventory.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Inventory">
+                    <group>
+                        <group>
+                            <field name="file_type"  widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <group>
+                            <field name="state"  widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="imp_product_by"  widget="radio" required="1"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <group>
+                        <h5 style="color:red">Operation performed when record not found? (only for products)</h5>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="option" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <group>
+                            <field name="data_file" filename="name" required="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="Import_inventory" string="Import" type="object"  class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_inventory_order" model="ir.actions.act_window">
+            <field name="name">Import Inventory</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">inventory.wizard</field>
+           <!--  <field name="view_type">form</field> -->
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="import_inventory_file" name="Import Inventory" action="action_wizard_inventory_order" parent="stock.menu_stock_inventory_control"/>
+    </data>
+</odoo>
+    	

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_account_withhold_payment_rate_tree" model="ir.ui.view">
+        <field name="name">view.account_withhold_payment_rate.tree</field>
+        <field name="model">account.withhold.payment.rate</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Withhold Payment Rates">
+                <field name="rate" />
+                <field name="days_lower_limit" />
+                <field name="days_upper_limit" />
+            </tree>
+        </field>
+    </record>
+    
+    <record id="view_account_withhold_payment_rate_form" model="ir.ui.view">
+        <field name="name">view.account_withhold_payment_rate.form</field>
+        <field name="model">account.withhold.payment.rate</field>
+        <field name="type">form</field>
+        <field name="mode">primary</field>
+        <field name="active" eval="True" />
+        <field name="arch" type="xml">
+            <form string="Withhold Payment Rates">
+                <sheet>
+                    <group>
+                        <field name="rate" />
+                        <field name="days_lower_limit" />
+                        <field name="days_upper_limit" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="action_account_withhold_payment_rate" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">Withhold Payment Rates</field>
+        <field name="res_model">account.withhold.payment.rate</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <record id="menu_account_withhold_payment_rate" model="ir.ui.menu" >
+        <field name="name">Withhold Payment Rates</field>
+        <field name="sequence" eval="11" />
+        <field name="action" ref="action_account_withhold_payment_rate" />
+        <field name="parent_id" ref="account.root_payment_menu" />
+    </record>
+
+    <!-- Withheld Payments -->
+    
+    <record id="view_withheld_payment_tree" model="ir.ui.view">
+        <field name="name">Withheld Payments</field>
+        <field name="model">account.payment</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Withheld Payments" create="false">
+                <!--<field name="payment_date" />--> <!--noted present in account.payment-->
+                <field name="name" />
+                <field name="journal_id" />
+                <field name="payment_method_id" />
+                <field name="partner_id" />
+                <field name="amount" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_withheld_payment_window" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">Withheld Payment</field>
+        <field name="res_model">account.payment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_withheld_payment_tree" />
+        <field name="target">current</field>
+        <field name="domain">[('parent_payment_id', '!=', False)]</field>
+    </record>
+    
+    <record id="menu_account_withhold_payment" model="ir.ui.menu" >
+        <field name="name">Withheld Payments</field>
+        <field name="sequence" eval="16" />
+        <field name="action" ref="action_withheld_payment_window" />
+        <field name="parent_id" ref="account.menu_finance_receivables" />
+    </record>
+    
+<!--    ADDED FROM PREPROD V12-->
+    <record id="view_held_payment_tree" model="ir.ui.view">
+        <field name="name">Held Payments</field>
+        <field name="model">account.payment</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Held Payments" create="false">
+<!--                <field name="payment_date" /> Not Exist in V14-->
+                <field name="name" />
+                <field name="journal_id" />
+                <field name="payment_method_id" />
+                <field name="partner_id" />
+                <field name="amount" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+<!--    W2E-505 new withheld payment menu item-->
+    <record id="action_held_payment_window" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">Held Payment</field>
+        <field name="res_model">account.payment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_held_payment_tree" />
+        <field name="target">current</field>
+        <field name="domain">[('block_status', '=', 'blocked'), ('state', '!=', 'cancel')]</field>
+    </record>
+
+    <menuitem id="sales_menu_client_payments" name="Payments"
+        groups="sales_team.group_sale_salesman"
+        parent="sale.sale_menu_root" sequence="7" />
+    <record id="sales_menu_action_account_payments" model="ir.ui.menu" >
+        <field name="name">Payments</field>
+        <field name="sequence" eval="15" />
+        <field name="action" ref="account.action_account_payments" />
+        <field name="parent_id" ref="peg_dev_module.sales_menu_client_payments" />
+    </record>
+    <record id="sales_menu_account_withhold_payment" model="ir.ui.menu" >
+        <field name="name">Blocked payments</field>
+        <field name="sequence" eval="16" />
+        <field name="action" ref="action_held_payment_window" />
+        <field name="parent_id" ref="peg_dev_module.sales_menu_client_payments" />
+    </record>
+    
+
+</odoo>

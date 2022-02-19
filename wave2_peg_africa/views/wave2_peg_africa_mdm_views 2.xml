@@ -1,0 +1,200 @@
+<odoo>
+    <record id='view_md_contract_status_form' model="ir.ui.view">
+        <field name="name">Contract Status</field>
+        <field name="model">sale.contract.status</field>
+        <field name="arch" type="xml">
+            <form string="Contract Status">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        <group>
+                        </group>
+                            <field name="order_of_account"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id='view_md_contract_status_tree' model="ir.ui.view">
+        <field name="name">Contract Status</field>
+        <field name="model">sale.contract.status</field>
+        <field name="arch" type="xml">
+            <tree string="Contract Status" editable="bottom">
+                <field name="name"/>
+                <field name="order_of_account"/>    
+            </tree>
+        </field>
+    </record>
+
+    <record id='md_contract_status_action_id' model="ir.actions.act_window">
+        <field name="name">Contract Status</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.contract.status</field>
+<!--        <field name="view_type">form</field>-->
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id='view_md_stock_action_form' model="ir.ui.view">
+        <field name="name">Stock Action</field>
+        <field name="model">sale.stock.action</field>
+        <field name="arch" type="xml">
+            <form string="Stock Action">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        <group>
+                        </group>
+                            <field name="order_of_account"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id='view_md_stock_action_tree' model="ir.ui.view">
+        <field name="name">Stock Action</field>
+        <field name="model">sale.stock.action</field>
+        <field name="arch" type="xml">
+            <tree string="Stock Action" editable="bottom">
+                <field name="name"/>
+                <field name="order_of_account"/>    
+            </tree>
+        </field>
+    </record>
+
+    <record id='md_stock_action_action_id' model="ir.actions.act_window">
+        <field name="name">Stock Action</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.stock.action</field>
+<!--        <field name="view_type">form</field>-->
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id='view_md_suspension_reason_form' model="ir.ui.view">
+        <field name="name">Suspension Reason</field>
+        <field name="model">suspension.reason</field>
+        <field name="arch" type="xml">
+            <form string="Suspension Reason">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Sub Reasons" name="sub_reasons">
+                            <field 
+                                name="sub_reasons"
+                                widget="section_and_note_one2many"
+                            >
+                                <tree string="Invoice Lines" editable="bottom">
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id='view_md_suspension_reason_tree' model="ir.ui.view">
+        <field name="name">Suspension Reason</field>
+        <field name="model">suspension.reason</field>
+        <field name="arch" type="xml">
+            <tree string="Suspension Reason">
+                <field name="name"/>  
+            </tree>
+        </field>
+    </record>
+
+    <record id='md_suspension_reason_action_id' model="ir.actions.act_window">
+        <field name="name">Suspension Reason</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">suspension.reason</field>
+<!--        <field name="view_type">form</field>-->
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id='view_md_deposit_status_tree' model="ir.ui.view">
+        <field name="name">Deposit Status</field>
+        <field name="model">deposit.status</field>
+        <field name="arch" type="xml">
+            <tree string="Deposit Status" editable="bottom">
+                <field name="name"/>    
+            </tree>
+        </field>
+    </record>
+
+    <record id='md_deposit_status_action_id' model="ir.actions.act_window">
+        <field name="name">Deposit Status</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">deposit.status</field>
+<!--        <field name="view_type">form</field>-->
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id='view_md_device_status_tree' model="ir.ui.view">
+        <field name="name">Device Status</field>
+        <field name="model">device.status</field>
+        <field name="arch" type="xml">
+            <tree string="Device Status" editable="bottom">
+                <field name="name"/>    
+            </tree>
+        </field>
+    </record>
+
+    <record id='md_device_status_action_id' model="ir.actions.act_window">
+        <field name="name">Device Status</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">device.status</field>
+<!--        <field name="view_type">form</field>-->
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        name='Device Status MDM'
+        id='md_device_status_id'
+        parent='contacts.res_partner_menu_config'
+        action='md_device_status_action_id'
+        sequence='43'
+    />
+
+
+    <menuitem
+        name='Deposit Status MDM'
+        id='md_deposit_status_id'
+        parent='contacts.res_partner_menu_config'
+        action='md_deposit_status_action_id'
+        sequence='42'
+    />
+
+    <menuitem
+        name='Suspension Reason MDM'
+        id='md_suspension_reason_id'
+        parent='contacts.res_partner_menu_config'
+        action='md_suspension_reason_action_id'
+        sequence='41'
+    />
+
+    <menuitem
+        name='Stock Action MDM'
+        id='md_stock_action_id'
+        parent='contacts.res_partner_menu_config'
+        action='md_stock_action_action_id'
+        sequence='40'
+    />
+
+    <menuitem
+        name='Contract Status MDM'
+        id='md_contract_status_id'
+        parent='contacts.res_partner_menu_config'
+        action='md_contract_status_action_id'
+        sequence='39'
+    />
+</odoo>

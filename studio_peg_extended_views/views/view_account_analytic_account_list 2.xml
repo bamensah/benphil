@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data>
+        <record id="view_account_analytic_account_list_inherit_stud" model="ir.ui.view">
+            <field name="name">account.analytic.account.tree.view</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_list"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree[1]/field[@name='name']" position="after">
+                    <xpath expr="//field[@name='code']" position="move"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="after"> <!--change xpath complete_name to name as field not in v12 or v14-->
+                    <field name="type"/>
+                    <!--<field name="parent_id"/>--><!--this field is not in the model-->
+                    <field name="group_id"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+<!--Odoo Studio: account.analytic.account.list customization-->

@@ -54,8 +54,8 @@ class WizardFreeDay(models.TransientModel):
         account_analytic_id = False
     
         if self.days:
-            minimum_amount_days = sale_order.payment_term_id.minimum_amount_days
-            minimum_amount_value = sale_order.payment_term_id.minimum_amount_value
+            minimum_amount_days = sale_order.payment_term_id.rate_type.value
+            minimum_amount_value = sale_order.payment_term_id.rate_amount
             if minimum_amount_days:
                 ref_pricing_amount = self.days * (minimum_amount_value / minimum_amount_days)
         elif self.amount:

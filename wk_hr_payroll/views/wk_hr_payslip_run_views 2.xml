@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data>
+        <!-- payslip runs -->
+        <record id="wk_hr_payslip_run_filter" model="ir.ui.view">
+            <field name="name">wk.hr.payslip.run.search</field>
+            <field name="model">wk.hr.payslip.run</field>
+            <field name="arch" type="xml">
+                <search string="Search Payslip Batches">
+                    <field name="name" string="Payslip Batches"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <filter string="Draft" name="draft" domain="[('state','=','draft')]" help="Draft Payslip Batches"/>
+                    <filter name="done_filter" string="Done" domain="[('state','=','close')]" help="Done Payslip Batches"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="wk_hr_payslip_run_tree" model="ir.ui.view">
+            <field name="name">wk.hr.payslip.run.tree</field>
+            <field name="model">wk.hr.payslip.run</field>
+            <field name="arch" type="xml">
+                <tree string="Payslips Batches">
+                    <field name="name" decoration-bf="1"/>
+                    <field name="date_start" widget="remaining_days"/>
+                    <field name="date_end" widget="remaining_days"/>
+                    <field name="credit_note"/>
+                    <field name="state" widget="badge"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="wk_hr_payslip_run_view_kanban" model="ir.ui.view">
+            <field name="name">wk.hr.payslip.run.kanban</field>
+            <field name="model">wk.hr.payslip.run</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_content oe_kanban_global_click">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <strong>
+                                            <field name="name"/>
+                                        </strong>
+                                    </div>
+                                    <div class="col-6">
+                                        <span class="float-right badge badge-secondary">
+                                            <field name="state"/>
+                                        </span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span>
+                                            <field name="date_start"/>
+ -                                            <field name="date_end"/>
+                                        </span>
+                                        <span class="float-right" title="Is a Blocking Reason?">
+                                            <field name="credit_note" widget="boolean"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="wk_hr_payslip_run_form" model="ir.ui.view">
+            <field name="name">wk.hr.payslip.run.form</field>
+            <field name="model">wk.hr.payslip.run</field>
+            <field name="arch" type="xml">
+                <form string="Payslips Batches">
+                    <header>
+                        <button name="close_payslip_run" type="object" string="Close" states="draft" class="oe_highlight"/>
+                        <button name="%(action_hr_payslip_by_employees)d" type="action" states="draft" string="Generate Payslips" class="oe_highlight"/>
+                        <button string="Set to Draft" name="draft_payslip_run" type="object" states="close" />
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <group col="4">
+                            <label for="date_start" string="Period"/>
+                            <div>
+                                <field name="date_start" class="oe_inline"/> -
+                                <field name="date_end" class="oe_inline"/>
+                            </div>
+                            <field name="credit_note"/>
+                        </group>
+                        <separator string="Payslips"/>
+                        <field name="slip_ids"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wk_hr_payslip_run_tree" model="ir.actions.act_window">
+            <field name="name">Payslips Batches</field>
+            <field name="res_model">wk.hr.payslip.run</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="search_view_id" ref="wk_hr_payslip_run_filter"/>
+        </record>
+
+        <menuitem action="action_wk_hr_payslip_run_tree" id="menu_wk_hr_payslip_run" parent="menu_payslips_tree" sequence="3"/>
+    </data>
+</odoo>

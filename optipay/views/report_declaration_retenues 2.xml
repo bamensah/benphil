@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- by khk -->
+<odoo>
+    <data>
+
+      <report
+      id="declaration_retenues"
+      model="hr.contribution.register"
+      string="Déclaration des retenues"
+      report_type="qweb-pdf"
+      name="optipay.report_declaration_retenues_view"
+      file="optipay.report_declaration_retenues"
+      menu="False"
+      />
+
+      <template id="report_declaration_retenues_view">
+          <t t-call="web.html_container">
+              <t t-foreach="docs" t-as="o">
+                  <t t-call="web.external_layout">
+                      <div class="page">
+                        <table style="height: 66px;" width="1025">
+                          <tbody>
+                          <tr>
+                            <td style="width: 335.217px;"><span t-field="res_company.partner_id.street"/></td>
+                            <td style="width: 335.233px;"></td>
+                            <td style="width: 335.217px;"></td>
+                          </tr>
+                          <tr>
+                            <td style="width: 335.217px;">BP: <span t-field="res_company.partner_id.zip"/></td>
+                            <td style="width: 335.233px;">TEL: <span t-field="res_company.partner_id.phone"/></td>
+                            <td style="width: 335.217px;">DATE <span t-esc="current_date"/></td>
+                          </tr>
+                          <tr>
+                            <td style="width: 335.217px;">FAX:</td>
+                            <td style="width: 335.233px;">Email: <span t-field="res_company.partner_id.email"/></td>
+                            <td style="width: 335.217px;"></td>
+                          </tr>
+                          </tbody>
+                          </table>
+                          <p></p>
+                          <h1 style="text-align: center;"><strong>Etat de declaration mensuelle des impots</strong></h1>
+                          <p style="text-align: center;">paie de la période de <span t-esc="periode"/></p>
+                          <table class="table table-condensed table-bordered">
+                          <tbody>
+                          <tr>
+                            <td style="width: 120.25px;" ></td>
+                            <td style="width: 120.25px;" align="center">Brut Imposable</td>
+                            <td style="width: 120.25px;" align="center">IR</td>
+                            <td style="width: 120.25px;" align="center">TRIMF</td>
+                            <td style="width: 120.25px;" align="center">CFCE</td>
+                            <td style="width: 120.25px;" align="center">Total</td>
+                          </tr>
+                           <tr t-foreach="lines_male" t-as="r">
+                              <td>Hommes(<span t-esc="r.get('nb_male_count')"/>)</td>
+                            <td style="width: 120.25px;" align="right"><span t-esc="'{:,}'.format(r.get('total_brut_male')).replace(',',' ')"/></td>
+                            <td style="width: 120.25px;" align="right"><span t-esc="'{:,}'.format(r.get('total_ir_male')).replace(',',' ')"/></td>
+                            <td style="width: 120.25px;" align="right"><span t-esc="'{:,}'.format(r.get('total_trimf_male')).replace(',',' ')"/></td>
+                            <td style="width: 120.25px;" align="right"><span t-esc="'{:,}'.format(r.get('total_cfce_male')).replace(',',' ')"/></td>
+                            <td style="width: 120.25px;" align="right"><span t-esc="'{:,}'.format(r.get('total_total_male')).replace(',',' ')"/></td>
+                          </tr>
+                          <tr t-foreach="lines_female" t-as="r">
+                              <td>Femmes(<span t-esc="r.get('nb_female_count')"/>)</td>
+                            <td style="width: 120.25px;" align="right"><span t-esc="'{:,}'.format(r.get('total_brut_female')).replace(',',' ')"/></td>
+                            <td style="width: 120.25px;" align="right"><span t-esc="'{:,}'.format(r.get('total_ir_female')).replace(',',' ')"/></td>
+                            <td style="width: 120.25px;" align="right"><span t-esc="'{:,}'.format(r.get('total_trimf_female')).replace(',',' ')"/></td>
+                            <td style="width: 120.25px;" align="right"><span t-esc="'{:,}'.format(r.get('total_cfce_female')).replace(',',' ')"/></td>
+                            <td style="width: 120.25px;" align="right"><span t-esc="'{:,}'.format(r.get('total_total_female')).replace(',',' ')"/></td>
+                          </tr>
+                          <tr t-foreach="lines_total" t-as="r">
+                            <td style="width: 120.25px;">Total</td>
+                            <td style="width: 120.25px;" align="right"><span t-esc="'{:,}'.format(r.get('total_brut')).replace(',',' ')"/></td>
+                            <td style="width: 120.25px;" align="right"><span t-esc="'{:,}'.format(r.get('total_ir')).replace(',',' ')"/></td>
+                            <td style="width: 120.25px;" align="right"><span t-esc="'{:,}'.format(r.get('total_trimf')).replace(',',' ')"/></td>
+                            <td style="width: 120.25px;" align="right"><span t-esc="'{:,}'.format(r.get('total_cfce')).replace(',',' ')"/></td>
+                            <td style="width: 120.25px;" align="right"><span t-esc="'{:,}'.format(r.get('total_total')).replace(',',' ')"/></td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                  </t>
+              </t>
+          </t>
+      </template>
+    </data>
+</odoo>

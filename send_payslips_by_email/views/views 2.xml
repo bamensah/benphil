@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="sendbyemail_payslip_inherit1" model="ir.ui.view">
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//button[@name= 'refund_sheet']" position="before">
+                        <button name="send_by_email" type="object" string="Send By Email" class="oe_highlight"/>
+                    </xpath>
+                    <xpath expr="//sheet" position="after">
+                        <!-- Attachment preview -->
+                        <div class="o_attachment_preview"/>
+                            <!-- Chatter -->
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                            <field name="activity_ids" widget="mail_activity"/>
+                            <field name="message_ids" widget="mail_thread"/>
+                        </div>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+        <record id="sendbyemail_payslip_batch_inherit1" model="ir.ui.view">
+            <field name="model">hr.payslip.run</field>
+            <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//button[@name = 'action_validate']" position="after">
+                        <button name="send_batch_by_email" type="object" string="Send By Email" class="oe_highlight" confirm="Are you sure you want to send all payslips via email?"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+        <record id="view_send_multi_payslips_by_email" model="ir.ui.view">
+            <field name="name">HR Payslip Send By Email</field>
+            <field name="model">hr.payslip.send</field>
+            <field name="arch" type="xml">
+                <form string="Send Payslips By Email" version="7">
+                    <div>
+                        <p>You are about to send selected payslips by email</p>
+                    </div>
+                    <footer>
+                        <button string='Send' name="multi_send_by_email" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window
+            id="action_send_payslips_by_email"
+            name="Send By Email"
+            res_model="hr.payslip.send"
+            binding_model="hr.payslip"
+            binding_views="form"
+            view_mode="form"
+            view_id="send_payslips_by_email.view_send_multi_payslips_by_email"
+            target="new"
+            />
+
+    </data>
+</odoo>
