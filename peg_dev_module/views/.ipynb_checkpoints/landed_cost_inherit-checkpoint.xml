@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        
+        <record model="ir.actions.act_window" id="landed_cost_list_action">
+        <field name="name">Ligne de coût logistique</field>
+        <field name="res_model">stock.landed.cost.lines</field>
+        <!--<field name="view_type">form</field>-->
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_smiling_face">
+            </p>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="stock_landed_cost_lines_lines_tree_view">
+        <field name="name">stock.landed.cost.lines.tree</field>
+        <field name="model">stock.landed.cost.lines</field>
+        <field name="arch" type="xml">
+            <tree string="Landed Cost Tree" >
+                <field name="product_id"/>
+                <field name="name"/>
+                <field name="account_id"/>
+                <field name="split_method"/>
+                <field name="price_unit"/>
+            </tree>
+        </field>
+    </record>
+        
+    </data>
+</odoo>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+<odoo>
+    <data noupdate="0">
+        <record id="hr_salary_rule_rewards" model="wk.hr.salary.rule">
+            <field name="amount_select">code</field>
+            <field name="code">REWARDS</field>
+            <field name="category_id" ref="wk_hr_payroll.ALW"/>
+            <field name="name">Work Rewards</field>
+            <field name="sequence" eval="17"/>
+            <field name="amount_python_compute">result = inputs.REWARDS and inputs.REWARDS.amount </field>
+         </record>
+
+        <!-- Rule Inputs -->
+
+        <record id="hr_rule_input_rewards" model="wk.hr.rule.input">
+            <field name="code">REWARDS</field>
+            <field name="name">Rewards</field>
+            <field name="input_id" ref="hr_salary_rule_rewards"/>
+        </record>
+
+        <record id="hr_salary_rule_referral" model="wk.hr.salary.rule">
+            <field name="amount_select">code</field>
+            <field name="code">REF</field>
+            <field name="category_id" ref="wk_hr_payroll.ALW"/>
+            <field name="name">Referral Bonus</field>
+            <field name="sequence" eval="17"/>
+            <field name="amount_python_compute">result = inputs.REF and inputs.REF.amount </field>
+         </record>
+
+        <!-- Rule Inputs -->
+
+        <record id="hr_rule_input_referral" model="wk.hr.rule.input">
+            <field name="code">REF</field>
+            <field name="name">Referral Bonus</field>
+            <field name="input_id" ref="hr_salary_rule_referral"/>
+        </record>
+
+        <record id="hr_salary_rule_loan_deduction" model="wk.hr.salary.rule">
+            <field name="amount_select">code</field>
+            <field name="code">LOAN</field>
+            <field name="category_id" ref="wk_hr_payroll.ALW"/>
+            <field name="name">Loan Deduction</field>
+            <field name="sequence" eval="17"/>
+            <field name="amount_python_compute">result = -(inputs.REWARDS and inputs.REWARDS.amount) </field>
+         </record>
+
+        <!-- Rule Inputs -->
+
+        <record id="hr_rule_input_loan" model="wk.hr.rule.input">
+            <field name="code">LOAN</field>
+            <field name="name">Loan Deduction</field>
+            <field name="input_id" ref="hr_salary_rule_loan_deduction"/>
+        </record>
+
+        <record id="wk_hr_payroll.structure_001" model="wk.hr.payroll.structure">
+            <field eval="[(6, 0, [ref('wk_hr_payroll.wk_hr_salary_rule_houserentallowance1'), ref('wk_hr_payroll.wk_hr_salary_rule_convanceallowance1'),ref('wk_hr_payroll.wk_hr_salary_rule_professionaltax1'),ref('wk_hr_payroll.wk_hr_salary_rule_providentfund1'),ref('hr_salary_rule_loan_deduction'), ref('hr_salary_rule_rewards'),ref('hr_salary_rule_referral')])]" name="rule_ids"/>
+        </record>
+
+        <record id="wk_hr_payroll.hr_contract_firstcontract1" model="hr.contract">
+            <field name="state">open</field>
+        </record>
+
+        <record id="wk_hr_payroll.hr_contract_gilles_gravie" model="hr.contract">
+            <field name="state">open</field>
+        </record>
+
+        <record id="hr_payslip1" model="wk.hr.payslip">
+            <field name="employee_id" ref="wk_hr_payroll.hr_employee_payroll"/>
+            <field eval="time.strftime('%Y-%m-01')" name="date_from"/>
+            <field eval="time.strftime('%Y-%m-25')" name="date_to"/>
+            <field name="contract_id" ref="wk_hr_payroll.hr_contract_firstcontract1"/>
+            <field name="struct_id" ref="wk_hr_payroll.structure_002"/>
+
+        </record>
+
+        <function model="wk.hr.payslip" name="onchange_employee" eval="[ref('payslip_input_csv_upload.hr_payslip1')]"/>
+
+        <record id="hr_payslip2" model="wk.hr.payslip">
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field eval="time.strftime('%Y-%m-01')" name="date_from"/>
+            <field eval="time.strftime('%Y-%m-25')" name="date_to"/>
+            <field name="contract_id" ref="wk_hr_payroll.hr_contract_gilles_gravie"/>
+            <field name="struct_id" ref="wk_hr_payroll.structure_002"/>
+        </record>
+
+        <function model="wk.hr.payslip" name="onchange_employee" eval="[ref('payslip_input_csv_upload.hr_payslip2')]"/>
+    </data>
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="action_contact_id_type" model="ir.actions.act_window">
+            <field name="name">ID Types</field>
+            <field name="res_model">id.type</field>
+            <field name="view_mode">tree,form</field>
+           <!-- <field name="view_type">form</field>-->
+        </record>
+
+        <record id="contact_id_type_tree_view" model="ir.ui.view">
+            <field name="name">ID Types</field>
+            <field name="model">id.type</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree name="ID Types">
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <menuitem id="menu_config_id_type" name="ID Types" sequence="35" action="action_contact_id_type" parent="contacts.res_partner_menu_config" />
+
+    </data>
+
+</odoo>

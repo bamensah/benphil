@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_picking_type_form_inherit_peg" model="ir.ui.view">
+            <field name="name">view_picking_type_form_inherit_peg</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.view_picking_type_form"/>
+            <field name="arch" type="xml">
+                                <!--                should be removed, but only showing view when there are 2 expr-->
+                <field name="barcode" position="after">
+                    <field name="field_oS0P2" invisible="1"/>
+                </field>
+                <field name="barcode" position="after">
+                    <field name="field_oS0P2"/>
+                </field>
+            </field>
+        </record>
+
+<!--        <record id="stock_vpicktree_inherit" model="ir.ui.view">-->
+<!--            <field name="name">stock.vpicktree.tree.inherit</field>-->
+<!--            <field name="model">stock.picking</field>-->
+<!--            <field name="type">form</field>-->
+<!--            <field name="inherit_id" ref="stock.vpicktree"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='location_id']" position="before">-->
+<!--                    <field name="id"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="stock_vpicktree_inherit_peg" model="ir.ui.view">
+            <field name="name">stock.vpicktree.list.inherit.peg</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='scheduled_date']" position="after">
+                    <field name="date_done"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="before">
+                    <field name="id"/>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="before">
+                    <field name="backorder_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_move_tree_inherit_peg" model="ir.ui.view">
+            <field name="name">stock.move.tree.inherit.peg</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_tree"/>
+            <field name="arch" type="xml">
+                <!--                should be removed, but only showing view when there are 2 expr-->
+                <xpath expr="//field[@name='date']" position="before">
+                    <field name="id" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='date']" position="before">
+                    <field name="id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_picking_type_tree_inherit_peg" model="ir.ui.view">
+            <field name="name">view.picking.type.tree.inherit.peg</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.view_picking_type_tree"/>
+            <field name="arch" type="xml">
+                <!--                should be removed, but only showing view when there are 2 expr-->
+                <xpath expr="//field[@name='name']" position="before">
+                    <field name="id" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="before">
+                    <field name="id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_location_tree2_inherit_peg" model="ir.ui.view">
+            <field name="name">stock.location.tree.inherit.peg</field>
+            <field name="model">stock.location</field>
+            <field name="inherit_id" ref="stock.view_location_tree2"/>
+            <field name="arch" type="xml">
+                <!--                should be removed, but only showing view when there are 2 expr-->
+                <xpath expr="//field[@name='complete_name']" position="before">
+                    <field name="id" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='complete_name']" position="before">
+                    <field name="id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

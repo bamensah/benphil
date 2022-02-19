@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <!-- Group of Stock Picking Cancel Button -->
+        <record model="res.groups" id="group_stock_picking_cancel">
+            <field name="name">Allow to SO/PO Picking Cancel</field>
+        </record>
+
+    </data>
+</odoo>

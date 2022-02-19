@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_net_simulation" model="ir.ui.view">
+            <field name="name">view_net_simulation</field>
+            <field name="model">payslip.simulation</field>
+            <field name="arch" type="xml">
+                <form string="Payslips by Employees">
+                    <group colspan="4" >
+                        <field name="desired_net_salary"/>
+                        <newline/>
+                        <field name="impacted_rule" domain="[('simulate_ok', '=', True)]"/>
+                    </group>
+                    <footer>
+                        <button name="compute_simulation" string="Calculer" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+        <record id="action_payslip_simulation" model="ir.actions.act_window">
+            <field name="name">Net Simulation</field>
+            <field name="res_model">payslip.simulation</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_net_simulation"/>
+            <field name="target">new</field>
+        </record>
+</odoo>

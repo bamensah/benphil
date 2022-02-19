@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="0">
+    <record model="ir.module.category" id="module_category_gh_users">
+        <field name="name">Ghana</field>
+    </record>
+    <record id="gh_finance_controller" model="res.groups">
+        <field name="name">Finance Controller</field>
+        <field name="category_id" ref="module_category_gh_users"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')),  (4, ref('helpdesk.group_helpdesk_user'))]"/>
+        <!-- Group not in Payroll V14 (4, ref('hr_payroll.group_readonly')), -->
+<!--                (4, ref('__export__.res_groups_58_48b3d9c3')), (4, ref('__import__.readonly_account')),-->
+<!--        (4, ref('__export__.res_groups_59_0b37f3a1')), (4, ref('__export__.res_groups_60_fb5492c3'))]-->
+    </record>
+    <record id="gh_finance_manager" model="res.groups">
+        <field name="name">Finance Manager</field>
+        <field name="category_id" ref="module_category_gh_users"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('hr.group_hr_user'))]"/>
+        <!-- Group not in Payroll V14 (4, ref('hr_payroll.group_readonly')), -->
+<!--        (4, ref('__export__.res_groups_58_48b3d9c3')), (4, ref('__import__.readonly_account')),-->
+<!--        (4, ref('__export__.res_groups_59_0b37f3a1')), ,-->
+<!--        (4, ref('helpdesk.group_helpdesk_user')), (4, ref('__export__.res_groups_60_fb5492c3')),-->
+    </record>
+    <record id="gh_accountant" model="res.groups">
+        <field name="name">Accountant</field>
+        <field name="category_id" ref="module_category_gh_users"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')),(4, ref('helpdesk.group_helpdesk_user'))]"/>
+        
+<!--        4, ref('__export__.res_groups_58_48b3d9c3')),-->
+<!--        (4, ref('__export__.res_groups_60_fb5492c3')), (4, ref('__import__.readonly_account')), -->
+<!--        (4, ref('__export__.res_groups_59_0b37f3a1'))]-->
+    </record>
+    <record id="gh_fp_and_a" model="res.groups">
+        <field name="name">FP &amp; A</field>
+        <field name="category_id" ref="module_category_gh_users"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('helpdesk.group_helpdesk_user'))]"/>
+<!--        (4, ref('__export__.res_groups_58_48b3d9c3')),-->
+<!--        (4, ref('__export__.res_groups_60_fb5492c3')), (4, ref('__import__.readonly_account')),(4, ref('__export__.res_groups_59_0b37f3a1'))]-->
+    </record>
+    <record id="gh_procurement_officer" model="res.groups">
+        <field name="name">Procurement Officer</field>
+        <field name="category_id" ref="module_category_gh_users"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('helpdesk.group_helpdesk_user'))]"/>
+<!--        (4, ref('__export__.res_groups_58_48b3d9c3')),-->
+<!--        (4, ref('__export__.res_groups_60_fb5492c3')),-->
+<!--        (4, ref('__export__.res_groups_59_0b37f3a1')), (4, ref('__import__.readonly_account'))]-->
+    </record>
+    <record id="gh_inventory_manager" model="res.groups">
+        <field name="name">Inventory Manager</field>
+        <field name="category_id" ref="module_category_gh_users"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('stock.group_stock_multi_locations')),
+        (4, ref('helpdesk.group_helpdesk_user'))]"/>
+<!--        (4, ref('__export__.res_groups_58_48b3d9c3')),-->
+<!--        (4, ref('__export__.res_groups_60_fb5492c3')), (4, ref('__import__.readonly_account')),-->
+<!--        (4, ref('__export__.res_groups_59_0b37f3a1')),-->
+    </record>
+    <record id="gh_group_supply_chain_director" model="res.groups">
+        <field name="name">Group Supply Chain Director</field>
+        <field name="category_id" ref="module_category_gh_users"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('stock.group_stock_multi_locations')),
+        (4, ref('helpdesk.group_helpdesk_user'))]"/>
+<!--        (4, ref('__export__.res_groups_58_48b3d9c3')),-->
+<!--        (4, ref('__export__.res_groups_60_fb5492c3')),-->
+<!--        (4, ref('__import__.readonly_account')),-->
+<!--        (4, ref('__export__.res_groups_59_0b37f3a1')), -->
+    </record> 
+    <record id="gh_group_warehouse_supervisor" model="res.groups">
+        <field name="name">Warehouse Supervisor</field>
+        <field name="category_id" ref="module_category_gh_users"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('helpdesk.group_helpdesk_user'))]"/>
+<!--         (4, ref('__export__.res_groups_58_48b3d9c3')),-->
+<!--        (4, ref('__export__.res_groups_60_fb5492c3')), (4, ref('__export__.res_groups_59_0b37f3a1')),-->
+    </record> 
+    <record id="gh_group_logistics_manager" model="res.groups">
+        <field name="name">Logistics Manager</field>
+        <field name="category_id" ref="module_category_gh_users"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('helpdesk.group_helpdesk_user'))]"/>
+<!--        (4, ref('__export__.res_groups_58_48b3d9c3')),-->
+<!--        (4, ref('__export__.res_groups_60_fb5492c3')), (4, ref('__export__.res_groups_59_0b37f3a1')),-->
+    </record>
+    <record id="gh_group_snr_operations_analyst" model="res.groups">
+        <field name="name">Sr. Operations Analyst</field>
+        <field name="category_id" ref="module_category_gh_users"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('helpdesk.group_helpdesk_user'))]"/>
+<!--        (4, ref('__export__.res_groups_58_48b3d9c3')),-->
+<!--        (4, ref('__export__.res_groups_60_fb5492c3')), (4, ref('__export__.res_groups_59_0b37f3a1')),-->
+    </record> 
+    <record id="gh_group_operations_analyst" model="res.groups">
+        <field name="name">Operations Analyst</field>
+        <field name="category_id" ref="module_category_gh_users"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('helpdesk.group_helpdesk_user'))]"/>
+<!--        (4, ref('__export__.res_groups_58_48b3d9c3')),-->
+<!--        (4, ref('__export__.res_groups_60_fb5492c3')), (4, ref('__export__.res_groups_59_0b37f3a1')),-->
+    </record> 
+    <record id="gh_group_repair_supervisor" model="res.groups">
+        <field name="name">Repair Supervisor</field>
+        <field name="category_id" ref="module_category_gh_users"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('helpdesk.group_helpdesk_user'))]"/>
+<!--        (4, ref('__export__.res_groups_58_48b3d9c3')),-->
+<!--        (4, ref('__export__.res_groups_60_fb5492c3')),-->
+    </record>
+    <record id="gh_group_snr_repair_technician" model="res.groups">
+        <field name="name">Senior Repair Technician</field>
+        <field name="category_id" ref="module_category_gh_users"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('helpdesk.group_helpdesk_user'))]"/>
+<!--        (4, ref('__export__.res_groups_58_48b3d9c3')),-->
+<!--        (4, ref('__export__.res_groups_60_fb5492c3')),-->
+    </record>
+    <record id="gh_group_inventory_officer" model="res.groups">
+        <field name="name">Inventory Officer</field>
+        <field name="category_id" ref="module_category_gh_users"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('helpdesk.group_helpdesk_user'))]"/>
+<!--         (4, ref('__export__.res_groups_58_48b3d9c3')),-->
+<!--        (4, ref('__export__.res_groups_60_fb5492c3')),(4, ref('__export__.res_groups_59_0b37f3a1')),-->
+    </record>
+    <record id="gh_group_warehouse_assistant" model="res.groups">
+        <field name="name">Warehouse Assistant</field>
+        <field name="category_id" ref="module_category_gh_users"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('helpdesk.group_helpdesk_user'))]"/>
+<!--        (4, ref('__export__.res_groups_58_48b3d9c3')),-->
+<!--        (4, ref('__export__.res_groups_60_fb5492c3')),-->
+    </record>
+    <record id="gh_group_stock_officer" model="res.groups">
+        <field name="name">Stock Officer</field>
+        <field name="category_id" ref="module_category_gh_users"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('helpdesk.group_helpdesk_user'))]"/>
+<!--        (4, ref('__export__.res_groups_58_48b3d9c3')),-->
+<!--        (4, ref('__export__.res_groups_60_fb5492c3')),-->
+    </record>
+    <record id="gh_group_css_activations" model="res.groups">
+        <field name="name">CSS Activations</field>
+        <field name="category_id" ref="module_category_gh_users"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('helpdesk.group_helpdesk_user'))]"/>
+<!--        (4, ref('__import__.readonly_account')), -->
+<!--        (4, ref('__export__.res_groups_60_fb5492c3')),-->
+<!--        (4, ref('__export__.res_groups_58_48b3d9c3'))]-->
+    </record>
+    <record id="gh_group_css_outbound" model="res.groups">
+        <field name="name">CSS Outbound</field>
+        <field name="category_id" ref="module_category_gh_users"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('helpdesk.group_helpdesk_user'))]"/>
+<!--        (4, ref('__import__.readonly_account')),-->
+<!--        (4, ref('__export__.res_groups_60_fb5492c3')),-->
+<!--        (4, ref('__export__.res_groups_58_48b3d9c3'))]-->
+    </record>
+    <record id="gh_group_ng_account_manager" model="res.groups">
+        <field name="name">NG Account Manager</field>
+        <field name="category_id" ref="module_category_gh_users"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+<!--        (4, ref('__export__.res_groups_60_fb5492c3'))]-->
+    </record> 
+    <record id="gh_group_cs_specialist" model="res.groups">
+        <field name="name">Customer Service Specialist</field>
+        <field name="category_id" ref="module_category_gh_users"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('helpdesk.group_helpdesk_user'))]"/>
+<!--         (4, ref('__export__.res_groups_58_48b3d9c3')),-->
+<!--        (4, ref('__export__.res_groups_60_fb5492c3'))]-->
+    </record>    
+</data>
+</odoo>

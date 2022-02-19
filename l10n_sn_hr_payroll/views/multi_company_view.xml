@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<odoo>
+    
+    <record id="hr_payslip_run_form_inherit_for_company_id" model="ir.ui.view">
+        <field name="name">hr.payslip.run.form.inherit.company_id</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='credit_note']" position="after">
+                        <field name="company_id"/>
+                </xpath>
+            </data>
+            </field>
+        </record>
+
+    <record id="convention_company" model="ir.rule">
+        <field name="name">Convention of my Company</field>
+        <field name="model_id" ref="optipay.model_optesis_convention"/>
+        <field eval="False" name="global"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+
+    <record id="convention_line_company" model="ir.rule">
+        <field name="name">Convention Line of my Company</field>
+        <field name="model_id" ref="optipay.model_line_optesis_convention"/>
+        <field eval="False" name="global"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+    
+    <record id="salry_rule_company" model="ir.rule">
+        <field name="name">Salary Rule of my Company</field>
+        <field name="model_id" ref="hr_payroll.model_hr_salary_rule"/>
+        <field eval="False" name="global"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+    
+    <!--apply domain in hr payslip -->
+    <record id="hr_payroll_payslip_company" model="ir.rule">
+        <field name="name">Payslips of my Company</field>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field eval="False" name="global"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+
+
+
+</odoo>

@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- by khk-->
+<odoo>
+    <data>
+        <template id="dads_external_view">
+            <t t-if="not o and doc">
+                <t t-set="o" t-value="doc"/>
+            </t>
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+            <t t-call="optipay.dads_external_layout_header"/>
+            <t t-raw="0"/>
+        </template>
+
+        <template id="dads_external_layout_header">
+            <div class="header">
+                <div class="row text-center">
+                    <div class="col-3 mb4">
+                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height:45px;"
+                             alt="Logo" align="left"/>
+                    </div>
+                    <div class="col-9 text-right" name="company_address" style="padding-left:30px;font-size:15px"
+                         t-if="report_type == 'pdf'">
+                        Page:
+                        <span class="page"/>
+                        <![CDATA[&nbsp;]]> <![CDATA[&nbsp;]]> <![CDATA[&nbsp;]]> <![CDATA[&nbsp;]]> <![CDATA[&nbsp;]]>
+                        <![CDATA[&nbsp;]]> <![CDATA[&nbsp;]]> <![CDATA[&nbsp;]]>
+                        <p style="margin-left:10%">
+                        <strong>
+                           Date:
+                           <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d-%m-%Y')"/>
+                        </strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer" style="padding-top:30px;">
+            </div>
+        </template>
+
+        <report
+            id="dads_report_1"
+            model="hr.contribution.register"
+            string="recap_versement"
+            report_type="qweb-pdf"
+            name="optipay.report_dads_view_1"
+            file="optipay.report_dads"
+            menu="False" />
+
+        <template id="report_dads_view_1">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="optipay.dads_external_view">
+                    <t t-set="company" t-value="res_company"/>
+                    <div class="page">
+                        <style>
+
+                            
+                        </style>
+                        <div class="row">
+                            <table style="width:100%">
+                            <tr>
+                                <td style="width:25%" align="center">
+                                <p style="margin:0px;padding:0px;font-size:14px;padding-bottom:3px;border-bottom:1px solid">
+                                    REPUBLIQUE DU SENEGAL
+                                </p>
+                                </td>
+                                <td style="width:55%" align="center">
+
+                                <p style="margin:0px;padding:0px;font-size:14px;font-weight:bold">ETAT DES SOMMES VERSEES</p>
+                                </td>
+                                <td style="width:20%" align="center">
+                                <p style="margin:0px;padding:0px;font-size:14px;border:1px solid">
+                                    <span t-esc="year"/>
+                                </p>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:25%" align="center">
+                                <p style="margin:0px;padding:0px;font-size:14px;border-bottom:1px solid">
+                                    MINISTRE DE L 'ECONOMIE ET DES FINANCES
+                                </p>
+                                </td>
+                                <td style="width:55%" align="center">
+                                <p style="margin:0px;padding:0px;font-size:14px;">
+                                    <![CDATA[&nbsp;]]>
+                                </p>
+                                </td>
+                                <td style="width:20%" align="center">
+                                <p style="margin:0px;padding:0px;font-size:14px;">
+                                    <![CDATA[&nbsp;]]>
+                                </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:25%" align="center">
+                                <p style="margin:0px;padding:0px;font-size:14px;font-weight:bold;border-bottom:1px solid">
+                                    DIRECTION GENERALE DES IMPOTS ET DES FINANCES
+                                </p>
+                                </td>
+                                <td align="left" colspan="2">
+                                <p style="margin:0px;padding:0px;font-size:14px;">
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+
+                                    SOUS LA FORME DE
+                                </p>
+                                </td>
+                                <td style="width:20%" align="center">
+                                <p style="margin:0px;padding:0px;font-size:14px;">
+                                    <![CDATA[&nbsp;]]>
+                                </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:25%" align="center">
+                                <p style="margin:0px;padding:0px;font-size:14px;font-weight:bold;border-bottom:1px solid">
+                                    DIRECTION DES IMPOTS
+                                </p>
+                                </td>
+                                <td align="center" colspan="2">
+                                <p style="margin:0px;padding:0px;font-size:12px;">
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    Traitements,salaires,accessoires,pensions,et rentes viagéres.A fournir par localité
+                                </p>
+                                <p style="margin:0px;padding:0px;font-size:12px;">
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    pour les entreprises (1) à succursales ou établissements(2) multiples et à transmettre au service des impots.
+                                </p>
+                                </td>
+
+                            </tr>
+                            </table>
+
+                        </div>
+
+                        <div class="row" style="margin-top:20px">
+                            <div class="col-12" align="left">
+                            <table style="width:35%;border-collapse:collapse;">
+                                <tr>
+                                <td style="width:15%" align="left">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                    CENTRE
+                                    </p>
+                                </td>
+                                <td style="width:5%" align="left">
+                                    <p style="border-left:1px solid;border-bottom:1px solid;border-right:1px solid">
+                                    <![CDATA[&nbsp;]]>
+                                    </p>
+                                </td>
+                                <td style="width:5%" align="left">
+                                    <p style="border-left:1px solid;border-bottom:1px solid;border-right:1px solid">
+                                    <![CDATA[&nbsp;]]>
+                                    </p>
+                                </td>
+                                <td style="width:5%" align="left">
+                                    <p style="">
+                                    <![CDATA[&nbsp;]]>
+                                    </p>
+                                </td>
+                                <td style="width:5%" align="left">
+                                    <p style="">
+                                    <![CDATA[&nbsp;]]>
+                                    </p>
+                                </td>
+                                </tr>
+                                <tr>
+                                <td style="width:15%" align="left">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                    INSPECTION
+                                    </p>
+                                </td>
+                                <td style="width:5%" align="left">
+                                    <p style="border-left:1px solid;border-bottom:1px solid;border-right:1px solid">
+                                    <![CDATA[&nbsp;]]>
+                                    </p>
+                                </td>
+                                <td style="width:5%" align="left">
+                                    <p style="border-left:1px solid;border-bottom:1px solid;border-right:1px solid">
+                                    <![CDATA[&nbsp;]]>
+                                    </p>
+                                </td>
+                                <td style="width:5%" align="left">
+                                    <p style="">
+                                    <![CDATA[&nbsp;]]>
+                                    </p>
+                                </td>
+                                <td style="width:5%" align="left">
+                                    <p style="">
+                                    <![CDATA[&nbsp;]]>
+                                    </p>
+                                </td>
+                                </tr>
+                                <tr>
+                                <td style="width:15%" align="left">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                    PERCEPTION
+                                    </p>
+                                </td>
+                                <td style="width:5%" align="left">
+                                    <p style="border-left:1px solid;border-bottom:1px solid;border-right:1px solid">
+                                    <![CDATA[&nbsp;]]>
+                                    </p>
+                                </td>
+                                <td style="width:5%" align="left">
+                                    <p style="border-left:1px solid;border-bottom:1px solid;border-right:1px solid">
+                                    <![CDATA[&nbsp;]]>
+                                    </p>
+                                </td>
+                                <td style="width:5%" align="left">
+                                    <p style="">
+                                    <![CDATA[&nbsp;]]>
+                                    </p>
+                                </td>
+                                <td style="width:5%" align="left">
+                                    <p style="">
+                                    <![CDATA[&nbsp;]]>
+                                    </p>
+                                </td>
+                                </tr>
+                                <tr>
+                                <td style="width:15%" align="left">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                    LOCALITE
+                                    </p>
+                                </td>
+                                <td style="width:5%" align="left">
+                                    <p style="border-left:1px solid;border-bottom:1px solid;border-right:1px solid">
+                                    <![CDATA[&nbsp;]]>
+                                    </p>
+                                </td>
+                                <td style="width:5%" align="left">
+                                    <p style="border-left:1px solid;border-bottom:1px solid;border-right:1px solid">
+                                    <![CDATA[&nbsp;]]>
+                                    </p>
+                                </td>
+                                <td style="width:5%" align="left">
+                                    <p style="border-left:1px solid;border-bottom:1px solid;border-right:1px solid">
+                                    <![CDATA[&nbsp;]]>
+                                    </p>
+                                </td>
+                                <td style="width:5%" align="left">
+                                    <p style="border-left:1px solid;border-bottom:1px solid;border-right:1px solid">
+                                    <![CDATA[&nbsp;]]>
+                                    </p>
+                                </td>
+                                </tr>
+                                <div class="round " align="center">
+                                <p style="margin:0px;padding:0px;font-size:14px;font-weight:bold;">
+                                    Le 31 janvier(délai de rigueur)
+                                </p>
+                                <p style="margin:0px;padding:0px;font-size:14px;font-weight:bold;">
+                                    de chaque année
+                                </p>
+                                </div>
+                            </table>
+
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-12" style="border:1px solid;width:90%;margin-left:10%;margin-right:-2%;margin-top:7%;">
+                            <table style="width:100%;height:300px;border-collapse:collapse;">
+                                <tr>
+                                <td style="padding:2px" align="left">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                    Prénoms,Nom ou Raison :
+                                    </p>
+                                </td>
+                                <td style="" align="center" colspan="4">
+                                    <p style="font-weight:bold;font-size:14px;">
+                                    <span>Paie </span> <span t-field="company.name" />
+                                    </p>
+                                </td>
+
+                                </tr>
+                                <tr>
+                                <td style="padding:2px" align="left">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                    Sigle (pour les sociétés) : <span t-field="company.sigle"/>
+                                    </p>
+                                </td>
+                                <td style="" align="center" colspan="4">
+                                    <p style="font-weight:bold;font-size:14px;">
+                                    <span></span>
+                                    </p>
+                                </td>
+
+                                </tr>
+                                <tr>
+                                <td style="padding:2px" align="left">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                    Profession : <span t-field="company.profession"/>
+                                    </p>
+                                </td>
+                                <td style="" align="center" colspan="4">
+                                    <p style="font-weight:bold;font-size:14px;">
+                                    <span></span>
+                                    </p>
+                                </td>
+
+                                </tr>
+
+                                <tr>
+                                <td style="padding:2px" align="left">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                    Adresse n° : <span t-field="company.street" />
+                                    </p>
+                                </td>
+                                <td style="" align="center" colspan="4">
+                                    <p style="font-weight:bold;font-size:14px;">
+                                    <span></span>
+                                    </p>
+                                </td>
+
+                                </tr>
+
+                                <tr>
+                                <td style="padding:2px" align="left">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                    Localité : <span t-field="company.localite"/>
+                                    </p>
+                                </td>
+                                <td align="left" colspan="2">
+                                    <p style="font-size:14px;">
+                                        BP : <span t-field="company.zip" />
+                                        <span></span>
+                                    </p>
+                                </td>
+                                <td style="" align="center">
+                                    <p style="font-size:14px;">
+
+                                    <span>Tél :
+                                        <![CDATA[&nbsp;]]>
+                                        <![CDATA[&nbsp;]]>
+                                    </span>
+                                    <span t-field="company.phone"/>
+                                    </p>
+                                </td>
+
+                                </tr>
+                                <tr>
+                                <td style="padding:2px" align="left">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                    Nom et adresse du comptable : <span t-field="company.nom_adress_comptable"/>
+                                    </p>
+                                </td>
+                                <td style="" align="center" colspan="3">
+                                    <p style="font-weight:bold;font-size:14px;">
+
+                                    <span></span>
+                                    <span></span>
+                                    </p>
+                                </td>
+                                </tr>
+                                <tr style="border-bottom:1px solid">
+                                <td style="padding:2px;border-bottom:1px solid" align="left">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                    Exercice comptable :
+                                    </p>
+                                </td>
+                                <td style="border-bottom:1px solid;" align="left" colspan="3">
+                                    <p style="font-weight:bold;font-size:14px;">
+
+                                    <span>01/01/</span><span t-esc="year"/>
+                                    <span>
+                                        <![CDATA[&nbsp;]]>
+                                        <![CDATA[&nbsp;]]>
+                                        au
+                                        <![CDATA[&nbsp;]]>
+                                        <![CDATA[&nbsp;]]>
+                                    </span>
+                                    <span>31/12</span><span t-esc="year"/>
+                                    </p>
+                                </td>
+                                </tr>
+                                <tr>
+                                <td style="padding:2px" align="left" colspan="2">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                    EFFECTIF SENEGALAIS:
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <span>H :
+                                    </span>
+                                    <span>
+                                        <![CDATA[&nbsp;]]>
+                                    </span>
+                                    <span t-esc="sn_male_count"/>
+                                    </p>
+                                </td>
+                                <td style="padding:2px" align="left" colspan="3" height="50px">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                    <span>
+                                        F :
+                                    </span>
+                                    <span>
+                                        <![CDATA[&nbsp;]]>
+                                    </span>
+                                    <span t-esc="sn_female_count"/>
+                                    <span>
+                                        <![CDATA[&nbsp;]]>
+                                        <![CDATA[&nbsp;]]>
+                                        <![CDATA[&nbsp;]]>
+                                        <![CDATA[&nbsp;]]>
+                                        <![CDATA[&nbsp;]]>
+                                        <![CDATA[&nbsp;]]>
+                                        <![CDATA[&nbsp;]]>
+                                        <![CDATA[&nbsp;]]>
+                                        <![CDATA[&nbsp;]]>
+                                    </span>
+                                    <span>
+                                        EFFECTIF ETRANGER:
+                                    </span>
+                                    <span>
+                                        <![CDATA[&nbsp;]]>
+                                        <![CDATA[&nbsp;]]>
+                                        <![CDATA[&nbsp;]]>
+                                    </span>
+                                    <span>
+                                        H :
+                                    </span>
+                                    <span>
+                                        <![CDATA[&nbsp;]]>
+                                    </span>
+                                    <span t-esc="other_male_count"/>
+                                    <span>
+                                        <![CDATA[&nbsp;]]>
+                                        <![CDATA[&nbsp;]]>
+                                        <![CDATA[&nbsp;]]>
+                                    </span>
+                                    <span>
+                                        F :
+                                    </span>
+                                    <span>
+                                        <![CDATA[&nbsp;]]>
+                                    </span>
+                                    <span t-esc="other_female_count"/>
+
+                                    </p>
+                                </td>
+
+                                </tr>
+                                <tr>
+                                <td style="padding:2px" align="left">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    </p>
+                                </td>
+                                <td style="padding:2px" align="left" colspan="4">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                    TOTAL:
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <span t-esc="total_count"/>
+                                    </p>
+                                </td>
+                                </tr>
+                                <tr >
+                                <td style="padding:2px;border-right:1px solid;border-left:1px solid;border-top:1px solid;" align="left" height="100px">
+                                    <p style="font-size:14px;">
+                                    salaires versés
+                                    </p>
+                                    <p style="font-size:14px;">
+                                    Total année
+                                    </p>
+                                </td>
+                                <td style="padding:2px;border-right:1px solid;border-left:1px solid;border-top:1px solid;" align="left" height="100px">
+                                    <p style="font-size:14px;">
+                                    Sénégalais
+                                    </p>
+
+                                    <p style="font-size:14px;">
+                                    Etrangers
+                                    </p>
+                                </td>
+                                <td style="padding:2px;border-right:1px solid;border-left:1px solid;border-top:1px solid;" align="left" height="100px">
+                                    <p style="font-size:14px;">
+                                        <span t-esc="'{0:,.0f}'.format(total_salary_sn).replace(',','.')"/>
+                                    </p>
+                                    <p style="font-size:14px;">
+                                        <span t-esc="'{0:,.0f}'.format(total_salary_others).replace(',','.')"/>
+                                    </p>
+                                </td>
+                                <td style="padding:2px;border-right:1px solid;border-left:1px solid;border-top:1px solid;" align="left" height="100px">
+                                    <p style="font-size:14px;">
+                                    Commissions
+                                    </p>
+                                    <p style="font-size:14px;">
+                                    Rédevances
+                                    </p>
+                                    <p style="font-size:14px;">
+                                    (ART: 185 C.G.)
+                                    </p>
+                                </td>
+                                <td style="padding:2px;border-right:1px solid;border-left:1px solid;border-top:1px solid;" align="left" height="100px">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    </p>
+
+                                </td>
+                                </tr>
+
+                                <tr >
+                                <td style="padding:2px;border-right:1px solid;border-left:1px solid;" align="left">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                        <span t-esc="'{0:,.0f}'.format(total_salary).replace(',','.')"/>
+                                    </p>
+                                </td>
+                                <td style="padding:2px;border-right:1px solid;border-left:1px solid;" align="left">
+                                    <p style="margin:0px;padding:0px;font-size:14px;"></p>
+                                </td>
+                                <td style="padding:2px;border-right:1px solid;border-left:1px solid;" align="left">
+                                    <p style="margin:0px;padding:0px;font-size:14px;"></p>
+                                </td>
+                                <td style="padding:2px;border-right:1px solid;border-left:1px solid;" align="left">
+
+                                    <p style="font-size:14px;">
+                                    Total année
+                                    </p>
+                                </td>
+                                <td style="padding:2px;border-right:1px solid;border-left:1px solid;width:10%" align="left">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]>
+                                    </p>
+                                </td>
+                                </tr>
+                                <tr >
+                                    <td rowspan="2" align="left" style="border-top:1px solid;">
+                                        <p style="font-size:14px;">CFCE Versées:</p>
+                                    </td>
+                                    <td colspan="4" style="border-top:1px solid;">
+                                        <p style="font-size:14px;">Sénégalais:  <span t-esc="'{0:,.0f}'.format(total_cfce_sn).replace(',','.')"/></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p style="font-size:14px;">Etrangers:  <span t-esc="'{0:,.0f}'.format(total_cfce_others).replace(',','.')"/></p>
+                                    </td>
+                                </tr>
+                            </table>
+                            </div>
+                        </div>
+
+                        <div class="row text-center" align="center">
+                            <div class="col-12 text-center" style="margin-left:100px">
+                            <h2>ETAT RECAPUTILATIF DES VERSMENTS EFFECTUES AU TITRE DES IMPOTS ET TAXES CI-DESSOUS</h2>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                            <table style="width:100%;border-collapse:collapse;border:1px solid">
+                                <thead>
+                                <tr>
+                                    <th style="border:1px solid;font-size:14px" rowspan="3" align="center">
+
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                        Salaire du mois de
+                                    </p>
+                                    </th>
+                                    <th style="border:1px solid;font-size:14px;" rowspan="3" align="center">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                        Date de versement
+                                    </p>
+                                    </th>
+                                    <th style="border:1px solid;font-size:14px" rowspan="3" align="center">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                        Montant versement
+                                    </p>
+                                    </th>
+                                    <th style="border:1px solid;font-size:14px;" align="center" colspan="3">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                        DETAIL DES VERSEMENTS
+                                    </p>
+                                    </th>
+                                    <th style="border:1px solid;font-size:14px;" align="center" rowspan="3">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                        Numéro quittance
+                                    </p>
+                                    </th>
+                                    <th style="border:1px solid;font-size:14px;" align="center" rowspan="3">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">Observations</p>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th style="border:1px solid;font-size:14px;padding:2px" colspan="2" align="left">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">Retenue à la charge du salarié</p>
+                                    </th>
+
+                                    <th style="border:1px solid;font-size:14px;padding:2px" align="left">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">Retenue à la charge de l'employeur</p>
+                                    </th>
+
+                                </tr>
+                                <tr>
+                                    <th style="border:1px solid;font-size:14px;padding:2px" align="center">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">IR</p>
+                                    </th>
+
+                                    <th style="border:1px solid;font-size:14px;padding:2px" align="center">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">TRIMF</p>
+                                    </th>
+                                    <th style="border:1px solid;font-size:14px;padding:2px" align="center">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">CFCE</p>
+                                    </th>
+
+                                </tr>
+                                </thead>
+
+                                <tbody>
+
+                                <tr t-foreach="details_versement" t-as="d">
+                                    <td style="border:1px solid;font-size:14px;width:10%;padding:2px" align="left">
+                                        <p style="margin:0px;padding:0px;font-size:14px;">
+                                            <span t-esc="d.get('mois')"/>
+                                        </p>
+                                    </td>
+                                    <td style="border:1px solid;font-size:14px;width:10%;" align="center">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                        <span t-esc="d.get('date')"/>
+                                    </p>
+                                    </td>
+                                    <td style="border:1px solid;font-size:14px;width:10%;padding:2px" align="right">
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                        <span t-esc="'{0:,.0f}'.format(d.get('montant_versement')).replace(',','.')"/>
+                                    </p>
+                                    </td>
+                                    <td style="border:1px solid;font-size:14px;width:10%;padding:2px" align="right">
+
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                        <span t-esc="'{0:,.0f}'.format(d.get('montant_ir')).replace(',','.')"/>
+                                    </p>
+                                    </td>
+                                    <td style="border:1px solid;font-size:14px;width:10%;padding:2px" align="right">
+
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                        <span t-esc="'{0:,.0f}'.format(d.get('montant_trimf')).replace(',','.')"/>
+                                    </p>
+                                    </td>
+
+                                    <td style="border:1px solid;font-size:14px;width:10%;padding:2px" align="right">
+
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                        <span t-esc="'{0:,.0f}'.format(d.get('montant_cfce')).replace(',','.')"/>
+                                    </p>
+                                    </td>
+                                    <td style="border:1px solid;font-size:14px;width:10%;padding:2px" align="center">
+
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                        <span t-esc="d.get('num_quitance')"/>
+                                    </p>
+                                    </td>
+                                    <td style="border:1px solid;font-size:14px;width:10%;padding:2px" align="center">
+
+                                    <p style="margin:0px;padding:0px;font-size:14px;">
+                                        <span t-esc="d.get('obsevation')"/>
+                                    </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="border:1px solid;font-size:14px;width:10%;padding:2px" align="center">Total</td>
+                                    <td style="border:1px solid;font-size:14px;width:10%;padding:2px" align="right"><span t-esc="'{0:,.0f}'.format(total_montant_verse).replace(',','.')"/></td>
+                                    <td style="border:1px solid;font-size:14px;width:10%;padding:2px" align="right"><span t-esc="'{0:,.0f}'.format(total_ir).replace(',','.')"/></td>
+                                    <td style="border:1px solid;font-size:14px;width:10%;padding:2px" align="right"><span t-esc="'{0:,.0f}'.format(total_trimf).replace(',','.')"/></td>
+                                    <td style="border:1px solid;font-size:14px;width:10%;padding:2px" align="right"><span t-esc="'{0:,.0f}'.format(total_cfce).replace(',','.')"/></td>
+                                    <td style="border:1px solid;font-size:14px;width:10%;padding:2px"></td>
+                                    <td style="border:1px solid;font-size:14px;width:10%;padding:2px"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

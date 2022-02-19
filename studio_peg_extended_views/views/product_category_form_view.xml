@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data>
+        <record id="product_category_form_view_inherit_negatice_grp_stud" model="ir.ui.view">
+            <field name="name">product.category.form</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='allow_negative_stock']" position="attributes">
+                    <attribute name="groups">base.group_erp_manager</attribute>
+                </xpath>
+                <xpath expr="//field[@name='property_valuation']" position="attributes">
+                    <attribute name="groups">base.group_erp_manager, account.group_account_manager</attribute><!--,__export__.res_groups_105_5159c8d3,__export__.res_groups_98_1ebb9fae,-->
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+<!--Odoo Studio: product.category.form customization-->

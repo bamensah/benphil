@@ -1,0 +1,48 @@
+<odoo>
+  <data>
+    <record id="everyone_view_production_lot_form" model="ir.ui.view">
+      <field name="name">stock.production.lot.form.everyone.view</field>
+      <field name="model">stock.production.lot</field>
+      <field name="inherit_id" ref="stock.view_production_lot_form" />
+      <field name="priority">11</field>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='name']" position="attributes">
+            <attribute name="readonly">1</attribute>
+        </xpath>
+      </field>
+    </record>
+    <record id="ops_manager_view_production_lot_form" model="ir.ui.view">
+      <field name="name">stock.production.lot.form.group_stock_manager.view</field>
+      <field name="model">stock.production.lot</field>
+      <field name="groups_id" eval="[(4, ref('stock.group_stock_manager'))]"/>
+      <field name="inherit_id" ref="everyone_view_production_lot_form" />
+      <field name="priority">12</field>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='name']" position="attributes">
+            <attribute name="readonly">0</attribute>
+        </xpath>
+      </field>
+    </record>
+    <record id="everyone_view_production_lot_tree" model="ir.ui.view">
+      <field name="name">stock.production.lot.tree.everyone.view</field>
+      <field name="model">stock.production.lot</field>
+      <field name="inherit_id" ref="stock.view_production_lot_tree" />
+      <field name="arch" type="xml">
+        <xpath expr='//tree' position='attributes'>
+            <attribute name="create">false</attribute>
+        </xpath>
+      </field>
+    </record>
+    <record id="ops_manager_view_production_lot_tree" model="ir.ui.view">
+      <field name="name">stock.production.lot.tree.group_stock_manager.view</field>
+      <field name="model">stock.production.lot</field>
+      <field name="groups_id" eval="[(4, ref('stock.group_stock_manager'))]"/>
+      <field name="inherit_id" ref="everyone_view_production_lot_tree" />
+      <field name="arch" type="xml">
+        <xpath expr='//tree' position='attributes'>
+            <attribute name="create">true</attribute>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>

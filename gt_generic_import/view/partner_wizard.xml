@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="import_wizared_partner_form" model="ir.ui.view">
+            <field name="name">partner.wizard</field>
+            <field name="model">partner.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Partner">
+                    <group>
+                        <group>
+                            <field name="select_file" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <group>
+                            <field name="data_file" filename="name" required="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="Import_partner" string="Import" type="object"  class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_partner" model="ir.actions.act_window">
+            <field name="name">Import Partner</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">partner.wizard</field>
+<!--             <field name="view_type">form</field> -->
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="import_partner_file" name="Import Partner" action="action_wizard_partner" parent="sale.menu_sale_config"/>
+    </data>
+</odoo>    	

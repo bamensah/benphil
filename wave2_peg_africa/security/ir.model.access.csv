@@ -1,0 +1,76 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_wave2_peg_africa_type_of_product,wave2.peg.africa.type.of.product,model_wave2_peg_africa_type_of_product,,1,1,1,1
+access_sale_contract_status,sale.contract.status,model_sale_contract_status,,1,1,1,1
+access_free_days_discount,free.days.discount,model_free_days_discount,,1,1,1,1
+access_peg_africa_paygops,peg.africa.paygops,model_peg_africa_paygops,,1,1,1,1
+
+access_wave2_peg_africa_type_of_product,wave2.peg.africa.type.of.product,model_wave2_peg_africa_type_of_product,,1,1,1,1
+
+access_free_day_tag,free.day.tag,model_free_day_tag,,1,1,1,1
+
+access_discount_tag,discount.tag,model_discount_tag,,1,1,1,1
+
+access_api_gateway_service,api.gateway.service,model_api_gateway_service,,1,1,1,1
+
+access_credit_token,credit.token,model_credit_token,,1,1,1,1
+
+access_credit_sms,credit.sms,model_credit_sms,,1,1,1,1
+
+access_invoice_stock_action,invoice.stock.action,model_invoice_stock_action,,1,1,1,1
+
+access_invoice_stock_action_line,invoice.stock.action.line,model_invoice_stock_action_line,,1,1,1,1
+
+access_sale_contract_status,sale.contract.status,model_sale_contract_status,,1,1,1,1
+
+access_sale_stock_action,sale.stock.action,model_sale_stock_action,,1,1,1,1
+
+access_suspension_reason,suspension.reason,model_suspension_reason,,1,1,1,1
+
+access_sub_suspension_reason,sub.suspension.reason,model_sub_suspension_reason,,1,1,1,1
+
+access_deposit_status,deposit.status,model_deposit_status,,1,1,1,1
+
+access_device_status,device.status,model_device_status,,1,1,1,1
+
+access_paygops_tokens,paygops.tokens,model_paygops_tokens,,1,1,1,1
+
+access_wave_peg_africa_discount,wave.peg.africa.discount,model_wave_peg_africa_discount,,1,1,1,1
+
+
+gh_group_css_activations_access_stock_picking, GH CSS Activations Transfers Access,model_stock_picking,gh_group_css_activations,1,1,1,0
+gh_group_css_activations_access_payment, GH CSS Activations Payment Access,model_account_payment,gh_group_css_activations,1,1,1,0
+gh_group_css_activations_access_payment_methods, GH CSS Activations Payment Methods Access,account.model_account_payment_method,gh_group_css_activations,1,0,0,0
+gh_group_css_activations_access_account_reconcile, GH CSS Activations Account Reconcile Model Access,account.model_account_reconcile_model,gh_group_css_activations,1,0,0,0
+gh_group_css_activations_access_account_partial_reconcile, GH CSS Activations Account Partial Reconcile Access,account.model_account_partial_reconcile,gh_group_css_activations,1,0,0,0
+gh_group_css_activations_access_account_full_reconcile, GH CSS Activations Account Full Reconcile Access,account.model_account_full_reconcile,gh_group_css_activations,1,0,0,0
+gh_group_css_activations_access_account_journal, GH CSS Activations Account Journal Access,account.model_account_journal,gh_group_css_activations,1,0,0,0
+
+gh_group_css_outbound_access_repair_order, GH CSS Outbound Repair Order Access,model_repair_order,gh_group_css_outbound,1,1,1,0
+gh_group_css_outbound_access_repair_line, GH CSS Outbound Repair Line Access,model_repair_line,gh_group_css_outbound,1,1,1,1
+gh_group_css_outbound_access_payment, GH CSS Outbound Payment Access,model_account_payment,gh_group_css_outbound,1,0,0,0
+gh_group_css_outbound_access_payment_methods, GH CSS Outbound Payment Methods Access,account.model_account_payment_method,gh_group_css_outbound,1,0,0,0
+gh_group_css_outbound_access_account_reconcile, GH CSS Outbound Account Reconcile Model Access,account.model_account_reconcile_model,gh_group_css_outbound,1,0,0,0
+gh_group_css_outbound_access_account_partial_reconcile, GH CSS Outbound Account Partial Reconcile Access,account.model_account_partial_reconcile,gh_group_css_outbound,1,0,0,0
+gh_group_css_outbound_access_account_full_reconcile, GH CSS Outbound Account Full Reconcile Access,account.model_account_full_reconcile,gh_group_css_outbound,1,0,0,0
+gh_group_css_outbound_access_account_journal, GH CSS Outbound Account Journal Access,account.model_account_journal,gh_group_css_outbound,1,0,0,0
+
+gh_group_ng_account_manager_access_stock_production_lot, GH NG Account Manager Stock Production Lot Access,stock.model_stock_production_lot,gh_group_ng_account_manager,1,0,0,0
+gh_group_ng_account_manager_access_payment, GH NG Account Manager Payment Access,model_account_payment,gh_group_ng_account_manager,1,1,1,0
+gh_group_ng_account_manager_access_payment_methods, GH NG Account Manager Payment Methods Access,account.model_account_payment_method,gh_group_ng_account_manager,1,0,0,0
+gh_group_ng_account_manager_access_account_reconcile, GH NG Account Manager Account Reconcile Model Access,account.model_account_reconcile_model,gh_group_ng_account_manager,1,0,0,0
+gh_group_ng_account_manager_access_account_partial_reconcile, GH NG Account Manager Account Partial Reconcile Access,account.model_account_partial_reconcile,gh_group_ng_account_manager,1,0,0,0
+gh_group_ng_account_manager_access_account_full_reconcile, GH NG Account Manager Account Full Reconcile Access,account.model_account_full_reconcile,gh_group_ng_account_manager,1,0,0,0
+
+gh_group_cs_specialist_access_account_reconcile, GH CS Specialist Account Reconcile Model Access,account.model_account_reconcile_model,gh_group_cs_specialist,1,0,0,0
+gh_group_cs_specialist_access_account_partial_reconcile, GH CS Specialist Account Partial Reconcile Access,account.model_account_partial_reconcile,gh_group_cs_specialist,1,0,0,0
+gh_group_cs_specialist_access_account_full_reconcile, GH CS Specialist Account Full Reconcile Access,account.model_account_full_reconcile,gh_group_cs_specialist,1,0,0,0
+gh_group_cs_specialist_access_leads, GH CS Specialist Leads Access,model_crm_lead,gh_group_cs_specialist,1,1,1,0
+gh_group_cs_specialist_access_contacts, GH CS Specialist Contacts Access,base.model_res_partner,gh_group_cs_specialist,1,1,1,0
+gh_group_cs_specialist_access_payment, GH CS Specialist Payment Access,model_account_payment,gh_group_cs_specialist,1,0,0,0
+gh_group_cs_specialist_access_payment_methods, GH CS Specialist Payment Methods Access,account.model_account_payment_method,gh_group_cs_specialist,1,0,0,0
+gh_group_cs_specialist_access_sales, GH CS Specialist Sales Access,model_sale_order,gh_group_cs_specialist,1,1,1,0
+gh_group_cs_specialist_access_sale_line, GH CS Specialist Sale Line Access,sale.model_sale_order_line,gh_group_cs_specialist,1,1,1,1
+gh_group_cs_specialist_access_sale_option, GH CS Specialist Sale Option Access,sale_management.model_sale_order_option,gh_group_cs_specialist,1,1,1,1
+gh_group_cs_specialist_access_account_journal, GH CS Specialist Account Journal Access,account.model_account_journal,gh_group_cs_specialist,1,0,0,0
+gh_group_cs_specialist_access_stock_moves, GH CS Specialist Stock Moves Access,model_stock_move,gh_group_cs_specialist,1,1,1,0
+gh_group_cs_specialist_access_helpdesk_ticket, GH CS Specialist Helpdesk Ticket Access,helpdesk.model_helpdesk_ticket,gh_group_cs_specialist,1,1,1,0

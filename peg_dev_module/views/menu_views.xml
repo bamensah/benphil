@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <menuitem id="landed_cost_menu" name="Landed Cost Lines" parent="stock.menu_stock_warehouse_mgmt"
+                         action="landed_cost_list_action" />
+<!--                  groups="__export__.res_groups_105_5159c8d3,account.group_account_manager"-->
+
+    </data>
+</odoo>

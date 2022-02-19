@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<odoo>
+    <data noupdate="1">
+
+         <record id="config_api_gateway_access_token" model="ir.config_parameter">
+            <field name="key">api_gateway_access_token</field>
+            <field name="value">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTQ3MjY3ODEsIm5iZiI6MTU5NDcyNjc4MSwianRpIjoiZjI0N2E0MDktNzkxOC00MGVjLWEzNjktMTk1MWQxM2NkZDcwIiwiZXhwIjoxNTk0ODEzMTgxLCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.I5g8vCixGQGpHDwqvtRNVQyEQZikGSpLEYnyHO5NWuI</field>
+        </record>
+
+        <record id="config_api_gateway_refresh_token" model="ir.config_parameter">
+            <field name="key">api_gateway_refresh_token</field>
+            <field name="value">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTQ3MjY3ODEsIm5iZiI6MTU5NDcyNjc4MSwianRpIjoiZGY2N2UxYWItYzVhYi00NTNlLTkyYmUtZjVkYWQxMzFlMTVhIiwiZXhwIjoxNTk0ODEzMTgxLCJpZGVudGl0eSI6MSwidHlwZSI6InJlZnJlc2gifQ.XUvvkmjDcTVN18mqpnZlUMLLJdFkt9QYeMYTz1Ktetc</field>
+        </record>
+
+        <record id="config_api_gateway_url" model="ir.config_parameter">
+            <field name="key">api_gateway_url</field>
+            <field name="value">https://apigw.pegafrica.com/demo</field>
+        </record>
+
+        <record id="config_peg_village" model="ir.config_parameter">
+            <field name="key">peg_village</field>
+            <field name="value">3</field>
+        </record>
+
+        <record id="config_peg_lead_generator" model="ir.config_parameter">
+            <field name="key">peg_lead_generator</field>
+            <field name="value">4</field>
+        </record>
+
+    </data>
+</odoo>

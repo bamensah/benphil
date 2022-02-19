@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_payslip_simulator_form_view" model="ir.ui.view">
+            <field name="name">aospay_simulator.hr_payslip_simulator.form</field>
+            <field name="model">hr.payslip.simulator</field>
+            <field name="arch" type="xml">
+                 <form string="Payslip">
+            <header>
+                <button string="Lancer" name="estimate_brut" type="object"  class="oe_highlight"/>
+
+            </header>
+            <sheet>
+                <div class="oe_title">
+                    <label for="employee_id" class="oe_edit_only"/>
+                    <h1><field name="employee_id" placeholder="Employee"/></h1>
+                </div>
+                <group col="4">
+                    <label for="date_from" string="Period"/>
+                    <div>
+                        <field name="date_from" class="oe_inline"/> - <field name="date_to" class="oe_inline"/>
+                    </div>
+                    <field name="contract_id" domain="[('employee_id','=',employee_id),('date_start','&lt;=',date_to),'|',('date_end','&gt;=',date_from),('date_end','=',False)]" context="{'default_employee_id': employee_id}"/>
+                    <field name="struct_id" attrs="{'required':[('contract_id','!=',False)]}"/>
+                    <field name="name"/>
+                    <field name="epsilon"/>
+                    <field name="net_given"/>
+                    <field name="brut_to_find" readonly="1"/>
+                </group>
+                <notebook>
+                    <page string="Salary Computation" >
+                        <field name="line_ids" colspan="4" nolabel="1">
+                            <tree string="Salary Structure" editable="bottom" decoration-info="total == 0">
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="category_id"/>
+                                <field name="sequence" invisible="1"/>
+                                <field name="quantity"/>
+                                <field name="rate"/>
+                                <field name="salary_rule_id"/>
+                                <field name="amount"/>
+                                <field name="total"/>
+                            </tree>
+                            <form string="Payslip Line">
+                                <group col="4">
+                                    <field name="name"/>
+                                    <field name="code"/>
+                                    <field name="category_id"/>
+                                    <field name="sequence"/>
+                                    <field name="quantity"/>
+                                    <field name="rate"/>
+                                    <field name="amount"/>
+                                    <field name="total"/>
+                                    <field name="salary_rule_id"/>
+                                </group>
+                            </form>
+                        </field>
+                    </page>
+
+                </notebook>
+                </sheet>
+            </form>
+            </field>
+        </record>
+
+           <record id="view_hr_payslip_simulator_tree" model="ir.ui.view">
+        <field name="name">hr.payslip.simulator.tree</field>
+        <field name="model">hr.payslip.simulator</field>
+        <field name="arch" type="xml">
+            <tree string="Payslips Simulator">
+                <field name="employee_id"/>
+                <field name="name"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                <field name="payslip_run_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+        <record id="hr_payslip_simulator_search_view" model="ir.ui.view">
+            <field name="name">ProjectName.hr_payslip_simulator.search</field>
+            <field name="model">hr.payslip.simulator</field>
+            <field name="arch" type="xml">
+                <search string="Simulator">
+                    <group expand="1" string="Group By">
+                        <filter string="Employee" name="employee_id" domain="[]"
+                                context="{'group_by':'employee_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="hr_payslip_simulator_act_window" model="ir.actions.act_window">
+            <field name="name">Payslip Simulator</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.payslip.simulator</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new simulation.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Simulation" id="hr_payslip_simulator_menu" parent="hr_payroll.menu_hr_payroll_employees_root" action="hr_payslip_simulator_act_window"/>
+
+    </data>
+</odoo>

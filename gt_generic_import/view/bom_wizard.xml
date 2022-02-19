@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="import_wizared_bom_form" model="ir.ui.view">
+            <field name="name">bom.wizard</field>
+            <field name="model">bom.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import BOM">
+                    <group>
+                        <group>
+                            <field name="select_file" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <group>
+                            <field name="imp_product_by" widget="radio" />
+                        </group>
+                        <group string="Create Or Update BOM Based On Reference">
+                            <field name="bom_option" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <h5 style="color:red">Operation performed when record not found?</h5>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="option" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <group>
+                            <field name="data_file" filename="name" required="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="Import_BOM" string="Import" type="object"  class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_bom" model="ir.actions.act_window">
+            <field name="name">Import BOM</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bom.wizard</field>
+<!--             <field name="view_type">form</field> -->
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="import_bom_file" name="Import BOM" action="action_wizard_bom" parent="mrp.menu_mrp_configuration"/>
+    </data>
+</odoo>    	

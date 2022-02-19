@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_bulk_sync_activation" model="ir.ui.view">
+        <field name="name">Bulk Sync Activation</field>
+        <field name="model">bulk.sync.activation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <p class="oe_grey">
+                        The system will perform a Sync Activation for devices on all selected Sale Orders.
+                        Do you really want to do this?
+                    </p>
+                    <footer>
+                        <button name="action_bulk_sync_activation" string="Bulk Sync Activation" type="object"
+                            class="btn-danger"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_view_bulk_sync_activation" model="ir.actions.act_window">
+        <field name="name">Bulk Sync Activation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">bulk.sync.activation</field>
+        <field name="binding_model_id" ref="sale.model_sale_order" />
+        <!--<field name="view_type">form</field>-->
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

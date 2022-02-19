@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access.hr_loan_user,l10n_gu_hr_loan.hr_loan.user,model_hr_loan,base.group_user,1,1,1,1
+access.hr_loan_line_user,l10n_gu_hr_loan.hr_loan_line.user,model_hr_loan_line,base.group_user,1,1,1,1
+access.hr_loan_type_user_read,l10n_gu_hr_loan.hr_loan_type.user_read,model_hr_loan_type,base.group_user,1,0,0,0
+access.hr_loan_type_user,l10n_gu_hr_loan.hr_loan_type.user,model_hr_loan_type,hr.group_hr_manager,1,1,1,1
+access_hr_loan_approver,access_hr_loan_approver,model_hr_loan_approver,base.group_user,1,1,1,1
+
+
+

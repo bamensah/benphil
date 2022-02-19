@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record model="account.account.type" id="account_type_hors_bilan">
+    <field name="name">Comptes Hors Bilan</field>
+  </record>
+
+  <record id="pcgo_588" model="account.account.template">
+    <field name="name">Autres virements internes</field>
+    <field name="code">588</field>
+    <field name="user_type_id" ref="account.data_account_type_liquidity"/>
+    <field name="reconcile" eval="True"/>
+  </record>
+
+  <!-- Chart Template -->
+  <record id="l10n_pcgo_chart_template" model="account.chart.template">
+    <field name="name">SYSCOHADA Révisé - Plan de compte</field>
+    <field name="code_digits">6</field>
+    <field name="currency_id" ref="base.XOF"/>
+    <field name="transfer_account_id" ref="pcgo_588"/>
+    <field name="bank_account_code_prefix">521100</field>
+    <field name="cash_account_code_prefix">571100</field>
+    <field name="transfer_account_code_prefix">588000</field>
+  </record>
+  <record id="pcgo_588" model="account.account.template">
+    <field name="chart_template_id" ref="l10n_pcgo_chart_template"/>
+  </record>
+
+
+</odoo>

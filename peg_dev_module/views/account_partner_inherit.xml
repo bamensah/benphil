@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_partner_property_form_inherit" model="ir.ui.view">
+            <field name="name">account.partner.property.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <group name="accounting_entries" position="attributes">
+                    <attribute name="groups">account.group_account_invoice</attribute>
+                </group>
+            </field>
+        </record>
+    </data>
+</odoo>

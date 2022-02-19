@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_order_form_inherit_finance_approval" model="ir.ui.view">
+        <field name="name">purchase.order.form.view</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/header" position="inside">
+                <button name="button_finance_approval" string="Finance Approval" 
+                        type="object" class="oe_highlight" states="finance_approval" groups="account.group_account_invoice"/>
+                <button name="button_director_approval" string="Director Approval" 
+                        type="object" class="oe_highlight" states="director_approval" groups="purchase_tripple_approval.group_purchase_director"/>
+                <button name="%(action_purchase_order_refuse_wiz)d" string="Refuse" 
+                        type="action" states="to approve,finance_approval,director_approval"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="Approve Details" string="Approve Details">
+                    <group name="approv_details" string="Approve Details">
+                        <group>
+                            <field name="approve_dept_manager_id"/>
+                            <field name="approve_finance_manager_id"/>
+                            <field name="approve_director_manager_id"/>
+                        </group>
+                        <group>
+                            <field name="dept_manager_approve_date"/>
+                            <field name="finance_manager_approve_date"/>
+                            <field name="director_manager_approve_date"/>
+                        </group>
+                        <group>
+                            <field name="dept_manager_id"/>
+                            <field name="finance_manager_id"/>
+                            <field name="director_manager_id"/>
+                            <field name="purchase_user_id" invisible="True"/>
+                        </group>
+                    </group>
+                    <group name="refuse_po_grp" string="Refuse Details">
+                        <group>
+                            <field name="po_refuse_user_id"/>
+                        </group>
+                        <group>
+                            <field name="po_refuse_date"/>
+                        </group>
+                        <label for="refuse_reason_note" string="Refuse Reason"/>
+                        <field name="refuse_reason_note" nolabel="1"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//button[@name='button_draft']" position="attributes">
+                <attribute name="states">refuse</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_approve']" position="attributes">
+                <attribute name="groups">purchase_tripple_approval.group_department_manager</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="purchase_order_search_inherit_tripple_approval">
+        <field name="name">purchase.order.list.select.inherit.tripple.approval</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='to_approve']" position="after">
+                <filter name="finance_approval" string="Finance Approval" domain="[('state', '=', 'finance_approval')]"/>
+                <filter name="director_approval" string="Director Approval" domain="[('state', '=', 'director_approval')]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase.purchase_form_action" model="ir.actions.act_window">
+            <field name="context">{'search_default_todo':1, 'show_purchase': True, 'search_default_to_approve':1}</field>
+        </record>
+
+    <record model="ir.actions.act_window" id="action_purchase_manager_approve">
+            <field name="name">Purchase Order Purchase/Department Approve</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">tree,form</field>
+<!--            <field name="view_type">form</field>-->
+            <field name="context">{'search_default_to_approve':1}</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+<!--            <field name="domain">[('state', '=', 'to approve')]</field-->
+    </record>
+
+    <record model="ir.actions.act_window" id="action_finance_manager_approve">
+            <field name="name">Purchase Order Finance Approve</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">tree,form</field>
+<!--            <field name="view_type">form</field>-->
+            <field name="context">{'search_default_finance_approval':1}</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+<!--            <field name="domain">[('state', '=', 'finance_approval')]</field-->
+    </record>
+
+    <record model="ir.actions.act_window" id="action_director_manager_approve">
+            <field name="name">Purchase Order Director Approve</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">tree,form</field>
+<!--            <field name="view_type">form</field>-->
+            <field name="context">{'search_default_director_approval':1}</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+<!--            <field name="domain">[('state', '=', 'director_approval')]</field-->
+    </record>
+
+    <menuitem name="Purchase Order Finance Approve" id="menu_purchase_order_finance_custom" action="action_finance_manager_approve" parent="account.menu_finance_payables" groups="account.group_account_invoice" sequence="2"/>
+
+    <menuitem id="menu_purchase_manager_approve_custom" name="Purchase Order Purchase/Department Approve" action="action_purchase_manager_approve" parent="purchase.menu_procurement_management" groups="purchase_tripple_approval.group_department_manager"/>
+
+    <menuitem id="menu_finance_manager_approve_custom" name="Purchase Order Finance Approve" action="action_finance_manager_approve" parent="purchase.menu_procurement_management" groups="account.group_account_invoice"/>
+
+    <menuitem id="menu_director_manager_approve_custom" name="Purchase Order Director Approve" action="action_director_manager_approve" parent="purchase.menu_procurement_management" groups="purchase_tripple_approval.group_purchase_director"/>
+
+</odoo>

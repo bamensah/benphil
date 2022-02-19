@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data>
+        <!--for product_template_id We used Odoo standard field Quotation template IN V14-->
+
+        <!--<record id="view_quotation_tree_with_onboarding" model="ir.ui.view">
+            <field name="name">sale.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree[1]/field[@name='name']" position="after">
+                    <field name="product_template_id"/>
+                </xpath>
+            </field>
+        </record>--><!--product_template_id not in sale.order-->
+
+<!--studio_customization.odoo_studio_sale_ord_5cd4ae54-599d-4ce9-ac3b-036ef67d8f92-->
+
+        <record id="view_order_tree_inherit_date_stud" model="ir.ui.view">
+            <field name="name">sale.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree[1]/field[@name='name']" position="after">
+                    <field name="date_order"/>
+                </xpath>
+                <!--<xpath expr="//field[@name='date_order']" position="after">&lt;!&ndash;confimration_date to date-order&ndash;&gt;
+                    <field name="product_template_id"/>
+                </xpath>--><!--product_template_id not in the model-->
+            </field>
+        </record>
+        <!--studio_customization.odoo_studio_sale_ord_10de556b-1c2e-40f3-bd74-a40cc836eb0e-->
+    </data>
+</odoo>

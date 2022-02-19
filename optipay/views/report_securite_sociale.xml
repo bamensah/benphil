@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- by khk -->
+<odoo>
+
+    <report
+            id="securite_sociale"
+            model="hr.contribution.register"
+            string="Securite sociale"
+            report_type="qweb-pdf"
+            name="optipay.report_css_view"
+            file="optipay.report_css"
+            menu="False"
+    />
+
+    <template id="report_css_view">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <table style="width:80%">
+                            <tr>
+                                <td>
+                                    <p>
+                                        <span t-field="res_company.partner_id.street"/>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%">
+                                    <p>B.P:
+                                        <span t-field="res_company.partner_id.zip"/>
+                                    </p>
+                                </td>
+                                <td>Tél:
+                                    <span t-field="res_company.partner_id.phone"/>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <!-- <td style="width:30%">Fax: <span t-field="res_company.partner_id.fax"/></td> -->
+                                <td style="width:30%">Fax: <!--<span t-field="res_company.partner_id.fax"/>--></td>
+                                <td>Email:
+                                    <span t-field="res_company.partner_id.email"/>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table style="width:100%">
+                            <tr>
+                                <td align="center">
+                                    <h3>
+                                        <span style="background:#e5e7ea;">Sécurite Sociale</span>
+                                    </h3>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center">
+                                    <h4>
+                                        <span style="background:#e5e7ea;">Période de</span>
+                                        <span style="background:#e5e7ea;" t-esc="data['form']['date_from']"/>
+                                        <span style="background:#e5e7ea;">à</span>
+                                        <span style="background:#e5e7ea;" t-esc="data['form']['date_to']"/>
+                                    </h4>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table class="table table-condensed table-bordered">
+                            <tr>
+                                <td style="min-width:50px" align="center">N°</td>
+                                <td style="min-width:50px" colspan="2" align="center">Identification Employé</td>
+                                <td style="min-width:50px" align="center">Brut imposable</td>
+                                <td style="min-width:50px" align="center">Base</td>
+                                <td style="min-width:50px" align="center">Allocation familiales</td>
+                                <td style="min-width:50px" align="center">Accident de travail</td>
+                                <td style="min-width:50px" align="center">Cotisation totale</td>
+                            </tr>
+                            <tr t-foreach="lines_data" t-as="r">
+                                <td style="min-width:50px" align="right">
+                                    <span t-esc="r.get('index')"/>
+                                </td>
+                                <td style="min-width:50px" align="right">
+                                    <span t-esc="r.get('matricule')"/>
+                                </td>
+                                <td style="min-width:100px" align="center">
+                                    <span t-esc="r.get('name')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('brut')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('base')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('prestfam')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('acw')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('cotisation')).replace(',',' ')"/>
+                                </td>
+                            </tr>
+                            <tr t-foreach="lines_total" t-as="r">
+                                <td style="min-width:50px" colspan="3" align="center">Total</td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('total_brut')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('total_base')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('total_prestfam')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('total_acw')).replace(',',' ')"/>
+                                </td>
+                                <td style="min-width:100px" align="right">
+                                    <span t-esc="'{:,}'.format(r.get('total_cotisation')).replace(',',' ')"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

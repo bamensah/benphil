@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<odoo>
+    <data noupdate="1">
+        <record id="inactive_contract_status" model="base.automation">
+            <field name="name">Inactive Contract Status</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="trigger">on_write</field>
+            <field name="active" eval="True"/>
+            <field name="filter_domain" eval="['&amp;', '&amp;', '&amp;', '&amp;', ('dwol', '>=', 0), ('dwol', '&lt;=', 30), '|', ('written_off_flag', '=', False), ('written_off_flag', '!=', 'Client was terminated'),
+            '|', ('contract_status', '=', False), ('contract_status.id', '!=', ref('wave2_peg_africa.contract_status_inactive')), ('outstanding_balance', '>', 0)]" />
+            <field name="filter_pre_domain">[('paygops_id', '!=', False)]</field>
+            <field name="code">
+record = model.browse(env.context['active_id'])
+record.write({'contract_status': env.ref('wave2_peg_africa.contract_status_inactive').id, 'written_off_flag': 'NA'})
+record.update_client_status()
+stock_action = env['invoice.stock.action'].search([('invoice_id', '=', record.invoice_id.id)], limit=1)
+if stock_action:
+    for action_line in stock_action.stock_action_lines:
+        if action_line.status != env.ref('wave2_peg_africa.stock_action_repossessed') and action_line.status != env.ref('wave2_peg_africa.stock_action_lost_stolen') and action_line.status != env.ref('wave2_peg_africa.stock_action_no_action'):
+            action_line.write({'status': env.ref('wave2_peg_africa.stock_action_no_action').id})
+    record.update_stock_action()
+            </field>
+        </record>
+        <record id="blocked_contract_status" model="base.automation">
+            <field name="name">Blocked Contract Status</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="trigger">on_write</field>
+            <field name="active" eval="True"/>
+            <field name="filter_domain" eval="['&amp;','&amp;', '&amp;', '&amp;', ('dwol', '>', 31), ('dwol', '&lt;=', 155), '|', ('written_off_flag', '=', False), ('written_off_flag', '!=', 'Client was terminated'),
+            '|', ('contract_status', '=', False), ('contract_status.id', '!=', ref('wave2_peg_africa.contract_status_blocked')), ('outstanding_balance', '>', 0)]" />
+            <field name="filter_pre_domain">[('paygops_id', '!=', False)]</field>
+            <field name="code">
+record = model.browse(env.context['active_id'])
+record.write({'contract_status': env.ref('wave2_peg_africa.contract_status_blocked').id, 'written_off_flag': 'NA'})
+record.update_client_status()
+stock_action = env['invoice.stock.action'].search([('invoice_id', '=', record.invoice_id.id)], limit=1)
+if stock_action:
+    for action_line in stock_action.stock_action_lines:
+        if action_line.status != env.ref('wave2_peg_africa.stock_action_repossessed') and action_line.status != env.ref('wave2_peg_africa.stock_action_lost_stolen') and action_line.status != env.ref('wave2_peg_africa.stock_action_no_action'):
+            action_line.write({'status': env.ref('wave2_peg_africa.stock_action_no_action').id})
+    record.update_stock_action()
+            </field>
+        </record>
+        <record id="written_off_contract_status" model="base.automation">
+            <field name="name">Written Off Contract Status</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="trigger">on_write</field>
+            <field name="active" eval="True"/>
+            <field name="filter_domain" eval="['&amp;', '&amp;', '&amp;', ('dwol', '>', 155), '|', ('written_off_flag', '=', False), ('written_off_flag', '!=', 'Client was terminated'), 
+            '|', ('contract_status', '=', False), ('contract_status.id', '!=', ref('wave2_peg_africa.contract_status_written_off')), ('outstanding_balance', '>', 0)]" />
+            <field name="filter_pre_domain">[('paygops_id', '!=', False)]</field>
+            <field name="code">
+record = model.browse(env.context['active_id'])
+record.write({'contract_status': env.ref('wave2_peg_africa.contract_status_written_off').id, 'written_off_flag': 'Blocked (DWOL>156)'})
+record.update_client_status()
+if record.invoice_id:
+    stock_action = env['invoice.stock.action'].search([('invoice_id', '=', record.invoice_id.id)], limit=1)
+    if stock_action:
+        for action_line in stock_action.stock_action_lines:
+            if action_line.status != env.ref('wave2_peg_africa.stock_action_repossessed') and action_line.status != env.ref('wave2_peg_africa.stock_action_lost_stolen') and action_line.status != env.ref('wave2_peg_africa.stock_action_to_be_repossessed'):
+                action_line.write({'status': env.ref('wave2_peg_africa.stock_action_to_be_repossessed').id})
+    record.update_stock_action()
+            </field>
+        </record>
+        <record id="paid_off_contract_status" model="base.automation">
+            <field name="name">Paid Off Contract Status</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="trigger">on_write</field>
+            <field name="active" eval="True"/>
+            <field name="filter_domain" eval="[('outstanding_balance', '&lt;=', 0), ('contract_status', '!=', ref('contract_status_paid_off'))]" />
+            <field name="filter_pre_domain">[('paygops_id', '!=', False)]</field>
+            <field name="code">
+record = model.browse(env.context['active_id'])
+record.write({'contract_status': env.ref('wave2_peg_africa.contract_status_paid_off').id})
+record.update_client_status()
+            </field>
+        </record>
+        <record id="active_contract_status" model="base.automation">
+            <field name="name">Active Contract Status</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="trigger">on_write</field>
+            <field name="active" eval="True"/>
+            <field name="filter_domain" eval="['&amp;', '&amp;', '&amp;', ('dol', '>', 0), '|', ('written_off_flag', '=', False), ('written_off_flag', '!=', 'Client was terminated'), 
+            '|', ('contract_status', '=', False), ('contract_status.id', '!=', ref('wave2_peg_africa.contract_status_active')), ('outstanding_balance', '>', 0)]" />
+            <field name="filter_pre_domain">[('paygops_id', '!=', False)]</field>
+            <field name="code">
+record = model.browse(env.context['active_id'])
+record.write({'contract_status': env.ref('wave2_peg_africa.contract_status_active').id, 'written_off_flag': 'NA'})
+record.update_client_status()
+if record.invoice_id:
+    stock_action = env['invoice.stock.action'].search([('invoice_id', '=', record.invoice_id.id)], limit=1)
+    if stock_action:
+        for action_line in stock_action.stock_action_lines:
+            if action_line.status != env.ref('wave2_peg_africa.stock_action_repossessed') and action_line.status != env.ref('wave2_peg_africa.stock_action_lost_stolen') and action_line.status != env.ref('wave2_peg_africa.stock_action_no_action'):
+                action_line.write({'status': env.ref('wave2_peg_africa.stock_action_no_action').id})
+        record.update_stock_action()
+            </field>
+        </record>
+        <record id="manual_contract_term" model="base.automation">
+            <field name="name">Manual Contract Termination Update</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="trigger">on_write</field>
+            <field name="active" eval="True"/>
+            <field name="filter_domain" eval="['&amp;', '&amp;', '&amp;', '|', ('written_off_flag', '=', False), ('written_off_flag', '=', 'Client was terminated'), 
+            '|', ('contract_status', '=', False),('contract_status.id', '=', ref('wave2_peg_africa.contract_status_written_off')),('credit_end_date', '!=', False), ('outstanding_balance', '>', 0)]" />
+            <field name="filter_pre_domain">[('paygops_id', '!=', False)]</field>
+            <field name="code">
+record = model.browse(env.context['active_id'])
+record.update_client_status()
+if record.invoice_id:
+    stock_action = env['invoice.stock.action'].search([('invoice_id', '=', record.invoice_id.id)], limit=1)
+    if stock_action:
+        for action_line in stock_action.stock_action_lines:
+            if action_line.status != env.ref('wave2_peg_africa.stock_action_repossessed') and action_line.status != env.ref('wave2_peg_africa.stock_action_lost_stolen') and action_line.status != env.ref('wave2_peg_africa.stock_action_to_be_repossessed'):
+                action_line.write({'status': env.ref('wave2_peg_africa.stock_action_to_be_repossessed').id})
+    record.update_stock_action()
+            </field>
+        </record>          
+    </data>
+</odoo>

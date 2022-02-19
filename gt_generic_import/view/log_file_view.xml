@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_log_data_tree">
+            <field name="name">log.management.view</field>
+            <field name="model">log.management</field>
+            <field name="arch" type="xml">
+                <tree string="Log Management" editable="top" create="0">
+                    <field name="operation" />
+                    <field name="message" />
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+		
+        <record model="ir.actions.act_window" id="action_log_management">
+            <field name="name">Generic Import Logs</field>
+            <field name="res_model">log.management</field>
+ <!--            <field name="view_type">form</field> -->
+            <field name="view_mode">tree</field>
+        </record>
+		
+        <menuitem name="Generic Logs" id="menu_log_maintainance" parent="sale.sale_menu_root"/>
+        <menuitem name="Generic Import Logs" id="menu_log_maintainance_id" action="action_log_management" parent="menu_log_maintainance"/>
+		
+    </data>
+</odoo>

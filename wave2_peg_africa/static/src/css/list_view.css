@@ -1,0 +1,4 @@
+.o_list_view .o_list_table thead > tr > th:not(.o_list_record_selector) {
+    white-space: normal !important;
+    width: auto !important;
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+<!--        W1E-42-add product template invoice tree view-->
+        <record id="invoice_tree_with_onboarding_inherit_peg_dev" model="ir.ui.view">
+            <field name="name">account.invoice.tree.with.onboarding.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_out_invoice_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_user_id']" position="after">
+                    <field name="product_template"/>
+                    <field name="product_template_store" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

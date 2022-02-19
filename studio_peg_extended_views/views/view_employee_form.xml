@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data>
+        <!--<record id="view_employee_form" model="ir.ui.view">
+            <field name="name">employee.form.view</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='ir']" position="after">
+                    <field name="ir_changed" attrs="{}" invisible="1"/>
+                </xpath>
+            </field>
+        </record>--><!--employee has no field ir in peg addon is -->
+    </data>
+</odoo>
+
+<!--Odoo Studio: hr.employee.form customization-->

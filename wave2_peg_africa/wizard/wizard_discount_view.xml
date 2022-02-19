@@ -1,0 +1,29 @@
+<odoo>
+    <record id="wave_peg_africa_discount" model="ir.ui.view">
+        <field name="name">Discount</field>
+        <field name="model">wave.peg.africa.discount</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form name="Discount">
+                <group>
+                    <field name="invoice_id" invisible="1"/>
+                    <field name="type" />
+                    <field name="days" attrs="{'invisible': [('type', '!=', 'free_days')]}"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="amount" attrs="{'invisible': [('type', '!=', 'amount')]}"/>
+                    <field name="company_id" invisible="1"/>
+                    <field 
+                        name="tag_id" 
+                        options="{'no_create_edit': True}" 
+                        domain="[('company_id', '=', company_id)]"
+                    />
+                </group>
+                <footer>
+                    <button name="action_confirm" string="Confirm" type="object" class="oe_highlight">
+                    </button>
+                    <button special="cancel" string="Cancel" class="oe_highlight"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

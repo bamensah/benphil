@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <data>
+
+      <record id="hr_payslip_net_salary_to_payslip" model="ir.ui.view">
+            <field name="name">hr.payslip.net_salary.to.payslip.view</field>
+            <field name="model">hr.payslip</field>
+            <field name="priority">20</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+            <field name="arch" type="xml">
+            <data>
+                 <xpath expr="//field[@name='credit_note']" position="after">
+                     <field name="net_salary" invisible="True"/>
+                 </xpath>
+            </data>
+            </field>
+        </record>
+
+    </data>
+</odoo>

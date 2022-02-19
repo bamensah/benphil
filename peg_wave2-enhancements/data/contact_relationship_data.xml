@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="1">
+        <record id="contact_relationship_father" model="contact.relationship">
+          <field name="name">Father</field>
+        </record>
+        <record id="contact_relationship_mother" model="contact.relationship">
+          <field name="name">Mother</field>
+        </record>
+        <record id="contact_relationship_sister" model="contact.relationship">
+          <field name="name">Sister</field>
+        </record>
+        <record id="contact_relationship_brother" model="contact.relationship">
+          <field name="name">Brother</field>
+        </record>
+        <record id="contact_relationship_uncle" model="contact.relationship">
+          <field name="name">Uncle</field>
+        </record>
+        <record id="contact_relationship_auntie" model="contact.relationship">
+          <field name="name">Auntie</field>
+        </record>
+        <record id="contact_relationship_son" model="contact.relationship">
+          <field name="name">Son</field>
+        </record>
+        <record id="contact_relationship_daughter" model="contact.relationship">
+          <field name="name">Daughter</field>
+        </record>
+        <record id="contact_relationship_wife" model="contact.relationship">
+          <field name="name">Wife</field>
+        </record>
+        <record id="contact_relationship_husband" model="contact.relationship">
+          <field name="name">Husband</field>
+        </record>
+        <record id="contact_relationship_girlfriend" model="contact.relationship">
+          <field name="name">Girlfriend</field>
+        </record>
+        <record id="contact_relationship_boyfriend" model="contact.relationship">
+          <field name="name">Boyfriend</field>
+        </record>
+        <record id="contact_relationship_other_relative" model="contact.relationship">
+          <field name="name">Other relative</field>
+        </record>
+        <record id="contact_relationship_momo_agent" model="contact.relationship">
+          <field name="name">Mobile Money Agent</field>
+        </record>
+        <record id="contact_relationship_chief" model="contact.relationship">
+          <field name="name">Chief</field>
+        </record>
+        <record id="contact_relationship_friend" model="contact.relationship">
+          <field name="name">Friend</field>
+        </record>
+        <record id="contact_relationship_pastor" model="contact.relationship">
+          <field name="name">Pastor</field>
+        </record>
+        <record id="contact_relationship_imam" model="contact.relationship">
+          <field name="name">Imam</field>
+        </record>
+        <record id="contact_relationship_neighbour" model="contact.relationship">
+          <field name="name">Neighbour</field>
+        </record>
+        <record id="contact_relationship_other" model="contact.relationship">
+          <field name="name">Other</field>
+        </record>                  
+  </data>
+</odoo>

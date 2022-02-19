@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <record id="validate_vendor_bill_group" model="res.groups">
+            <field name="name">Validate Vendor Bills</field>
+            <field name="category_id" ref="base.module_category_accounting_accounting" />
+        </record>
+    </data>
+
+</odoo>

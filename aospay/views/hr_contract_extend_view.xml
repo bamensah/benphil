@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_contract_extend" model="ir.ui.view">
+            <field name="name">hr.contract.form.extend</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+	    <field name="groups_id" eval="[(4, ref('aospay.group_aos_payroll_user'))]" />
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='salary_and_advantages']" position="replace">
+				  <group name="salary_and_advantages" string="Monthly Advantages in Cash">
+				    <field name="conv_id" readonly="1"/>
+					<field name="cat" domain="[('conv_id','=',conv_id)]"/>
+					<field name="wage" />
+					<field name="sursal"/>
+					<field name="indd"/>
+				    <field name="inds73" />
+					<field name="inds91" />
+					<field name="pcvie" />
+					<field name="presp" />
+					</group>
+				</xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

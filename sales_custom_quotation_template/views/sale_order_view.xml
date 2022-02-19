@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="view_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_confirm']" position="after">
+                    <button name="action_get_order_line_from_sale_product_template_line" states="draft" type="object" string="Generate Product Template Lines"/>
+                </xpath>
+            </field>
+        </record>
+
+<!--        <record id="view_order_line_inherit" model="ir.ui.view">-->
+<!--            <field name="name">sale.order.line.inherit</field>-->
+<!--            <field name="model">sale.order.line</field>-->
+<!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='name']" position="after">-->
+<!--                    <field name="account_analytic"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+    </data>
+</odoo>

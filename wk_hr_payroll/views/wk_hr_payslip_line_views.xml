@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data>
+        <!-- Payslip Line -->
+        <record id="view_wk_hr_payslip_line_tree" model="ir.ui.view">
+            <field name="name">wk.hr.payslip.line.tree</field>
+            <field name="model">wk.hr.payslip.line</field>
+            <field name="arch" type="xml">
+                <tree string="Salary Structure" editable="bottom" decoration-info="total == 0">
+                    <field name="category_id"/>
+                    <field name="employee_id" invisible="1"/>
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="quantity"/>
+                    <field name="rate"/>
+                    <field name="amount"/>
+                    <field name="total"/>
+                    <field name="amount_select" invisible="1"/>
+                    <field name="register_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_wk_hr_payslip_line_form" model="ir.ui.view">
+            <field name="name">wk.hr.payslip.line.form</field>
+            <field name="model">wk.hr.payslip.line</field>
+            <field name="arch" type="xml">
+                <form string="Payslip Line">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="slip_id"/>
+                            <field name="employee_id"/>
+                        </group>
+                        <group string="Calculations">
+                            <field name="category_id"/>
+                            <field name="amount_select"/>
+                            <field name="amount_fix" attrs="{'readonly':[('amount_select','!=','fix')]}"/>
+                            <field name="amount_percentage" attrs="{'readonly':[('amount_select','!=','percentage')]}"/>
+                            <field name="sequence"/>
+                        </group>
+                        <field name="note"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_wk_hr_payslip_line_filter" model="ir.ui.view">
+            <field name="name">wk.hr.payslip.line.select</field>
+            <field name="model">wk.hr.payslip.line</field>
+            <field name="arch" type="xml">
+                <search string="Search Payslip Lines">
+                    <field name="name" string="Payslip Lines" filter_domain="['|',('name','ilike',self),('code','ilike',self)]"/>
+                    <field name="amount_select"/>
+                    <field name="slip_id"/>
+                    <group col="8" colspan="4" expand="0" string="Group By">
+                        <filter string="Salary Rule Category" name="category_id" context="{'group_by':'category_id'}"/>
+                        <filter string="Contribution Register" name="register_id" context="{'group_by':'register_id'}"/>
+                        <filter string="Amount Type" name="amount_select" context="{'group_by':'amount_select'}"/>
+                        <filter string="Employees" name="employee_id" context="{'group_by':'employee_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="act_payslip_lines" model="ir.actions.act_window">
+            <field name="name">Payslip Computation Details</field>
+            <field name="res_model">wk.hr.payslip.line</field>
+            <field name="view_mode">list,form</field>
+            <field name="context">{
+                'default_slip_id': active_id,
+                'search_default_slip_id': active_id,
+            }</field>
+            <field name="binding_model_id" ref="model_wk_hr_payslip"/>
+            <field name="binding_view_types">list</field>
+        </record>
+
+        <record id="act_contribution_reg_payslip_lines" model="ir.actions.act_window">
+            <field name="name">Payslip Lines</field>
+            <field name="res_model">wk.hr.payslip.line</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('register_id', '=', active_id)]</field>
+            <field name="context">{
+                'default_register_id': active_id,
+                'search_default_register_id': 1
+            }</field>
+            <field name="binding_model_id" ref="model_wk_hr_contribution_register"/>
+            <field name="binding_view_types">list</field>
+        </record>
+    </data>
+</odoo>

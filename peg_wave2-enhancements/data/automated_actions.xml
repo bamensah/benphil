@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data noupdate="1">
+        <record id="record_account_number" model="base.automation">
+            <field name="name">Record Changes to Battery/Account Number</field>
+            <field name="model_id" ref="wave2_peg_africa.model_peg_africa_paygops"/>
+            <field name="state">code</field>
+            <field name="trigger">on_create_or_write</field>
+            <field name="active" eval="True"/>
+            <field name="filter_domain" eval="" />
+            <field name="filter_pre_domain"></field>
+            <field name="code">
+for r in records:
+    if r.loan_id and r.device_id:
+        r.loan_id.write({'account_number': r.device_id.replace('OPT-PL', 'PL')})
+            </field>
+        </record>
+    </data>
+    
+</odoo>

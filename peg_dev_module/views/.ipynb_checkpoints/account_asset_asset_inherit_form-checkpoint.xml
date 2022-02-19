@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        
+        <record id="view_account_asset_search_barecode" model="ir.ui.view">
+        <field name="name">account.asset.asset.search.barecode</field>
+        <field name="model">account.asset.asset</field>
+        <field name="inherit_id" ref="account_asset.view_account_asset_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="barcode"/>
+            </xpath>
+        </field>
+    </record>
+        
+        <record id="account_asset_asset_form_inherit_view" model="ir.ui.view">
+            <field name="name">account.asset.asset.form.inherit</field>
+            <field name="model">account.asset.asset</field>
+            <field name="inherit_id" ref="account_asset.view_account_asset_asset_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='account_analytic_id']" position="after">
+                    <field name="site_id"/>
+                    <field name="level_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                    <field name="room_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                </xpath>
+                
+                <xpath expr="//field[@name='category_id']" position="before">
+                    <field name="barcode"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

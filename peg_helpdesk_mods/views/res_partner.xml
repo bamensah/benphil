@@ -1,0 +1,50 @@
+<odoo>
+
+    <data>
+        <record id="helpdesk_ticket_count_partner_form_inherit" model="ir.ui.view">
+            <field name="name">Helpdesk Ticket Count Partner Form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="groups_id" eval="[(4, ref('helpdesk.group_helpdesk_user'))]" />
+            <field name="arch" type="xml">
+                <button name="action_open_helpdesk_ticket" position="attributes">
+                    <attribute name="attrs"></attribute>
+                </button>
+                <page name="internal_notes" position="after">
+                    <page name="ticket_interactions" string="Interactions">
+                        <group>
+                            <sheet>
+                                <field name="ticket_interaction_ids" options="{'no_create_edit': True}">
+                                    <tree string="Interactions" create="false" edit="false">
+                                        <field name="create_date" string="Date" />
+                                        <field name="ticket_type_id" string="Type" />
+                                        <field name="type" string="Direction"/>
+                                        <field name="tool_id" string="Tool" />
+                                        <field name="create_uid" string="Created By" />
+                                        <field name="status" string="Interaction Status" />
+                                        <field name="notes" />
+                                        <field name="followup_action_id" string="Followup Action" />
+                                        <field name="sale_order_id" />
+                                    </tree>
+                                </field>
+                            </sheet>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+        
+        <record id="action_form_add_interaction_res_partner" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Add Interaction</field>
+            <field name="res_model">helpdesk.interaction.entry_wizard</field>
+            <field name="binding_model_id" ref="peg_helpdesk_mods.model_res_partner"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="helpdesk_ticket_interaction_entry_partners_wizard_form"/>
+            <field name="context">{'default_partner_id':active_id}</field>
+            <field name="target">new</field>
+        </record>
+        
+    </data>
+</odoo>

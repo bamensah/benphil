@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    	<record model="ir.ui.view" id="convention_collective_form_view">
+            <field name="name">optesis.convention.form</field>
+            <field name="model">optesis.convention</field>
+            <field name="arch" type="xml">
+	            <form string="Convention Collective">
+	                <sheet>
+	                	<group>
+	                		<div class="oe_title">
+	                			<label for="name" class="oe_edit_only"/> <br/>
+	                			<h1>
+	                				<field name="name" class="oe_inline bar" default_focus="1" required="True"/>
+	                			</h1>
+	                		</div>
+	                	</group>
+	                	<notebook>
+	                        <page string="Lignes de convention">
+	                            <field name="line_ids">
+	                                <tree editable="bottom">
+	                                    <field name="name"/>
+	                                    <field name="code"/>
+	                                    <field name="taux_h"/>
+	                                    <field name="wage"/>
+	                                </tree>
+	                            </field>
+	                        </page>
+	                    </notebook>
+	                </sheet>
+	            </form>
+	        </field>
+	    </record>
+
+      <record id="convention_collective_tree" model="ir.ui.view">
+          <field name="name">optesis.convention.tree</field>
+          <field name="model">optesis.convention</field>
+          <field name="arch" type="xml">
+              <tree string="Convention collective">
+                  <field name="name"/>
+              </tree>
+          </field>
+      </record>
+
+      <record model="ir.ui.view" id="convention_collective_search_view">
+            <field name="name">convention.collective.search</field>
+            <field name="model">optesis.convention</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+      <record id="convention_collective_action" model="ir.actions.act_window">
+            <field name="name">Convention collective</field>
+            <field name="res_model">optesis.convention</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form,search</field>
+      </record>
+
+      <menuitem id="convention_collective_menu"
+         parent="hr_payroll.menu_hr_payroll_employees_configuration"
+         action="convention_collective_action"
+         groups="optipay.optipay_group_manager"
+         sequence="18"/>
+
+
+    </data>
+</odoo>

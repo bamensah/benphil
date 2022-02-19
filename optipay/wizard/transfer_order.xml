@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_optesis_tranfer_order" model="ir.ui.view">
+            <field name="name">optesis.transfer.order</field>
+            <field name="model">optesis.transfer.order</field>
+            <field name="arch" type="xml">
+            <form string="Ordre de virement">
+                <field name="state" invisible="True"/>
+                <div states="get">
+                    <group>
+                        <field name="transfer_data" colspan="4" invisible="1"/>
+                        <field name="file_name" filename="transfer_data" colspan="4"/>
+                    </group>
+                </div>
+                <div states="choose">
+                    <group col="4" colspan="6">
+                    <field name="date_from"/>
+                    <field name="print_format"/>
+                </group>
+                </div>
+                <footer states="choose">
+                    <button name="print_report_transfer_order" string="Imprimer" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Annuler" class="oe_link" special="cancel"/>
+                </footer>
+                <footer states="get">
+                    <button special="cancel" string="Cancel" class="oe_highlight"/>
+                </footer>
+            </form>
+            </field>
+        </record>
+
+        <!--act_window id="launch_transfer_order_wizard"
+                   name="Ordre de virement"
+                   multi="True"
+                   key2="client_print_multi"
+                   src_model="hr.contribution.register"
+                   res_model="optesis.transfer.order"
+                   view_mode="form"
+                   target="new"
+                   view_type="form"/-->
+       <!--record id="launch_transfer_order_wizard" model="ir.actions.act_window">
+            <field name="name">Ordre de virement</field>
+            <field name="res_model">optesis.transfer.order</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="model_hr_contribution_register"/>
+            <field name="binding_view_types">form</field>
+        </record-->
+    </data>
+</odoo>

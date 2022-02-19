@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data>
+        <record id="purchase_order_view_tree_inherit_uQVgD_stud" model="ir.ui.view">
+            <field name="name">purchase.order.tree</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='amount_untaxed']" position="replace"/>
+                <xpath expr="//field[@name='origin']" position="replace">
+                    <field name="field_uQVgD"/><!--x_studio_field_uQVgD -->
+                    <field name="partner_ref"/>
+                </xpath>
+                <xpath expr="//field[@name='date_planned']" position="replace"/>
+            </field>
+        </record>
+        
+        <record id="purchase_order_kpis_tree_inherit_uQVgD_stud" model="ir.ui.view">
+            <field name="name">purchase.order.tree</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='amount_untaxed']" position="replace"/>
+                <xpath expr="//field[@name='origin']" position="replace">
+                    <field name="field_uQVgD"/><!--x_studio_field_uQVgD -->
+                    <field name="partner_ref"/>
+                </xpath>
+                <xpath expr="//field[@name='date_planned']" position="replace"/>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+<!--Odoo Studio: purchase.order.tree customization-->

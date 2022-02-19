@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="view_landed_cost_lines_make_invoice" model="ir.ui.view">
+            <field name="name">Landed Cost Line Make Invoice</field>
+            <field name="model">landed.cost.lines.make.invoice</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                 <form string="Create Invoice">
+                     <separator string="Existing Invoice to update:"/>
+                     <newline/>
+                     <group>
+                        <field name="landed_cost_id"/>
+                     </group>
+                     <newline/>
+                     <separator
+                             string="New Invoice details:"/>
+                     <newline/>
+                     <group>
+                         <field name="supplier_id"/>
+                     </group>
+                     <newline/>
+                     <group>
+                         <field name="item_ids" nolabel="1" colspan="2">
+                              <tree string="Details" create="false" editable="bottom">
+                                  <field name="line_id"
+                                       options="{'no_open': true}"
+                                       invisible="1"/>
+                                  <field name="request_id" readonly="1"/>
+                                  <field name="product_id"/>
+                                  <field name="account_analytic_id"/>
+                                  <field name="name"/>
+                                  <field name="product_qty"/>
+                                  <field name="price_unit"/>
+                                  <field name="account_id" invisible="1"/><!--Added beacuase value is not set-->
+                              </tree>
+                         </field>
+                     </group>
+                     <newline/>
+                     <footer>
+                         <button name="make_invoice"
+                                 string="Create Invoice" type="object"
+                                 class="oe_highlight"/>
+                         <button special="cancel" string="Cancel" class="oe_link"/>
+                     </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_landed_cost_lines_make_invoice" model="ir.actions.act_window">
+            <field name="name">Create Invoice</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">landed.cost.lines.make.invoice</field>
+            <field name="binding_model_id" ref="stock_landed_costs.model_stock_landed_cost_lines" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_landed_cost_lines_make_invoice"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="landed_cost_lines_make_invoice" model="ir.actions.act_window">
+            <field name="name">Create Invoice</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">landed.cost.lines.make.invoice</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_landed_cost_lines_make_invoice"/>
+            <field name="target">new</field>
+        </record>
+
+<!--        <act_window-->
+<!--            id="landed_cost_lines_make_invoice"-->
+<!--            name="Create Invoice"-->
+<!--            multi="True"-->
+<!--            key2="client_action_multi"-->
+<!--            res_model="landed.cost.lines.make.invoice"-->
+<!--            src_model="stock.landed.cost.lines"-->
+<!--            view_mode="form"-->
+<!--            target="new"-->
+<!--            view_type="form"/>-->
+
+    </data>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="1">
+      
+      <!--record id="test_product_template" model="sale.product.template">
+        <field name="name">Product Template test</field>
+      </record-->
+      
+      <record id="test_product_product" model="product.product">
+          <field name="name">product test</field>
+          <field name="lst_price">2950.00</field>
+      </record>
+      
+<!--      <record id="test_product_template_line" model="sale.product.template.line">-->
+<!--          <field name="name" ref="test_product_product"/>-->
+<!--          <field name="sale_template_id" ref="test_product_template"/>-->
+<!--          <field name="ordered_qty">3</field>-->
+<!--          <field name="unit_price">2950.00</field>-->
+<!--          <field name="discount">0.0</field>-->
+<!--    </record>-->
+    
+  </data>
+</odoo>

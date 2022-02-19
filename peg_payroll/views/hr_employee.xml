@@ -1,0 +1,18 @@
+<odoo>
+  <data>
+    <record id="hr_employee_view_extended" model="ir.ui.view">
+      <field name="name">HR_Employee Form extended</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr_payroll.payroll_hr_employee_view_form" />
+      <field name="arch" type="xml">
+        <field name="children" position="after">
+          <field name="has_independent_children_only" attrs="{'readonly':[('children', '&gt;', 0)], 'invisible':[('ci_employee','!=', True)]}" />
+          <field name="part_case_a" string="Single Special Case" attrs="{'invisible':[('ci_employee','!=', True)]}"/>
+          <field name="part_case_b" string="Married Woman Separate Tax" attrs="{'invisible':[('ci_employee','!=', True)]}"/>
+          <field name="shares" readonly="1" attrs="{'invisible':[('ci_employee','!=', True)]}"/>
+          <field name="ci_employee" invisible="1"/>
+        </field>
+      </field>
+    </record>
+  </data>
+</odoo>

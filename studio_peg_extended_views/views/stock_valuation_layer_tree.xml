@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data>
+        <record id="stock_valuation_layer_tree_inherit_qty_stud" model="ir.ui.view">
+            <field name="name">stock.valuation.layer.tree</field>
+            <field name="model">stock.valuation.layer</field>
+            <field name="inherit_id" ref="stock_account.stock_valuation_layer_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='uom_id']" position="after">
+                    <xpath expr="//field[@name='quantity']" position="move"/>
+                    <!--<field name="product_id.standard_price"/>--><!--standard price is not in stock.valuation.layer-->
+                    <!--second tree view is removed in v12 & add new obj stock.valution.layer-->
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+<!--Odoo Studio: product.stock.tree.2 customization-->

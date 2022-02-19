@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data>
+        <record id="action_contribution_register" model="ir.actions.report">
+            <field name="name">Payslip Lines By Conribution Register</field>
+            <field name="model">wk.hr.contribution.register</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">wk_hr_payroll.report_contributionregister</field>
+            <field name="report_file">wk_hr_payroll.report_contributionregister</field>
+            <field name="binding_model_id" ref="model_wk_hr_contribution_register"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_report_payslip" model="ir.actions.report">
+            <field name="name">Payslip</field>
+            <field name="model">wk.hr.payslip</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">wk_hr_payroll.report_payslip</field>
+            <field name="report_file">wk_hr_payroll.report_payslip</field>
+            <field name="print_report_name">'Payslip - %s' % (object.employee_id.name).replace('/','')</field>
+            <field name="binding_model_id" ref="model_wk_hr_payslip"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="payslip_details_report" model="ir.actions.report">
+            <field name="name">Payslip Details</field>
+            <field name="model">wk.hr.payslip</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">wk_hr_payroll.report_payslipdetails</field>
+            <field name="report_file">wk_hr_payroll.report_payslipdetails</field>
+            <field name="print_report_name">'Payslip Details - %s' % (object.employee_id.name).replace('/','')</field>
+            <field name="binding_model_id" ref="model_wk_hr_payslip"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="import_wizared_sale_form" model="ir.ui.view">
+            <field name="name">sale.wizard</field>
+            <field name="model">sale.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Sale Order">
+                    <group>
+                        <group>
+                            <field name="select_file" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <group>
+                            <field name="state_stage" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                       
+                        <group>
+                            <field name="seq_opt" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <group>
+                            <field name="data_file" filename="name" required="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <h5 style="color:red">Operation performed when record not found?</h5>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="option" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <group>
+                            <field name="import_prod_by" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="Import_sale_order" string="Import" type="object"  class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_sale_order" model="ir.actions.act_window">
+            <field name="name">Import Sale Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.wizard</field>
+        <!--     <field name="view_type">form</field> -->
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="import_sale_order_file" name="Import Sales Order" action="action_wizard_sale_order" parent="sale.menu_sale_config"/>
+
+        <record id="import_sale_order_line_wizard_form" model="ir.ui.view">
+            <field name="name">sale.order.line.wizard.form</field>
+            <field name="model">sale.order.line.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Order Lines">
+                    <group>
+                        <group>
+                            <field name="select_file" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <group>
+                            <field name="data_file" filename="name" required="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="import_prod_by" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <group>
+                            <field name="prod_detail"  widget="radio"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="option" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <group>
+                            <h5 style="color:red">Operation performed when record not found?</h5>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="import_order_lines" string="Import" type="object"  class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_import_order_lines" model="ir.actions.act_window">
+            <field name="name">Import Order Lines</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order.line.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record id="view_order_form_with_import_so_line_button" model="ir.ui.view">
+            <field name="name">import.sale.order.line.button</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/header/button[@name='action_cancel']" position="after">
+                    <button name="%(action_import_order_lines)d" type="action" string="Import Order Lines" class="oe_highlight" states="draft,sent"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
+    	   

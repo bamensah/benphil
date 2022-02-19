@@ -1,0 +1,8 @@
+<odoo>
+
+    <template id="assets_backend_dashboard" name="Hr Dashboard assets inherit" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/wave2_peg_africa/static/src/css/list_view.css"/>
+            </xpath>
+    </template>
+</odoo>

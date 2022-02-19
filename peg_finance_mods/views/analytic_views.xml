@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_analytic_account_list" model="ir.ui.view">
+            <field name="name">account.analytic.account.list</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_list"/>
+            <field name="arch" type="xml">
+                <field name="complete_name" position="after">
+                <!-- Modify when removing Odoo Studio Fields -->
+<!--                    <field name="x_studio_pays" string="Country"/>-->
+                    <field name="pays" string="Country"/><!--Add with studio_customization module V14-->
+                </field>
+            </field>
+        </record>
+    </data>
+
+</odoo>

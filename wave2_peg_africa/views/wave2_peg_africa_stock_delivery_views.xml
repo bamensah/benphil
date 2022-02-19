@@ -1,0 +1,58 @@
+<odoo>
+    <data>
+
+        <record id="stock_picking_payment_view_form" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name='deposit_invoice_fully_paid' attrs="{'invisible': 1}"/>
+                    <field name='from_sale' attrs="{'invisible': 1}"/>
+                    <field name='token_generated' attrs="{'invisible': 1}"/>
+                </xpath>
+                <xpath expr="//button[@name='button_first_validate']" position="after">
+                    <button name="%(action_account_invoice_payment)d" string="Register payment"
+                        type="action" class="btn-primary" attrs="{'invisible': ['|','|',('from_sale', '!=', True),('state', '!=', 'first_done'), ('deposit_invoice_fully_paid', '=', True)]}"/>
+                </xpath>
+                 <!-- If the picking results from a sale, it can only be validated if the deposit is fully paid -->
+                <xpath expr="//button[@name='button_first_validate']" position="replace">
+                    <button name="button_first_validate" attrs="{'invisible': [('state', 'not in', ('waiting','confirmed','assigned'))]}" string="First Validate" type="object" 
+                    groups="stock.group_stock_user,peg_dev_module.group_sn_finance_controller,wave2_peg_africa.gh_inventory_manager,wave2_peg_africa.gh_group_supply_chain_director,
+                    wave2_peg_africa.gh_group_warehouse_supervisor,wave2_peg_africa.gh_group_logistics_manager,wave2_peg_africa.gh_group_snr_operations_analyst,wave2_peg_africa.gh_group_operations_analyst,
+                    wave2_peg_africa.gh_group_repair_supervisor,wave2_peg_africa.gh_group_snr_repair_technician,wave2_peg_africa.gh_group_inventory_officer,wave2_peg_africa.gh_group_warehouse_assistant,
+                    wave2_peg_africa.gh_group_stock_officer,wave2_peg_africa.gh_accountant" class="oe_highlight"/>
+                </xpath>
+                <xpath expr="//button[@name='button_validate']" position="replace">
+                    <button name="button_validate" attrs="{'invisible': ['|', '|', '&amp;', ('from_sale', '=', True), ('state', '!=', 'first_done'), '&amp;', ('from_sale', '=', True), '&amp;', ('state', '=', 'first_done'), ('deposit_invoice_fully_paid', '=', False), '&amp;', ('state', '!=', 'first_done'),('from_sale', '=', False)]}" 
+                    string="Validate" type="object" groups="stock.group_stock_user,peg_dev_module.group_sn_finance_controller,wave2_peg_africa.gh_inventory_manager,wave2_peg_africa.gh_group_supply_chain_director,
+                    wave2_peg_africa.gh_group_warehouse_supervisor,wave2_peg_africa.gh_group_logistics_manager,wave2_peg_africa.gh_group_snr_operations_analyst,wave2_peg_africa.gh_group_operations_analyst,wave2_peg_africa.gh_group_repair_supervisor,
+                    wave2_peg_africa.gh_group_snr_repair_technician,wave2_peg_africa.gh_group_inventory_officer,wave2_peg_africa.gh_group_warehouse_assistant,wave2_peg_africa.gh_group_stock_officer,wave2_peg_africa.gh_accountant" class="oe_highlight"/>
+                </xpath> 
+                </field>
+            </record>
+
+        <record id="stock_location_form_view_inherit" model="ir.ui.view">
+            <field name="name">stock.location.form_view.inherit</field>
+            <field name="model">stock.location</field>
+            <field name="inherit_id" ref="stock.view_location_form"/>
+            <field name="arch" type="xml">
+                <field name="return_location" position="after">
+                    <field name="individual_location" />
+                </field>
+            </field>
+        </record>
+
+        <record id="inherit_stock_backorder_form" model="ir.ui.view">
+            <field name="name">stock.view_backorder_confirmation_inherited</field>
+            <field name="model">stock.backorder.confirmation</field>
+            <field name="inherit_id" ref="stock.view_backorder_confirmation"/>
+            <field name="arch" type="xml">
+                <button name="process_cancel_backorder" position="attributes">
+                    <attribute name="invisible">context.get('outgoing', False)</attribute>
+                </button>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="view_crm_partner_geo_form_peg" model="ir.ui.view">
+            <field name="name">res.partner.geolocation.inherit.peg</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base_geolocalize.view_crm_partner_geo_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='geo_location']" position="inside">
+                    <group>
+                        <field name="geolocation" invisible="1"/>
+                    </group>
+                </xpath>
+                <xpath expr="//page[@name='geo_location']" position="inside">
+                    <group>
+                        <field name="geolocation"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_partner_form_inherit" model="ir.ui.view">
+            <field name="name">view_partner_form_inherit</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('o_address_format')]" position="after">
+                    <field name="birthday"/>
+                    <field name="genre"/>
+                    <field name="type_pice_didentit"/>
+                    <field name="field_hXnbj"/>
+                    <field name="contract_id"/>
+                    <field name="photo_of_id" invisible="1"/>
+                    <field name="photo_of_place_to_install_panel"/>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="after_sales_sc_suppor"/>
+                    <field name="number_for_mobile_payments"/>
+                    <field name="spoken_language"/>
+                    <field name="refered_by"/>
+<!--                    <field name="geolocation"/>-->
+                    <!--                    <field name="photo_of_customer"/>-->
+                    <!--                    <field name="photo_of_contract"/>-->
+                    <!--                    <field name="ninea"/>-->
+                </xpath>
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="id" string="Odoo ID"/>
+                    <field name="ref" string="old Customer ID"/>
+                </xpath>
+                <xpath expr="//group[@name='sale']" position="inside">
+                    <field name="is_customer"/>
+                </xpath>
+                <xpath expr="//field[@name='property_supplier_payment_term_id']" position="before">
+                    <field name="is_vendor"/>
+                </xpath>
+                <xpath expr="//page[last()]" position="after">
+                    <page name="attachement_check_list" string="Attachement check list">
+                        <group>
+                            <group string="Partners">
+                                <field name="contract"/>
+                                <field name="photo_of_place_to_install_panel"/>
+                                <field name="ninea"/>
+
+                            </group>
+                            <group string="Customers">
+                                <field name="photo_of_id"/>
+                                <field name="photo_of_customer"/>
+                                <field name="photo_of_contract"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='ref']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="readonly">1</attribute>
+                    <attribute name="string">Old Customer_id</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,40 @@
+<odoo>
+
+    <data>
+        <menuitem id="sud_cust_all_tasks" name="All Tasks" action=""/>
+        
+        <menuitem id="sud_cust_gtd" name="GTD" action=""/>
+        
+        <menuitem id="sud_cust_analytic_account" name="Analytic Accounts(1)" action="analytic.action_account_analytic_account_form" parent="account.menu_finance_entries"/>
+        
+        <menuitem id="sud_cust_stages" name="Stages" action=""/>
+        
+        
+        <record id="action_invent_quants" model="ir.actions.act_window">
+            <field name="name">Quants</field>
+            <field name="res_model">stock.quant</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem id="sud_cust_quant" name="Quant" parent="stock.menu_warehouse_report" action="action_invent_quants"/>
+        <menuitem id="sud_cust_quant1" name="Quant" parent="stock.menu_warehouse_report"/>
+        <menuitem id="sud_cust_quant2" name="Quant" parent="stock.menu_warehouse_report"/>
+
+        <menuitem id="sud_cust_credit_notes_payment_term" name="Payment Terms(1)" parent="sale.menu_sale_config" action="account.action_payment_term_form"/>
+
+        <menuitem id="sud_cust_credit_notes" name="Credit Notes" parent="sale.sale_menu_root"/>
+
+        <menuitem id="sud_cust_credit_note_sale" name="Credit Notes(1)" parent="sud_cust_credit_notes" action="account.action_move_out_refund_type"/>
+        
+        <menuitem id="sud_cust_chart_of_account" name="Chart of Accounts(1)" parent="account.menu_finance_entries" action="account.action_account_form"/>
+        
+        <menuitem id="sud_cust_landed_costs" name="Landed Costs(1)" parent="account.menu_finance_payables" action="stock_landed_costs.action_stock_landed_cost"/>
+        
+        <menuitem id="sud_cust_tags" name="Tags"/>
+        <menuitem id="sud_cust_tasks_analysis" name="Tasks Analysis"/>
+        
+
+        
+        
+    </data>
+</odoo>

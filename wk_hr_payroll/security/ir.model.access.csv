@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wk_hr_payroll_structure,wk.hr.payroll.structure,model_wk_hr_payroll_structure,wk_hr_payroll.group_hr_payroll_user,1,1,1,1
+access_wk_hr_payroll_structure_hr_user,wk.hr.payroll.structure.hr.user,model_wk_hr_payroll_structure,hr.group_hr_user,1,0,0,0
+access_wk_hr_contribution_register,wk.hr.contribution.register,model_wk_hr_contribution_register,wk_hr_payroll.group_hr_payroll_user,1,1,1,1
+access_wk_hr_salary_rule_category,wk.hr.salary.rule.category,model_wk_hr_salary_rule_category,wk_hr_payroll.group_hr_payroll_user,1,1,1,1
+access_wk_hr_payslip,wk.hr.payslip,model_wk_hr_payslip,wk_hr_payroll.group_hr_payroll_user,1,1,1,1
+access_wk_hr_payslip_line,wk.hr.payslip.line,model_wk_hr_payslip_line,wk_hr_payroll.group_hr_payroll_user,1,1,1,1
+access_wk_hr_payslip_input_user,wk.hr.payslip.input.user,model_wk_hr_payslip_input,wk_hr_payroll.group_hr_payroll_user,1,1,1,1
+access_wk_hr_payslip_worked_days_officer,wk.hr.payslip.worked_days.officer,model_wk_hr_payslip_worked_days,wk_hr_payroll.group_hr_payroll_user,1,1,1,1
+access_wk_hr_payslip_run,wk_hr.payslip.run,model_wk_hr_payslip_run,wk_hr_payroll.group_hr_payroll_manager,1,1,1,1
+access_wk_hr_rule_input_officer,wk.hr.rule.input.office,model_wk_hr_rule_input,wk_hr_payroll.group_hr_payroll_user,1,1,1,1
+access_wk_hr_salary_rule_user,wk.hr.salary.rule.user,model_wk_hr_salary_rule,wk_hr_payroll.group_hr_payroll_user,1,1,1,1
+access_wk_payslip_line_contribution_register_user,wk.payslip.lines.contribution.register.user,model_wk_payslip_lines_contribution_register,wk_hr_payroll.group_hr_payroll_user,1,1,1,1
+access_wk_hr_payslip_employees_user,wk.hr.payslip.employees.user,model_wk_hr_payslip_employees,wk_hr_payroll.group_hr_payroll_user,1,1,1,1

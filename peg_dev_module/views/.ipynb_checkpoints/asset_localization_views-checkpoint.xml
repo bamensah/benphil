@@ -1,0 +1,158 @@
+<odoo>
+    <data>
+
+       <record model="ir.ui.view" id="site_tree">
+            <field name="name">site.tree</field>
+            <field name="model">optesis.site</field>
+            <field name="arch" type="xml">
+                <tree string="site_list">
+                    <field name="name"/>
+                    <field name="region"/>
+                    <field name="locality"/>
+                    <field name="address"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="site_form">
+            <field name="name">site.form</field>
+            <field name="model">optesis.site</field>
+            <field name="arch" type="xml">
+                <form string="site_form">
+                    <sheet>
+                        <group colspan="4">
+                            <group colspan="2" rowspan="2">
+                                <group>
+                                    <field name="name"/>
+                                    <field name="region"/>
+                                    <field name="locality"/>
+                                </group>
+                                <group>
+                                    <field name="address"/>
+                                    <field name="description"/>
+                                </group>
+                                </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+          <record model="ir.ui.view" id="level_tree">
+                <field name="name">level.tree</field>
+                <field name="model">optesis.level</field>
+                <field name="arch" type="xml">
+                    <tree string="level_list">
+                        <field name="name"/>
+                        <field name="site_id"/>
+                        <field name="description"/>
+                    </tree>
+                </field>
+            </record>
+
+
+        <record model="ir.ui.view" id="level_form">
+            <field name="name">level.form</field>
+            <field name="model">optesis.level</field>
+            <field name="arch" type="xml">
+                <form string="level_form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="site_id"/>
+                                <field name="description"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+           <record model="ir.ui.view" id="room_tree">
+                <field name="name">room.tree</field>
+                <field name="model">optesis.room</field>
+                <field name="arch" type="xml">
+                    <tree string="room_list">
+                         <field name="name"/>
+                         <field name="level_id"/>
+                        <field name="description"/>
+                    </tree>
+                </field>
+            </record>
+
+
+        <record model="ir.ui.view" id="room_form">
+            <field name="name">room.form</field>
+            <field name="model">optesis.room</field>
+            <field name="arch" type="xml">
+                <form string="room_form">
+                    <sheet>
+                        <group colspan="4">
+                            <group colspan="2" rowspan="2">
+                                <field name="name"/>
+                                <field name="site_id"/>
+                                <field name="level_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                <field name="description"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        
+        <record model="ir.actions.act_window" id="site_menu_action">
+            <field name="name">Sites</field>
+            <field name="res_model">optesis.site</field>
+            <!--<field name="view_type">form</field>-->
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_smiling_face">
+                </p>
+            </field>
+        </record>
+        <menuitem parent="account.menu_finance_entries_management"
+                  id="menu_action_optesis_site"
+                  action="site_menu_action"
+                  sequence="105"
+                  groups="account.group_account_manager"/>
+        
+        
+         <record model="ir.actions.act_window" id="level_menu_action">
+            <field name="name">Levels</field>
+            <field name="res_model">optesis.level</field>
+            <!--<field name="view_type">form</field>-->
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_smiling_face">
+                </p>
+            </field>
+        </record>
+        <menuitem parent="account.menu_finance_entries_management"
+                  id="menu_action_optesis_level"
+                  action="level_menu_action"
+                  sequence="106"
+                  groups="account.group_account_manager"/>
+        
+        
+        <record model="ir.actions.act_window" id="room_menu_action">
+            <field name="name">Rooms</field>
+            <field name="res_model">optesis.room</field>
+            <!--<field name="view_type">form</field>-->
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_smiling_face">
+                </p>
+            </field>
+        </record>
+        <menuitem parent="account.menu_finance_entries_management"
+                  id="menu_action_optesis_room"
+                  action="room_menu_action"
+                  sequence="107"
+                  groups="account.group_account_manager"/>
+
+    </data>
+</odoo>

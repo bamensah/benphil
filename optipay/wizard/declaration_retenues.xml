@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_declaration_retenues" model="ir.ui.view">
+          <field name="name">optesis.declaration.retenues</field>
+          <field name="model">optesis.declaration.retenues</field>
+          <field name="arch" type="xml">
+            <form string="Contribution Register's Payslip Lines">
+                <group col="4" colspan="6">
+                    <field name="date_from"/>
+                    <newline/>
+                    <field name="date_to"/>
+                </group>
+                <footer>
+                    <button name="print_report" string="Imprimer" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Annuler" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+          </field>
+      </record>
+
+      <!--act_window id="launch_declaration_retenues"
+                  name="Déclarations des retenues"
+                  src_model="hr.contribution.register"
+                  res_model="optesis.declaration.retenues"
+                  view_mode="form"
+                  target="new"
+                  key2="client_print_multi"/-->
+    </data>
+</odoo>

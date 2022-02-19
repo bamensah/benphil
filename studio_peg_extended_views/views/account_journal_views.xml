@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data>
+<!--        THIS FIELDS ARE NOT EXIST IN JOURNAL-->
+    
+        <!--<record id="view_account_journal_form" model="ir.ui.view">
+            <field name="name">account.journal.form.view</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                &lt;!&ndash;<xpath expr="//field[@name='sequence_id']" position="attributes">
+                    <attribute name="groups">account.group_account_manager</attribute>
+                </xpath>
+                <xpath expr="//field[@name='default_debit_account_id']" position="attributes">
+                    <attribute name="groups">account.group_account_manager</attribute>&lt;!&ndash;,__export__.res_groups_105_5159c8d3&ndash;&gt;&lt;!&ndash;group not defined&ndash;&gt;
+                </xpath>
+                <xpath expr="//field[@name='default_credit_account_id']" position="attributes">
+                    <attribute name="groups">account.group_account_manager</attribute>&lt;!&ndash;__export__.res_groups_105_5159c8d3,&ndash;&gt;&lt;!&ndash;group not defined&ndash;&gt;
+                </xpath>
+                <xpath expr="//field[@name='update_posted']" position="attributes">
+                    <attribute name="groups">account.group_account_manager</attribute>
+                </xpath>&ndash;&gt;&lt;!&ndash;all 4 fields of xpath not in account.jouranl&ndash;&gt;
+            </field>
+        </record>-->
+        <!--Odoo Studio: account.journal.form customization-->
+    </data>
+</odoo>

@@ -1,0 +1,368 @@
+<odoo>
+    <data>
+
+        <record id="helpdesk_ticket_view_form_inherited" model="ir.ui.view">
+            <field name="name">Helpdesk Ticket</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="before">
+                    <field name="ticket_type_name" invisible="1"/>
+                    <field name="product_tracking" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="troubleshooting_completed" attrs="{'invisible': ['!', ('ticket_type_name', '=', 'SWAP')]}"/>
+                    <field name="swap_available" attrs="{'invisible': ['!', ('ticket_type_name', '=', 'SWAP')]}"/>
+                    <field name="swap_status_pegasus" attrs="{'invisible': ['!', ('ticket_type_name', '=', 'SWAP')]}"/>
+                    <field name="preferred_swap_method" attrs="{'invisible': ['!', ('ticket_type_name', '=', 'SWAP')]}"/>
+                    <field name="allocated_by_hso" attrs="{'invisible': ['!', ('ticket_type_name', '=', 'SWAP')]}"/>
+                    <field name="swap_device_returned_sc" attrs="{'invisible': ['!', ('ticket_type_name', '=', 'SWAP')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='ticket_type_id']" position="after">
+                    <field name="product_id" attrs="{'invisible': ['!', ('ticket_type_name', '=', 'SWAP')]}" options="{'no_open': True, 'no_create': True}"/>
+                    <field name="serial_number_swap" domain="[('product_id', '=', product_id)]" attrs="{'invisible': ['!', '&amp;', ('ticket_type_name', '=', 'SWAP'), ('product_tracking', '=', 'serial')]}" options="{'no_open': True, 'no_create': True}"/>
+                    <field name="service_center" attrs="{'invisible': ['!', ('ticket_type_name', '=', 'SWAP')]}" options="{'no_open': True, 'no_create': True}"/>
+                    <field name="swap_needed" attrs="{'invisible': ['!', ('ticket_type_name', '=', 'SWAP')]}"/>
+                    <field name="swap_status_field" attrs="{'invisible': ['!', ('ticket_type_name', '=', 'SWAP')]}"/>
+                    <field name="new_serial_number" domain="[('product_id', '=', product_id)]" attrs="{'invisible': ['!', '&amp;', ('ticket_type_name', '=', 'SWAP'), ('product_tracking', '=', 'serial')]}" options="{'no_open': True, 'no_create': True}"/>
+                    <field name="assigned_go" attrs="{'invisible': ['!', ('ticket_type_name', '=', 'SWAP')]}" options="{'no_open': True, 'no_create': True}"/>
+                    <field name="swap_status_with_customer" attrs="{'invisible': ['!', ('ticket_type_name', '=', 'SWAP')]}"/>
+                </xpath>
+                <field name="team_id" position="after">
+                    <field name="subteam_id" domain="[('team_id', '=', team_id)]" options="{'no_open': True, 'no_create': True}" />
+                </field>
+
+                <field name="tag_ids" position="attributes">
+                    <attribute name="domain">[('ticket_type_id','=',ticket_type_id)]</attribute>
+                </field>
+
+                <field name="tag_ids" position="after">
+                    <field name="linked_ticket" />
+                </field>
+
+                <button name="assign_ticket_to_self" position="after">
+                    <button name="escalate_ticket" string="Escalate" type="object" class="oe_highlight" />
+                </button>
+
+                <button name="escalate_ticket" position="after">
+                    <button name="create_link_ticket" string="Create and Link a new ticket" type="object" class="oe_highlight" />
+                    <button name="add_interaction" string="Add Interaction" type="object" class="oe_highlight" />
+
+                </button>
+
+                <button name="add_interaction" position="after">
+                    <button name="resolve_ticket" string="Resolve" type="object" attrs = "{'invisible': [('stage_id','in',[11, 4])]}" />
+                </button>
+
+
+                <field name="partner_name" position="after">
+                    <field name="sale_order_id" domain="[('partner_id', '=', partner_id)]" options="{'no_open': True, 'no_create': True}" />
+                </field>
+
+                <field name="description" position="after">
+                    <notebook>
+                        <page string="Interactions">
+                            <field name="interaction_ids">
+                                <tree string="Interactions">
+                                    <field name="create_date" string="Date" />
+                                    <field name="ticket_type_id" string="Type" />
+                                    <field name="type" string="Direction"/>
+                                    <field name="tool_id" />
+                                    <field name="create_uid" string="Created by" />
+                                    <field name="status" string="Interaction Status" />
+                                    <field name="notes" />
+                                    <field name="followup_action_id" string="Follow-up action"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </field>
+                <xpath expr="//field[@name='ticket_type_id']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <record id="helpdesk_ticket_subtag_action_view" model="ir.actions.act_window">
+            <field name="name">Interaction Subtags</field>
+            <field name="res_model">helpdesk.ticket.subtag</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="helpdesk_subteam_action_view" model="ir.actions.act_window">
+            <field name="name">Helpdesk Sub-Team</field>
+            <field name="res_model">helpdesk.subteam</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="helpdesk_ticket_escalate_wizard_action" model="ir.actions.act_window">
+            <field name="name">Escalate Helpdesk Ticket</field>
+            <field name="res_model">helpdesk.ticket.escalate_wizard</field>
+            <field name="view_mode">form</field>
+        </record>
+
+
+        <record id="helpdesk_ticket_escalate_wizard_form" model="ir.ui.view">
+            <field name="name">Escalate Helpdesk Ticket</field>
+            <field name="model">helpdesk.ticket.escalate_wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="ticket_id" />
+                                <field name="team_id" options="{'no_open': True, 'no_create': True}" />
+                                <field name="subteam_id" domain="[('team_id', '=', team_id)]" options="{'no_open': True, 'no_create': True}" />
+                                <field name="user_id" options="{'no_open': True, 'no_create': True}" />
+                            </group>
+                            <footer>
+                                <group>
+                                    <button name="process_escalation" string="Update" type="object" class="oe_highlight" />
+                                </group>
+                            </footer>
+                        </group>
+                    </sheet>
+                </form>
+
+            </field>
+        </record>
+
+        <record id="helpdesk_ticket_interaction_entry_wizard_form" model="ir.ui.view">
+            <field name="name">Interaction Entry</field>
+            <field name="model">helpdesk.interaction.entry_wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="ticket_id" invisible="1" />
+                                <field name="type" string="Direction" />
+                                <field name="status" />
+                                <field name="initiation_channel_id" options="{'no_open': True, 'no_create': True}" />
+                                <field name="tool_id" attrs="{'invisible':[('type','=','inbound')]}" options="{'no_open': True, 'no_create': True}" />
+                                <field name="notes" />
+                                <field name="partner_id" invisible="1" />
+                            </group>
+                            <group>
+                                
+                                <field name="tag_ids" invisible="1" readonly="1" />
+                                <field name="ticket_type_id" invisible="1" readonly="1" />
+                                <field name="sale_order_id" domain="[('partner_id', '=', partner_id)]" options="{'no_create': True}"/>
+                                <field name="interaction_tag_ids" widget="many2many_tags" options="{'no_open': True, 'no_create': True}"/>
+                                <field name="subtag_ids" domain="[('interaction_tag_id', 'in', interaction_tag_ids)]" widget="many2many_tags" options="{'no_open': True, 'no_create': True}" />
+                                <field name="outcome_interaction_id" options="{'no_open': True, 'no_create': True}"/>
+                                <field name="why_id" options="{'no_open': True, 'no_create': True}"/>
+                                <field name="followup_action_id" options="{'no_open': True, 'no_create': True}"/>
+                                
+                            </group>
+                            <footer>
+                                <group>
+                                    <button name="save_interaction" string="Save" type="object" class="oe_highlight" />
+                                </group>
+                            </footer>
+                        </group>
+                    </sheet>
+                </form>
+
+            </field>
+        </record>
+
+        <record id="helpdesk_ticket_interaction_entry_partners_wizard_form" model="ir.ui.view">
+            <field name="name">Interaction Entry</field>
+            <field name="model">helpdesk.interaction.entry_wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="ticket_id" invisible="1" />
+                                <field name="ticket_type_id" string="Type" />
+                                <field name="type" string="Direction" />
+                                <field name="status" />
+                                <field name="initiation_channel_id" options="{'no_open': True, 'no_create': True}" />
+                                <field name="tool_id" attrs="{'invisible':[('type','=','inbound')]}" options="{'no_open': True, 'no_create': True}" />
+                                <field name="notes" />
+                                <field name="partner_id" invisible="1" />
+                            </group>
+                            <group>
+                                <field name="tag_ids" invisible="1" readonly="1" />
+                                <field name="partner_id" invisible="0" readonly="1"/>
+                                <field name="sale_order_id" domain="[('partner_id', '=', partner_id)]" options="{'no_create': True}"/>
+                                <field name="interaction_tag_ids" widget="many2many_tags" options="{'no_open': True, 'no_create': True}" />
+                                <field name="subtag_ids" domain="[('interaction_tag_id', 'in', interaction_tag_ids)]" widget="many2many_tags" options="{'no_open': True, 'no_create': True}" />
+                                <field name="outcome_interaction_id" options="{'no_open': True, 'no_create': True}" />
+                                <field name="why_id" options="{'no_open': True, 'no_create': True}" />
+                                <field name="followup_action_id" options="{'no_open': True, 'no_create': True}" />
+                            </group>
+                            <footer>
+                                <group>
+                                    <button name="save_interaction" string="Save" type="object" class="oe_highlight" />
+                                </group>
+                            </footer>
+                        </group>
+                    </sheet>
+                </form>
+
+            </field>
+        </record>
+
+
+        <record id="helpdesk_ticket_interaction_form" model="ir.ui.view">
+            <field name="name">Interaction</field>
+            <field name="model">helpdesk.ticket.interaction</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="ticket_type_id" string="Type" />
+                                <field name="ticket_id" invisible="1" />
+                                <field name="type" string="Direction"/>
+                                <field name="status" />
+                                <field name="initiation_channel_id" options="{'no_open': True, 'no_create': True}" />
+                                <field name="tool_id" attrs="{'invisible':[('type','=','inbound')]}" options="{'no_open': True, 'no_create': True}" />
+                                <field name="notes" />
+                                <field name="partner_id" invisible="1" />
+                            </group>
+                            <group>
+                                
+                                
+                                <field name="tag_ids" invisible="1" readonly="1" />
+<!--                                <field name="ticket_type_id" invisible="1" readonly="1" />-->
+                                <field name="sale_order_id" domain="[('partner_id', '=', partner_id)]" options="{'no_create': True}" />
+                                <field name="interaction_tag_ids" domain="[('ticket_type_id', '=', ticket_type_id)]" widget="many2many_tags" options="{'no_open': True, 'no_create': True}"/>
+                                <field name="subtag_ids" domain="[('interaction_tag_id', 'in', interaction_tag_ids)]" widget="many2many_tags" options="{'no_open': True, 'no_create': True}" />
+                                <field name="outcome_interaction_id" options="{'no_open': True, 'no_create': True}"/>
+                                <field name="why_id" options="{'no_open': True, 'no_create': True}"/>
+                                <field name="followup_action_id" options="{'no_open': True, 'no_create': True}"/>
+                                
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+
+            </field>
+        </record>
+
+        <record id="helpdesk_ticket_interaction_initiation_channel_action" model="ir.actions.act_window">
+            <field name="name">Interaction Initiation Channels</field>
+            <field name="res_model">helpdesk.ticket.interaction.initiation_channel</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="helpdesk_ticket_interaction_tool_action" model="ir.actions.act_window">
+            <field name="name">Interaction Tools</field>
+            <field name="res_model">helpdesk.ticket.interaction.tool</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="helpdesk_ticket_interaction_tag_action" model="ir.actions.act_window">
+            <field name="name">Interaction Tags</field>
+            <field name="res_model">helpdesk.ticket.interaction.tag</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="helpdesk_interaction_tag_view_tree" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.interaction.tag.tree</field>
+            <field name="model">helpdesk.ticket.interaction.tag</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="name"/>
+                    <field name="ticket_type_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="helpdesk_ticket_interaction_outcome_action" model="ir.actions.act_window">
+            <field name="name">Outcome of interaction</field>
+            <field name="res_model">helpdesk.ticket.interaction.outcome</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="helpdesk_interaction_outcome_view_tree" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.interaction.outcome.tree</field>
+            <field name="model">helpdesk.ticket.interaction.outcome</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="helpdesk_ticket_interaction_why_action" model="ir.actions.act_window">
+            <field name="name">Why ?</field>
+            <field name="res_model">helpdesk.ticket.interaction.why</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="helpdesk_interaction_why_view_tree" model="ir.ui.view">
+            <field name="name">.tree</field>
+            <field name="model">helpdesk.ticket.interaction.why</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="helpdesk_ticket_interaction_followup_action" model="ir.actions.act_window">
+            <field name="name">Follow-up actions</field>
+            <field name="res_model">helpdesk.ticket.interaction.followup.action</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="helpdesk_interaction_followup_action_view_tree" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.interaction.followup.action.tree</field>
+            <field name="model">helpdesk.ticket.interaction.followup.action</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="helpdesk_interaction_subtag_action_view_tree" model="ir.ui.view">
+            <field name="name">helpdesk.interaction.subtag.action.tree</field>
+            <field name="model">helpdesk.ticket.subtag</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="name"/>
+                    <field name="interaction_tag_id"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+
+        
+        <record id="helpdesk_ticket_list_inherited" model="ir.ui.view">
+            <field name="name">All Ticket</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree" />
+            <field name="arch" type="xml">
+                <field name="stage_id" position="after" >
+                    <field name="create_date" string="Creation Date"></field>
+                </field>
+            </field>
+        </record>
+
+        <record id="helpdesk_tag_custom_view_tree" model="ir.ui.view">
+            <field name="name">helpdesk.tags.custom.tree</field>
+            <field name="model">helpdesk.tag</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_tag_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="ticket_type_id"/>
+                </xpath>
+            </field>
+        </record>
+        
+
+    </data>
+</odoo>

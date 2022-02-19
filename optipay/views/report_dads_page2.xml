@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- by khk -->
+<odoo>
+    <data>
+
+        <report
+            id="dads_report_2"
+            model="hr.contribution.register"
+            string="recap_traitement_salaire_retribution"
+            report_type="qweb-pdf"
+            name="optipay.report_dads_view_2"
+            file="optipay.report_dads"
+            menu="False" />
+
+        <template id="report_dads_view_2">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="optipay.dads_external_view">
+                    <t t-set="company" t-value="res_company"/>
+                        <div class="page">
+                            <t t-call="optipay.header_new"/>
+                            <div class="row" style="margin-top:-30px" align="center">
+                                <p style="font-style:italic;font-weight:bold;background-color:#808080;width:90%;font-size:20px;color:white;padding-top:10px;padding-bottom:20px;height:50px" align="center">
+                                    Etat récapitulatif des Traitements ,Salaires et Rétributions de toute versés aux
+                                    salariés de<br/>
+                                <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                <![CDATA[&nbsp;]]>l'Entreprise pensions et Rentes viagéres servies par l'Entreprise
+                                </p>
+                            </div>
+                            <div class="row text-center" style="font-size:14px;font-weight:bold;margin-top:10px;margin-left:10%" align="center">
+                                <p class="text-center">Année                                                                         <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                    <![CDATA[&nbsp;]]> <span t-esc="year"/>
+                                </p>
+                            </div>
+                            <div class="row" style="margin-top:10px">
+                                <div class="col-7 text-left">
+                                    <p style="font-style:italic;font-size:14px;">
+                                        <strong>Nom ou Raison Sociale:</strong>
+                                        <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]> <span t-field="company.name" />
+                                    </p>
+                                    <p style="font-size:14px;margin-top:-10px;font-style:italic;">
+                                        <strong>N° Employeur:</strong>
+                                        <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                        <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                        <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                        
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top:10px">
+                                <table class="bpro_contained bpro-width">
+                                        <tr class="bpro_border_head">
+                                            <td align="center" class="bpro_border_left" style="font-size: 14px" rowspan="3">
+                                                <p>N°d'ordre</p>
+                                            </td>
+                                            <td align="center" class="bpro_border_left" style="font-size: 14px" rowspan="3">
+                                                <p style="margin:0;padding:0">Numéro Matricule</p>
+                                            </td>
+                                            <td align="center" class="bpro_border_left"  rowspan="3">
+                                                <p style="margin:0;padding:0">Prénoms et Noms</p>
+                                            </td>
+                                            <td align="center" class="bpro_border_left"  rowspan="3">
+                                                <p >Emploi</p>
+                                            </td>
+                                            <td align="center" class="bpro_border_left"  rowspan="3">
+                                                <p style="margin:0;padding:0">Adresse du Domicile</p>
+                                            </td>
+                                            <td align="center" class="bpro_border_left"  rowspan="3">
+                                                <p >Sexe</p>
+                                            </td>
+                                            <td align="center" class="bpro_border_left"  rowspan="3">
+                                                <p>Nationalité</p>
+                                            </td>
+                                            <td align="center" class="bpro_border_left"  colspan="3">
+                                                <p style="margin:0;padding:0">Situation de Famille</p>
+                                            </td>
+                                            <td align="center" class="bpro_border_left"  rowspan="3">
+                                                <p style="margin:0;padding:0">Nombre de parts</p>
+                                            </td>
+                                            <td align="center" class="bpro_border_left"  rowspan="3">
+                                                <p style="margin:0;padding:0">Periode à laquelle</p>
+                                                <p style="margin:0;padding:0">s'appliquent les</p>
+                                                <p style="margin:0;padding:0">paiements congés</p>
+                                                <p style="margin:0;padding:0">Compris</p>
+                                            </td>
+                                            <td align="center" class="bpro_border_left"  rowspan="3" width="6%">
+                                                <p style="margin:0;padding:0">Montant Annuel</p>
+                                                <p style="margin:0;padding:0">des traitements</p>
+                                                <p style="margin:0;padding:0">salaires,</p>
+                                                <p style="margin:0;padding:0">gratifications</p>
+                                                <p style="margin:0;padding:0">rémunérations</p>
+                                                <p style="margin:0;padding:0">accessoires</p>
+                                            </td>
+                                            <td align="center" class="bpro_border_left"  rowspan="3" width="6%">
+                                                <p style="margin:0;padding:0">Evaluation des</p>
+                                                <p style="margin:0;padding:0">avantages</p>
+                                                <p style="margin:0;padding:0">suivant</p>
+                                                <p style="margin:0;padding:0">barême forfaitaire</p>
+                                                <p style="margin:0;padding:0">de l'administration</p>
+                                            </td>
+                                            <td align="center" class="bpro_border_left"  rowspan="3" width="6%">
+                                                <p style="margin:0;padding:0">Total Brut</p>
+                                            </td>
+                                            <td align="center" class="bpro_border_left"  colspan="3">
+                                                <span style="margin:0;padding:0">Retenue à la charge de l'employé
+                                                </span>
+                                            </td>
+                                            <td align="center" class="bpro_border_left" width="6%">
+                                                <p style="margin:0;padding:0">Retenue à</p>
+                                                <p style="margin:0;padding:0">la charge de</p>
+                                                <p style="margin:0;padding:0">l'employeur</p>
+                                            </td>
+                                            <td align="center" class="bpro_border_left bpro_border_right" rowspan="3" width="6%">
+                                                <p style="margin:0;padding:0">Indemnités</p>
+                                                <p style="margin:0;padding:0">pour les</p>
+                                                <p style="margin:0;padding:0">frais</p>
+                                                <p style="margin:0;padding:0">d'emploi</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr class="bpro_border_head">
+                                            <td align="center" class="bpro_border_left"  rowspan="2">
+                                                <p>CMDV</p>
+                                            </td>
+                                            <td align="center" class="bpro_border_left"  rowspan="2">
+                                                <p style="margin:0;padding:0">Nb Enfants à</p>
+                                            </td>
+                                            <td align="center" class="bpro_border_left"  rowspan="2">
+                                                <p style="margin:0;padding:0">Nb Epouses</p>
+                                            </td>
+                                            <td align="center" class="bpro_border_left"  rowspan="2" width="6%">
+                                                <p style="margin:0;padding:0">Impôt sur</p>
+                                                <p style="margin:0;padding:0">le revenu</p>
+                                            </td>
+                                            <td align="center" class="bpro_border_left"  rowspan="2" width="6%">
+                                                <p  >Prélevement exceptionnel</p>
+                                            </td>
+                                            <td align="center" class="bpro_border_left"  rowspan="2" width="6%">
+                                                <p style="margin:0;padding:0">TRIMF</p>
+                                            </td>
+                                            <td align="center" class="bpro_border_left"  rowspan="2" width="6%">
+                                                <p style="margin:0;padding:0">CFCE</p>
+                                            </td>
+                                        </tr>
+                                    <tbody>
+                                        <tr t-foreach="lines_data" t-as="r" class="bpro_border_head">
+                                            <td class="bpro_border_left" align="right">
+                                                <p><span t-esc="r.get('index')"/></p>
+                                            </td>
+                                            <td class="bpro_border_left" align="left">
+                                                <p><span t-esc="r.get('matricule')"/></p>
+                                            </td>
+                                            <td class="bpro_border_left" align="left">
+                                                <p><span t-esc="r.get('name')"/></p>
+                                            </td>
+                                            <td class="bpro_border_left" align="left">
+                                                <p><span t-esc="r.get('employement')"/></p>
+                                            </td>
+                                            <td class="bpro_border_left" align="left">
+                                                <p><span t-esc="r.get('address')"/></p>
+                                            </td>
+                                            <td class="bpro_border_left" align="center">
+                                                <p><span t-esc="r.get('gender')"/></p>
+                                            </td>
+                                            <td class="bpro_border_left" align="left">
+                                                <p><span t-esc="r.get('country')"/></p>
+                                            </td>
+                                            <td class="bpro_border_left" align="center">
+                                                <p><span t-esc="r.get('marital')"/></p>
+                                            </td>
+                                            <td class="bpro_border_left" align="right">
+                                                <p><span t-esc="r.get('nb_children')"/></p>
+                                            </td>
+                                            <td class="bpro_border_left" align="right">
+                                                <p><span t-esc="r.get('nb_wife')"/></p>
+                                            </td>
+                                            <td class="bpro_border_left" align="right">
+                                                <p><span t-esc="r.get('nb_part')"/></p>
+                                            </td>
+                                            <td class="bpro_border_left" align="center">
+                                                <p><span t-esc="r.get('period')"/></p>
+                                            </td>
+                                            <td class="bpro_border_left" align="right">
+                                                <p><span t-esc="'{0:,.0f}'.format(r.get('brut')).replace(',','.')"/></p>
+                                            </td>
+                                            <td class="bpro_border_left" align="right">
+                                                <p><span t-esc="'{0:,.0f}'.format(r.get('avn')).replace(',','.')"/></p>
+                                            </td>
+                                            <td class="bpro_border_left" align="right">
+                                                <p><span t-esc="'{0:,.0f}'.format(r.get('brut+avn')).replace(',','.')"/></p>
+                                            </td>
+                                            <td class="bpro_border_left" align="right">
+                                                <p><span t-esc="'{0:,.0f}'.format(r.get('impot')).replace(',','.')"/></p>
+                                            </td>
+                                            <td class="bpro_border_left" align="left">
+                                                <p><![CDATA[&nbsp;]]></p>
+                                            </td>
+                                            <td class="bpro_border_left" align="right">
+                                                <p><span t-esc="'{0:,.0f}'.format(r.get('trimf')).replace(',','.')"/></p>
+                                            </td>
+                                            <td class="bpro_border_left" align="right">
+                                                <p><span t-esc="'{0:,.0f}'.format(r.get('cfce')).replace(',','.')"/></p>
+                                            </td>
+                                            <td class="bpro_border_left" align="right">
+                                                <p><span t-esc="'{0:,.0f}'.format(r.get('transport')).replace(',','.')"/></p>
+                                            </td>
+                                        </tr>
+                                        <tr t-foreach="lines_total" t-as="t" class="bpro_border_head">
+                                            <td class="bpro_border_left" colspan="12" align="center"> Total </td>
+                                            <td class="bpro_border_left" align="right"><p><span t-esc="'{0:,.0f}'.format(t.get('total_brut')).replace(',','.')"/></p></td>
+                                            <td class="bpro_border_left" align="right"><p><span t-esc="'{0:,.0f}'.format(t.get('total_avn')).replace(',','.')"/></p></td>
+                                            <td class="bpro_border_left" align="right"><p><span t-esc="'{0:,.0f}'.format(t.get('total_brut_avn')).replace(',','.')"/></p></td>
+                                            <td class="bpro_border_left" align="right"><p><span t-esc="'{0:,.0f}'.format(t.get('total_impot')).replace(',','.')"/></p></td>
+                                            <td class="bpro_border_left"></td>
+                                            <td class="bpro_border_left" align="right"><p><span t-esc="'{0:,.0f}'.format(t.get('total_trimf')).replace(',','.')"/></p></td>
+                                            <td class="bpro_border_left" align="right"><p><span t-esc="'{0:,.0f}'.format(t.get('total_cfce')).replace(',','.')"/></p></td>
+                                            <td class="bpro_border_left" align="right"><p><span t-esc="'{0:,.0f}'.format(t.get('total_transport')).replace(',','.')"/></p></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

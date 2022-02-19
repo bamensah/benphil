@@ -1,0 +1,180 @@
+<odoo>
+    <data>
+        <record id="view_account_payment_form_inherit_peg" model="ir.ui.view">
+            <field name="name">account.payment.inherit.form.peg</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+                <!-- <xpath expr="//field[@name='state']" position="attributes">
+                    <attribute name='statusbar_visible'>draft,confirmed,posted,reconciled,cancel</attribute>
+                </xpath> -->
+                <xpath expr="//button[@name='action_post']" position="after">
+                    <button name="confirm_withholding_payment" class="oe_highlight" string="Confirm Withheld Rate" confirm="Are you sure you want to perform this action?" attrs="{'invisible': ['|', '|', '|', '|', ('state','not in', ('draft')), ('withhold_check', '=', True), ('parent_payment_id','!=', False), ('withhold_payment_id','!=', False), ('id', '=', False)]}" type="object"/>
+                    <button name="confirm" class="oe_highlight" string="Confirm" attrs="{'invisible': ['|', '|', ('withhold_check', '=', False), ('state','not in', ('draft')), ('confirmed', '=', True)]}" type="object"/>
+                </xpath>
+                <xpath expr="//button[@name='action_post']" position="attributes">
+                    <attribute name='attrs'>{'invisible': ['|', ('confirmed', '!=', True), ('state', '!=', 'draft')]}</attribute>
+                    <attribute name='string'>Validate</attribute>
+                    <attribute name='groups'>account.group_account_manager,wave2_peg_africa.gh_finance_controller,wave2_peg_africa.gh_finance_manager,
+                    peg_dev_module.group_finance_controller,wave2_peg_africa.gh_accountant,wave2_peg_africa.gh_fp_and_a,
+                    wave2_peg_africa.gh_group_supply_chain_director,wave2_peg_africa.gh_inventory_manager</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_post']" position="attributes">
+                    <attribute name='states'>confirmed</attribute>
+                    <attribute name='string'>Validate</attribute>
+<!--                    <attribute name='groups'>account.group_account_manager,wave2_peg_africa.gh_finance_controller,wave2_peg_africa.gh_finance_manager,-->
+<!--                    peg_dev_module.group_finance_controller,wave2_peg_africa.gh_accountant,wave2_peg_africa.gh_fp_and_a,-->
+<!--                    wave2_peg_africa.gh_group_supply_chain_director,wave2_peg_africa.gh_inventory_manager</attribute>-->
+                </xpath>
+                <xpath expr="//field[@name='journal_id']" position="after">
+                    <field name="block_status" readonly='1'/>
+                    <field name="withhold_payment_id" invisible='1'/>
+                    <field name="parent_payment_id" invisible='1'/>
+                    <field name="withhold_check" invisible='1'/>
+                </xpath>
+                <xpath expr="//button[@name='action_cancel']" position="replace">
+                    <button name="action_cancel" attrs="{'invisible': ['|', '|',('withhold_payment_id','!=', False),('parent_payment_id','!=', False),('state', 'in', ['draft','cancel'])]}" string="Cancel" type="object"/>
+                    <button name="action_cancel" attrs="{'invisible': ['|', '|',('withhold_payment_id','=', False),('parent_payment_id','!=', False),('state', 'in', ['draft','cancel'])]}" confirm="Warning: Cancelling this Payment will delete its related Withheld Payment" string="Cancel" type="object"/>
+                    <button name="action_cancel" attrs="{'invisible': ['|',('parent_payment_id','=', False),('state', 'in', ['draft','cancel'])]}" string="Cancel" type="object"/>
+                    <button name="action_cancel" attrs="{'invisible': ['|',('confirmed','=', False),('state', '!=', 'draft')]}" string="Cancel" type="object"/>
+<!--                    groups="__export__.res_groups_98_1ebb9fae"-->
+                </xpath>
+                <xpath expr="//field[@name='move_id']" position="after">
+                    <field name="confirmed" readonly="1" />
+                    <field name="picking_id" invisible="1"/>
+                    <field name="sale_order_ids_list" invisible="1"/>
+                    <field name="sale_order" domain="[('id', 'in', sale_order_ids_list)]" 
+                        attrs="{'invisible': [('partner_type', '!=', 'customer')], 'required': ['&amp;', ('sale_order_ids_list','!=', []), ('partner_type', '=', 'customer')], 'readonly': ['|', ('state', '!=', 'draft'), ('confirmed', '=', True)]}"
+                        options="{'no_create': True, 'no_quick_create': True, 'no_create_edit':True}"/>
+                </xpath>
+                <xpath expr="//field[@name='payment_transaction_id']" position="before">
+                    <field name="primary_mobile_number_partner" widget="phone"/>
+                    <field name="mobile_number" widget="phone" attrs="{'required': [('sale_order', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"/>
+                    <field name="mno_ref_number" attrs="{'readonly': ['|', ('payment_method_code', 'not in', ['manual']), ('state', 'not in', ['draft'])],'required': [('sale_order', '!=', False)]}"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="inherit_account_payment_list_view" model="ir.ui.view">
+            <field name="name">account_payment_list_inherited</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="display_name" />
+                </field>
+            </field>
+        </record>
+
+<!--        <record id="view_account_payment_cancel_accountant" model="ir.ui.view">-->
+<!--            <field name="name">account.payment.cancel.accountant.form</field>-->
+<!--            <field name="model">account.payment</field>-->
+<!--            <field name="inherit_id" ref="account_cancel.payment_cancel_form_inherit"/>-->
+<!--&lt;!&ndash;            <field name="groups_id" eval="[(4, ref('wave2_peg_africa.gh_accountant')), (4, ref('wave2_peg_africa.gh_group_css_activations')),&ndash;&gt;-->
+<!--&lt;!&ndash;            (4, ref('wave2_peg_africa.gh_group_css_outbound')), (4, ref('wave2_peg_africa.gh_group_cs_specialist'))]" />&ndash;&gt;-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//button[@name='action_cancel']" position="attributes">-->
+<!--                    <attribute name='invisible'>1</attribute>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record id="view_account_payment_form_no_confirm_access" model="ir.ui.view">-->
+<!--            <field name="name">account.payment.no.confirm.access.form</field>-->
+<!--            <field name="model">account.payment</field>-->
+<!--            <field name="inherit_id" ref="account.view_account_payment_form"/>-->
+<!--&lt;!&ndash;            <field name="groups_id" eval="[(4, ref('wave2_peg_africa.gh_group_css_activations')),&ndash;&gt;-->
+<!--&lt;!&ndash;             (4, ref('wave2_peg_africa.gh_group_css_outbound')), (4, ref('wave2_peg_africa.gh_group_cs_specialist'))]" />&ndash;&gt;-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//button[@name='confirm']" position="attributes">-->
+<!--                    <attribute name='invisible'>1</attribute>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//button[@name='confirm_withholding_payment']" position="attributes">-->
+<!--                    <attribute name='invisible'>1</attribute>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record id="view_account_payment_invoice_form_inherit" model="ir.ui.view">-->
+<!--            <field name="name">account.payment.invoice.inherit.form</field>-->
+<!--            <field name="model">account.payment</field>-->
+<!--            <field name="inherit_id" ref="account.view_account_payment_invoice_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//button[@name='action_validate_invoice_payment']" position="attributes">-->
+<!--                    <attribute name='string'>Confirm</attribute>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//field[@name='communication']" position="after">-->
+<!--                    <field name="primary_mobile_number_partner" widget="phone" readonly="1"/>-->
+<!--                    <field name="mobile_number" widget="phone"/>-->
+<!--                    <field name="mno_ref_number"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="action_account_invoice_payment" model="ir.actions.act_window">
+            <field name="name">Register Payment</field>
+            <field name="res_model">account.payment</field>
+<!--            <field name="view_type">form</field>-->
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_account_payment_form_inherit_peg"/>
+            <field name="context">{'default_payment_type': 'inbound', 'default_partner_type': 'customer', 'search_default_inbound_filter': 1, 'default_picking_id': active_id}</field>
+        </record>
+
+        <record id="sale_order_payment_view_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_view_delivery']" position="replace">
+                    <button type="object"
+                        name="action_view_delivery"
+                        class="oe_stat_button"
+                        icon="fa-truck"
+                        attrs="{'invisible': [('invoice_status', '!=', 'invoiced')]}" groups="base.group_user">
+                        <field name="delivery_count" widget="statinfo" string="Delivery"/>
+                    </button>
+                </xpath>
+<!--                <xpath expr="//button[@name='action_cancel']" position="attributes">-->
+<!--                    <attribute name="groups">__export__.res_groups_105_5159c8d3,sales_team.group_sale_manager,wave2_peg_africa.gh_finance_controller,-->
+<!--                    wave2_peg_africa.gh_finance_manager,wave2_peg_africa.gh_fp_and_a,wave2_peg_africa.gh_group_supply_chain_director,-->
+<!--                    wave2_peg_africa.gh_inventory_manager,wave2_peg_africa.gh_group_supply_chain_director</attribute>-->
+<!--                </xpath>-->
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="paygops_id" options="{'no_create': True, 'no_quick_create': True, 'no_create_edit':True}"/>
+                </xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="replace">
+                    <field name="payment_term_id" options="{'no_create': True}" attrs="{'readonly': [('state', 'in', ('sale', 'done'))]}"/>
+                </xpath>
+                <xpath expr="//field[@name='paygops_id']" position="after">
+                    <field name="contract_status" readonly="1"/>
+                    <field name="deposit_invoice_fully_paid" readonly="1"/>
+                    <field name="stock_action" readonly="1"/>
+                    <field name="written_off_flag" />
+                </xpath>
+                <xpath expr="//button[@name='action_view_delivery']" position="before">
+                    <button name="calculate_status" string="Calculate status" type="object" class="oe_highlight"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="account.action_account_confirm_payments" model="ir.actions.server">
+            <field name="code">
+                for rec in records:
+                    rec.confirm()
+            </field>
+        </record>
+
+        <record id="action_account_post_payments" model="ir.actions.server">
+            <field name="name">Post Payments</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="model_id" ref="account.model_account_payment"/>
+            <field name="binding_model_id" ref="account.model_account_payment"/>
+            <field name="code">
+                for rec in records:
+                    rec.post()
+            </field>
+        </record>
+    </data>
+</odoo>

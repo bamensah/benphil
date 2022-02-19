@@ -1,0 +1,68 @@
+<odoo>
+    <data>
+        <menuitem
+            id="helpdesk_ticket_config_interaction_tags_menu"
+            name="Interaction Tags"
+            parent="helpdesk.helpdesk_menu_config"
+            action="helpdesk_ticket_interaction_tag_action"
+            sequence="13"
+        />
+<!--                groups='__export__.res_groups_98_1ebb9fae'-->
+        <menuitem
+            id="helpdesk_ticket_config_subtags_menu"
+            name="Interaction Sub-Tags"
+            parent="helpdesk.helpdesk_menu_config"
+            action="helpdesk_ticket_subtag_action_view"
+            sequence="14"
+        />
+
+        <menuitem
+            id="helpdesk_ticket_config_interaction_outcome_menu"
+            name="Outcome of interaction"
+            parent="helpdesk.helpdesk_menu_config"
+            action="helpdesk_ticket_interaction_outcome_action"
+            sequence="15"
+        />
+
+        <menuitem
+            id="helpdesk_ticket_config_interaction_why_menu"
+            name="Why ?"
+            parent="helpdesk.helpdesk_menu_config"
+            action="helpdesk_ticket_interaction_why_action"
+            sequence="16"
+        />
+
+        <menuitem
+            id="helpdesk_ticket_config_interaction_followup_menu"
+            name="Follow-up actions"
+            parent="helpdesk.helpdesk_menu_config"
+            action="helpdesk_ticket_interaction_followup_action"
+            sequence="17"
+        />
+
+        <menuitem
+            id="helpdesk_config_subteam_menu"
+            name="Helpdesk Sub-Teams"
+            parent="helpdesk.helpdesk_menu_config"
+            action="helpdesk_subteam_action_view"
+            sequence="0"
+        />
+
+        <menuitem
+            id="helpdesk_ticket_interaction_initiation_channel_menu"
+            name="Initiation Channels"
+            parent="helpdesk.helpdesk_menu_config"
+            action="helpdesk_ticket_interaction_initiation_channel_action"
+            sequence="11"
+        />
+
+        <menuitem
+            id="helpdesk_ticket_interaction_tool_menu"
+            name="Interaction Tools"
+            parent="helpdesk.helpdesk_menu_config"
+            action="helpdesk_ticket_interaction_tool_action"
+            sequence="12"
+        />
+
+    </data>
+</odoo>

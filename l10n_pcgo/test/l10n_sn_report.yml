@@ -1,0 +1,21 @@
+-
+  In order to test the PDF reports defined on a l10n_sn, we will print an Account Move Line Report for l10n_sn
+-
+  !python {model: account.move.line, id: False}: |
+    import os
+    import odoo.report
+    from odoo import tools
+    data, format = odoo.report.render_report(self.env.cr, self.env.uid, [], 'l10n_sn.report_l10nsnbilan', {'model':'account.move.line', 'form':{'fiscalyear_id': ref('account.data_fiscalyear')}}, {})
+    if tools.config['test_report_directory']:
+        file(os.path.join(tools.config['test_report_directory'], 'l10n_sn-bilan_report.'+format), 'wb+').write(data)
+
+-
+  In order to test the PDF reports defined on a l10n_sn, we will print a Compute Resultant Report for l10n_sn
+-
+  !python {model: account.move.line}: |
+    import os
+    import odoo.report
+    from odoo import tools
+    data, format = odoo.report.render_report(self.env.cr, self.env.uid, [], 'l10n_sn.report_l10nsnresultat', {'model':'account.move.line', 'form':{'fiscalyear_id': ref('account.data_fiscalyear')}}, {})
+    if tools.config['test_report_directory']:
+        file(os.path.join(tools.config['test_report_directory'], 'l10n_sn-compute_resultant_report.'+format), 'wb+').write(data)

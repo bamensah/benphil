@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data>
+        <record id="hr_salary_rule_list_inherit_sequence_stud" model="ir.ui.view">
+            <field name="name">hr.salary.rule.list.view</field>
+            <field name="model">hr.salary.rule</field>
+            <field name="inherit_id" ref="hr_payroll.hr_salary_rule_list"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='code']" position="after">
+                    <xpath expr="//field[@name='sequence']" position="move"/>
+                </xpath>
+                <xpath expr="//field[@name='sequence']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="invisible"></attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+<!--Odoo Studio: hr.salary.rule.list customization-->

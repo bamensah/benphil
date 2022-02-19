@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data>
+        <!-- commented thid field in peg_dev_module -->
+        <!-- <record id="stock_picking_form_inherit_view_inherit_stud" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field ref="peg_dev_module.stock_picking_form_inherit_view" name="inherit_id"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_template_id']" position="attributes">
+                    <attribute name="domain">[["active","=",True]]</attribute>
+                </xpath>
+            </field>
+        </record> -->
+
+        <record id="view_picking_form_inherit_attrs_stud" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field ref="stock.view_picking_form" name="inherit_id"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='button_scrap']" position="after">
+                    <button name="action_custom_cancel" type="object" string="Cancel" states="done" groups="stock_picking_cancel_extention.group_stock_picking_cancel"/>
+                    <button name="action_draft" type="object" string="Set to Draft" states="cancel" groups="stock_picking_cancel_extention.group_stock_picking_cancel"/>
+                </xpath>
+                <xpath expr="//form[1]/sheet[1]/div[2]/h1[1]/field[@name='name']" position="attributes">
+                    <attribute name="attrs">{"invisible": [["name","=","/"]]}</attribute>
+                    <attribute name="readonly"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="attrs">{"readonly": [["state","=","done"]]}</attribute>
+                </xpath>
+                <!--commented thid field in peg_dev_module inheritedin uper view-->
+                <!-- <xpath expr="//field[@name='product_template_id']" position="attributes">
+                    <attribute name="domain">[["templ_active","=",True]]</attribute>
+                </xpath> -->
+                <xpath expr="//field[@name='move_line_ids_without_package']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="force_save">True</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_stock_move_line_detailed_operation_tree_inherit_qty_attrs_stud" model="ir.ui.view">
+            <field name="name">stock.move.line.operations.tree</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_stock_move_line_detailed_operation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_uom_qty']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="readonly"/>
+                </xpath>
+            </field>
+        </record>
+        <!--Odoo Studio: stock.picking.form customization-->
+
+        <record id="vpicktree_inherit_attrs_stud" model="ir.ui.view">
+            <field name="name">stock.picking.tree</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree[1]/field[@name='name']" position="before">
+                    <field name="id"/>
+                </xpath>
+                <xpath expr="//field[@name='scheduled_date']" position="attributes">
+                    <attribute name="invisible"/>
+                    <attribute name="attrs">{}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='scheduled_date']" position="after">
+                    <field name="date_done"/>
+                </xpath>
+            </field>
+        </record>
+        <!--Odoo Studio: stock.picking.tree customization-->
+    </data>
+</odoo>

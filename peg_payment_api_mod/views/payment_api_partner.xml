@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="action_payment_api_partner_act_window" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Payment API Partner</field>
+            <field name="res_model">payment_api_partner</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="payment_api_partner_tree_view" model="ir.ui.view">
+            <field name="name">Payment API Partners View</field>
+            <field name="model">payment_api_partner</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <field name="name" />
+                <field name="account_journal_id" />
+            </field>
+        </record>
+
+        <record id="payment_api_partner_form_view" model="ir.ui.view">
+            <field name="name">payment_api_partner.form_view</field>
+            <field name="model">payment_api_partner</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Payment API Partner">
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="username" />
+                            <field name="account_journal_id" />
+                            <field name="company_id" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="payment_api_partner_search_view" model="ir.ui.view">
+            <field name="name">view.payment_api_partner.search</field>
+            <field name="model">payment_api_partner</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <field name="name" />
+                <field name="username" />
+                <field name="account_journal_id" />
+                <field name="company_id" />
+            </field>
+        </record>
+
+        <menuitem id="payment_api_partner_menu" name="Payment API Partners" action="action_payment_api_partner_act_window" parent="account.menu_finance_configuration" sequence="10" />
+
+
+    </data>
+
+
+</odoo>

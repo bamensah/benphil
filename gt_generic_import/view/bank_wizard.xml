@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="import_bank_ac_form" model="ir.ui.view">
+            <field name="name">import_bank_ac_form</field>
+            <field name="model">bank.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Bank Account">
+                    <group>
+                        <group>
+                            <field name="select_file" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <group>
+                            <field name="state" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <h5 style="color:red">Operation performed when record not found? (only for partners)</h5>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="option"  widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <group col="2">
+                            <field name="data_file" filename="name" required="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="Import_Bank_AC" string="Import" type="object"  class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_import_bank_ac_form" model="ir.actions.act_window">
+            <field name="name">Import Bank Statement</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bank.wizard</field>
+       <!--      <field name="view_type">form</field> -->
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+
+        <menuitem id="import_bank_statement_file_main_menu" name="Bank Statement" action="account.action_view_bank_statement_tree" parent="account.menu_finance_configuration"/>
+
+        <menuitem id="import_bank_statement_file" name="Import Bank Statement" action="action_import_bank_ac_form" parent="account.menu_finance_configuration"/>
+       
+        <record id="import_bank_ac_lines_form" model="ir.ui.view">
+            <field name="name">import_bank_ac_line_form</field>
+            <field name="model">bank.line.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Bank Lines">
+                    <group>
+                        <group>
+                            <field name="select_file" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <group>
+                            <field name="data_file" filename="name" required="1"/>
+                        </group>
+                    </group>
+                   
+                    <footer>
+                        <button name="Import_Bank_Lines" string="Import" type="object"  class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_import_bank_ac_lines_form" model="ir.actions.act_window">
+            <field name="name">Import Bank Statement</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bank.line.wizard</field>
+       <!--      <field name="view_type">form</field> -->
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+
+       <record id="view_import_bank_stat_line_button" model="ir.ui.view">
+            <field name="name">import.account.bank.statement.button</field>
+            <field name="model">account.bank.statement</field>
+            <field name="inherit_id" ref="account.view_bank_statement_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/header/button[@name='button_reopen']" position="after">
+                    <button name="%(action_import_bank_ac_lines_form)d" type="action" string="Add Lines" class="oe_highlight"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

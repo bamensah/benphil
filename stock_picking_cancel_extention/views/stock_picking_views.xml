@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field eval="12" name="priority"/>
+        <field name="arch" type="xml">
+            <button name="button_scrap" position="after">
+                <button name="action_custom_cancel"
+                        type="object"
+                        string="Cancel"
+                        states="done"
+                        groups="stock_picking_cancel_extention.group_stock_picking_cancel"/>
+                <button name="action_draft"
+                        type="object"
+                        string="Set to Draft"
+                        states="cancel"
+                        groups="stock_picking_cancel_extention.group_stock_picking_cancel"/>
+            </button>
+        </field>
+    </record>
+
+</odoo>

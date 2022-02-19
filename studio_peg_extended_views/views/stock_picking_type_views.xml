@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data>
+        <!--<record model="ir.ui.view" id="view_picking_type_form">
+            <field name="name">Operation Types</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.view_picking_type_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='barcode']" position="after">
+                    <field name="x_studio_field_oS0P2"/>
+                </xpath>
+            </field>
+        </record>--><!--thid field is defined on customization module-->
+        <!--Odoo Studio: Operation Types customization-->
+        <!--studio_customization.odoo_studio_operatio_bdf88fc9-516d-4407-ac34-3679237339b7-->
+
+        <record model="ir.ui.view" id="view_picking_type_tree_inherit_id_stud">
+            <field name="name">Operation types</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.view_picking_type_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='sequence']" position="after">
+                    <field name="id"/>
+                </xpath>
+            </field>
+        </record>
+        <!--studio_customization.odoo_studio_operatio_9ddf8c8c-bbb7-4919-84f5-1366a71370ed-->
+    </data>
+</odoo>

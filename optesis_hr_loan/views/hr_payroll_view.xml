@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record id="hr_payslip_form_inherit_view" model="ir.ui.view">
+			<field name="name">hr.payslip.inherit.form</field>
+			<field name="model">hr.payslip</field>
+			<field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+			<field name="arch" type="xml">
+				  <notebook>
+					 <page string="Prêts">
+						<field name="loan_ids">
+							<tree string="Prêts">
+								<field name="loan_id" string="Ref. Prêt"/>
+								<field name="loan_type" string="Type de prêt"/>
+								<field name="paid_date" string="Date de paiement"/>
+								<field name="paid_amount" string="Montant à payer"/>
+								<field name="paid" string="Payé"/>
+								<field name="notes"/>
+								<!--button name="action_paid_amount" icon="gtk-execute" string="Pay Amount" type="object"/-->
+							</tree>
+						</field>
+						<group class="oe_subtotal_footer oe_right">
+							<field name="total_loan_amount_paid" string="Total Prêt"/>
+						</group>
+					 </page>
+				</notebook>
+			</field>
+		</record>
+	</data>
+</odoo>

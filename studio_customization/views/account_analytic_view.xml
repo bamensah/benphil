@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_account_analytic_account_form_inherit" model="ir.ui.view">
+            <field name="name">account.analytic.account.form.inherit</field>
+            <field name="model">account.analytic.account</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+            <field name="arch" type="xml">
+<!--                <field name="partner_id" position="after">-->
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="type"/>
+                    <field name="pays"/>
+                    <field name="field_7poS3" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_account_analytic_account_list_inherit_type_pays" model="ir.ui.view">
+            <field name="name">account.analytic.account.tree.inherit.typepays</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_list"/>
+            <field name="arch" type="xml">
+<!--                <field name="partner_id" position="after">-->
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="type"/>
+                    <field name="pays"/>
+                    <field name="group_id"/>
+                    <field name="parent_id"/>
+                    <field name="field_7poS3" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+         <record id="view_account_analytic_line_form_inherit" model="ir.ui.view">
+            <field name="name">account.analytic.account.line.form.inherit</field>
+            <field name="model">account.analytic.line</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_line_form"/>
+            <field name="arch" type="xml">
+                <field name="account_id" position="after">
+                    <field name="dpartement"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_contact_relationships_all_user,access_contact_relationships_all_user,model_contact_relationship,base.group_user,1,0,0,0
+access_contact_relationships_admin_user,access_contact_relationships_admin_user,model_contact_relationship,base.group_partner_manager,1,1,1,1
+access_partner_contacts_all_user,access_partner_contacts_all_user,model_res_partner_contacts,base.group_user,1,1,1,0
+access_partner_contacts_admin_user,access_partner_contacts_admin_user,model_res_partner_contacts,base.group_partner_manager,1,1,1,1

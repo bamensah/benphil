@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data>
+        <record id="view_account_analytic_account_form_inherit_custom_fld_sud" model="ir.ui.view">
+            <field name="name">account.analytic.account.form.view</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="type" string="Type" help="Normal=compte sur lequel on peut écrire ; Vue=compte de regroupement" attrs="{}" required="1"/>
+                    <field name="pays" string="Pays" attrs="{}" required="1"/>
+                </xpath>
+                <!--x studio field is not the model-->
+            </field>
+        </record>
+    </data>
+</odoo>
+
+<!--Odoo Studio: analytic.analytic.account.form customization-->

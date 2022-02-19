@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <data>
+
+        <record id="hr_contract_bonus_form_inherit" model="ir.ui.view">
+            <field name="name">hr.contract.view.bonus.form.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+               <xpath expr="//page[@name='information']" position="after">
+                <page name="bonus" string="Elements variables" groups="optipay.optipay_group_manager">
+                    <field name="bonus" context="{'default_contract_id':id,'default_employee_id':employee_id}"/>
+                    <group class="oe_subtotal_footer oe_right" colspan="2" name="bonus_total">
+                        <field name="total_bonus" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    </group>
+                </page>
+                <page string="Congés" groups="optipay.optipay_group_manager">
+                  <group string="Initialisation" invisible="1">
+                    <group>
+                      <field name="cumul_jour"/>
+                    </group>
+                    <group>
+                      <field name="cumul_conges"/>
+                    </group>
+                  </group>
+                  <group string="Nombre de jours aquis et nombre de jours pris">
+                    <group>
+                      <field name="nbj_aquis" readonly="True"/>
+                    </group>
+                    <group>
+                      <field name="nbj_sup" readonly="True"/>
+                    </group>
+                    <group>
+                      <label for="nbj_pris" string="Nombre jours pris" readonly="True"/>
+                      <div>
+                        <field name="nbj_pris" class="oe_inline" readonly="True"/> Jours
+                      </div>
+                    </group>
+                  </group>
+                  <group string="Calcul allocation congés">
+                    <group>
+                      <field name="cumul_mensuel" readonly="True"/>
+                      <field name="cumul_provision_fin_contrat" invisible="True"/>
+                      <field name="last_date" invisible="True"/>
+                    </group>
+                    <group>
+                      <field name="alloc_conges"/>
+                    </group>
+                  </group>
+                  <group>
+                    <group>
+                      <label for="nb_days"/>
+                      <div><field name="nb_days" class="oe_inline"/> Jours </div>
+                    </group>
+                  </group>
+              </page>
+              <page string="Suivi congès payés" groups="optipay.optipay_group_manager">
+                <field name="holidays_tracking">
+                  <tree editable="bottom">
+                    <field name="date_from" attrs="{'readonly':[('state','!=','draft')]}"/>
+                    <field name="date_to" attrs="{'readonly':[('state','!=','draft')]}"/>
+                    <field name="number_of_days" attrs="{'readonly':[('state','!=','draft')]}"/>
+                    <field name="state"/>
+                  </tree>
+                </field>
+                <field name="year_extra_day_anciennete" invisible="True"/>
+              </page>
+            </xpath>
+
+            <field name="wage" position="before">
+              <field name="convention_id" groups="optipay.optipay_group_manager"/>
+            </field>
+
+            <xpath expr="//page[@name='other']/group" position="inside">
+              <field name="motif"/>
+              <field name="dateAnciennete" required="1"/>
+            </xpath>
+
+            <xpath expr="//form/sheet/group/group/field[1]" position="before">
+              <field name="typeContract" required="1"/>
+            </xpath>
+
+          </field>
+        </record>
+
+        <record id="employee_bonus__details_form" model="ir.ui.view">
+            <field name="name">Employee Bonus</field>
+            <field name="model">hr.employee.bonus</field>
+            <field name="arch" type="xml">
+                <form string="Employee bonus">
+
+                    <sheet>
+                        <group>
+                            <group>
+                                <!--<field name="name"/>-->
+                                <field name="employee_id"/>
+                                <field name="salary_rule" />
+                                <label for="date_from" string="Policy Period"/>
+                          			<div>
+                          				<field name="date_from" class="oe_inline" on_change="1" />
+                          				  -
+                          				<field name="date_to" class="oe_inline" on_change="1" />
+                          			</div>
+                            </group>
+                            <group>
+                                <field name="amount"/>
+                                <field name="company_id"/>
+                                <field name="contract_id"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="employee_bonus__details_tree" model="ir.ui.view">
+            <field name="name">Employee Bonus</field>
+            <field name="model">hr.employee.bonus</field>
+            <field name="arch" type="xml">
+                <tree string="Employee Bonus">
+                    <!--<field name="name"/>-->
+                     <field name="salary_rule"/>
+                    <field name="date_from" />
+				            <field name="date_to"/>
+                    <field name="amount"/>
+                    <field name="company_id"/>
+                    <!--<field name="contract_id"/>-->
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_payslip_run_form_inherit_batch_pay" model="ir.ui.view">
+        <field name="name">hr.payslip.run.form.inherit.batch.pay</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//header" position="inside">
+                        <button name="validate_payslip" type="object" string="Valider" states="draft" class="oe_highlight"/>
+                        <button name="pay_payslip" type="object" string="Confirmer" states="validate" class="oe_highlight"/>
+                </xpath>
+            </data>
+            </field>
+        </record>
+
+    <record id="hr_employee_form_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="priority">30</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+
+          <xpath expr="//notebook/page[@name='personal_information']/group/group/field[@name='identification_id']" position="replace">
+            <field name="matricule_cnss" />
+            <field name="ipres"/>
+            <field name="mutuelle"/>
+            <field name="identification_id"/>
+          </xpath>
+
+          <xpath expr="//notebook/page[@name='personal_information']/group/group/field[@name='bank_account_id']" position="after">
+            <field name="num_chezemployeur" string="Numéro chez l'employeur"/>
+          </xpath>
+
+          <xpath expr="//notebook/page[@name='personal_information']/group/group/field[@name='country_id']" position="attributes">
+              <attribute name="required">True</attribute>
+          </xpath>
+
+        </field>
+    </record>
+
+    <record id="hr_employee_form_inherit_bis" model="ir.ui.view">
+      <field name="name">hr.employee.form.inherit.bis</field>
+      <field name="model">hr.employee</field>
+      <field name="priority">30</field>
+      <field name="inherit_id" ref="hr.view_employee_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//notebook[last()]" position="inside">
+          <page string="Famille" name="famille" groups="optipay.optipay_group_manager">
+            <group colspan="2" col="2">
+              <group>
+                <field name="ir"/>
+              </group>
+              <group>
+                <field name="trimf"/>
+              </group>
+              <group>
+              </group>
+            </group>
+            <group>
+              <field name="relation_ids">
+                <tree editable="bottom">
+                  <field name="type"/>
+                  <field name="nom"/>
+                  <field name="prenom"/>
+                  <field name="birth" attrs="{'required':[('type','==','enfant')]}"/>
+                  <field name="date_mariage" attrs="{'required':[('type','==','conjoint')]}"/>
+                  <field name="salari"/>
+                </tree>
+              </field>
+            </group>
+          </page>
+          <page string='Jours Travaillés' groups="optipay.optipay_group_manager">
+            <group>
+              <field name="worked_days_per_years" readonly="True">
+                <tree>
+                  <field name="year"/>
+                  <field name="worked_days"/>
+                </tree>
+              </field>
+            </group>
+          </page>
+        </xpath>
+      </field>
+    </record>
+
+    <!-- affiche amount par defaut -->
+    <record id="view_hr_payslip_line_pivot" model="ir.ui.view">
+       <field name="name">hr.payslip.line.pivot</field>
+       <field name="model">hr.payslip.line</field>
+       <field name="arch" type="xml">
+           <pivot string="Lignes de paie" >
+               <field name="total" type="measure"/>
+           </pivot>
+       </field>
+    </record>
+
+    <record id="hr_payslip_form_inherit" model="ir.ui.view">
+        <field name="name">hr.payslip.form.inherit</field>
+        <field name="model">hr.payslip</field>
+        <field name="priority">30</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+        <field name="arch" type="xml">
+
+          <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='number_of_hours']" position="attributes">
+            <attribute name="groups">base.group_system</attribute>
+          </xpath>
+
+          <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='contract_id']" position="attributes">
+            <attribute name="groups">base.group_system</attribute>
+          </xpath>
+
+          <xpath expr="//form/sheet/notebook/page/field[2]/tree/field[@name='contract_id']" position="attributes">
+            <attribute name="groups">base.group_system</attribute>
+          </xpath>
+
+          <xpath expr="//form/header/button[1]" position="attributes">
+            <attribute name="states">validate</attribute>
+          </xpath>
+
+          <xpath expr="//form/header/field[1]" position="attributes">
+            <attribute name="statusbar_visible">draft,validate,confirm</attribute>
+          </xpath>
+
+          <xpath expr="//form/header/button[@name='action_payslip_done']" position="after">
+            <button string="Valider" name="action_payslip_validate" states="draft" type="object" class="oe_highlight"/>
+          </xpath>
+
+          <xpath expr="//form/header/button[@name='action_payslip_done']" position="replace">
+            <button string="Clôturer" name="action_payslip_done" states="validate" type="object" class="oe_highlight"/>
+          </xpath>
+
+          <xpath expr="//form/header/button[@name='action_payslip_cancel']" position="after">
+            <button string="Net Simulation" name="%(action_payslip_simulation)d" states="draft" type="action"/>
+          </xpath>
+          
+        </field>
+    </record>
+
+    <record id="view_payslip_form_inherit_nb_par_of_payslip" model="ir.ui.view">
+      <field name="name">hr.payslip.form.inherit.for.nb_par_of_payslip</field>
+        <field name="model">hr.payslip</field>
+          <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+          <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+              <field name="nb_part_of_payslip" invisible="True"/>
+              <field name="payslip_count_yearly" invisible="True"/>
+              <field name="year" invisible="True"/>
+              <field name="holiday_of_payslip" invisible="True"/>
+            </xpath>
+      </field>
+    </record>
+
+    <!--apply domain in hr payslip line-->
+    <record id="hr_payroll_payslip_line_company" model="ir.rule">
+        <field name="name">Payslips line of my Company</field>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip_line"/>
+        <field eval="False" name="global"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+    </record>
+
+  </data>
+</odoo>

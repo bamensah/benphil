@@ -1,0 +1,43 @@
+.o_home_menu_background {
+    background: url(/web_enterprise/static/src/img/home-menu-bg-overlay.svg), linear-gradient(to right bottom, #F38F1E, #E91C24);
+    background-size: cover;
+}
+
+.o_main_navbar {
+    position: relative;
+    height: 46px;
+    border-bottom: 1px solid #F28E1E !important; 
+    background-color: #F28E1E !important;
+    color: white;
+}
+
+.o_loading {
+    background-color: #F28E1E !important;
+    color: white;
+}
+
+.datepicker .table-sm > thead > tr:first-child th:hover{
+    color: white; 
+    background-color: #E91C24 !important;
+}
+
+.o_main_navbar > ul > li > label:hover{
+    background-color: #E91C24 !important;
+}
+
+.o_main_navbar > ul > li.o_extra_menu_items.show > ul > li > a.dropdown-toggle {
+    background-color: #fab362 !important;
+    pointer-events: none;
+}
+
+.o_main_navbar .show .dropdown-toggle {
+    background-color: #E91C24 !important;
+}
+
+.o_main_navbar > ul > li > a:hover, .o_main_navbar > ul > li > label:hover {
+    background-color: #E91C24 !important;
+}
+
+.o_main_navbar > a:hover, .o_main_navbar > a:focus, .o_main_navbar > button:hover, .o_main_navbar > button:focus {
+    background-color: #E91C24 !important;
+}

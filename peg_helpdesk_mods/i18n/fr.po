@@ -1,0 +1,174 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* peg_helpdesk_mods
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e-20181005\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-06 23:07+0000\n"
+"PO-Revision-Date: 2020-04-07 10:17+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr\n"
+"X-Generator: Poedit 2.2.3\n"
+
+#. module: peg_helpdesk_mods
+#: model:ir.actions.act_window,name:peg_helpdesk_mods.helpdesk_ticket_subtag
+#: model:ir.ui.menu,name:peg_helpdesk_mods.helpdesk_ticket_config_subtags_menu
+msgid "Interaction Sub-Tags"
+msgstr "Sous-Étiquettes d'Interactions"
+
+#. module: peg_helpdesk_mods
+#: model:ir.actions.act_window,name:peg_helpdesk_mods.helpdesk_ticket_interaction_tag_action
+#: model:ir.ui.menu,name:peg_helpdesk_mods.helpdesk_ticket_config_interaction_tags_menu
+msgid "Interaction Tags"
+msgstr "Étiquettes d'Interactions"
+
+#. module: peg_helpdesk_mods
+#: model:ir.actions.act_window,name:peg_helpdesk_mods.helpdesk_ticket_interaction_outcome_action
+#: model:ir.ui.menu,name:peg_helpdesk_mods.helpdesk_ticket_config_interaction_outcome_menu
+msgid "Outcome of interaction"
+msgstr "Résultats de l'interaction"
+
+#. module: peg_helpdesk_mods
+#: model:ir.actions.act_window,name:peg_helpdesk_mods.helpdesk_ticket_interaction_why_action
+#: model:ir.ui.menu,name:peg_helpdesk_mods.helpdesk_ticket_config_interaction_why_menu
+msgid "Why ?"
+msgstr "Pourquoi ?"
+
+#. module: peg_helpdesk_mods
+#: model:ir.actions.act_window,name:peg_helpdesk_mods.helpdesk_ticket_interaction_followup_action
+#: model:ir.ui.menu,name:peg_helpdesk_mods.helpdesk_ticket_config_interaction_followup_menu
+msgid "Follow-up actions"
+msgstr "Actions de suivi"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_ticket_interaction_tag__ticket_type_id
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_interaction_tag_view_tree
+msgid "Ticket Type"
+msgstr "Type de ticket"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_ticket_subtag__company_id
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_interaction_subtag_action_view_tree
+msgid "Company"
+msgstr "Société"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_ticket_interaction_tag__name
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_interaction_tag_view_tree
+msgid "Name"
+msgstr "Nom"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_ticket_subtag__name
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_interaction_subtag_action_view_tree
+msgid "Name"
+msgstr "Nom"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_ticket_subtag__interaction_tag_id
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_interaction_subtag_action_view_tree
+msgid "Interaction Tag"
+msgstr "Étiquette d'Interaction"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_ticket_interaction_outcome__ticket_type_id
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_interaction_outcome_view_tree
+msgid "Ticket Type"
+msgstr "Type de ticket"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_ticket_interaction_outcome__name
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_interaction_outcome_view_tree
+msgid "Name"
+msgstr "Nom"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_ticket_interaction_why__outcome_interaction_id
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_interaction_why_view_tree
+msgid "Outcome of interaction"
+msgstr "Résultat de l'interaction"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_ticket_interaction_why__name
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_interaction_why_view_tree
+msgid "Name"
+msgstr "Nom"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_ticket_interaction_followup_action__why_id
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_interaction_followup_action_view_tree
+msgid "Why ?"
+msgstr "Pourquoi ?"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_ticket_interaction_followup_action__name
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_interaction_followup_action_view_tree
+msgid "Name"
+msgstr "Nom"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_interaction_entry_wizard__subtag_ids
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_ticket_interaction_entry_wizard_form
+msgid "Interaction Sub-Tags"
+msgstr "Sous-Étiquettes d'Interactions"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_interaction_entry_wizard__interaction_tag_ids
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_ticket_interaction_entry_wizard_form
+msgid "Interaction Tags"
+msgstr "Étiquettes d'Interactions"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_interaction_entry_wizard__outcome_interaction_id
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_ticket_interaction_entry_wizard_form
+msgid "Outcome of interaction"
+msgstr "Résultat de l'interaction"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_interaction_entry_wizard__why_id
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_ticket_interaction_entry_wizard_form
+msgid "Why ?"
+msgstr "Pourquoi ?"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_interaction_entry_wizard__followup_action_id
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_ticket_interaction_entry_wizard_form
+msgid "Follow-up action"
+msgstr "Action de suivi"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_ticket_interaction__subtag_ids
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_ticket_view_form_inherited
+msgid "Interaction Sub-Tags"
+msgstr "Sous-Étiquettes d'Interactions"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_ticket_interaction__interaction_tag_ids
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_ticket_view_form_inherited
+msgid "Interaction Tags"
+msgstr "Étiquettes d'Interactions"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_ticket_interaction__outcome_interaction_id
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_ticket_view_form_inherited
+msgid "Outcome of interaction"
+msgstr "Résultat de l'interaction"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_ticket_interaction__why_id
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_ticket_view_form_inherited
+msgid "Why ?"
+msgstr "Pourquoi ?"
+
+#. module: peg_helpdesk_mods
+#: model:ir.model.fields,field_description:peg_helpdesk_mods.field_helpdesk_ticket_interaction__followup_action_id
+#: model_terms:ir.ui.view,arch_db:peg_helpdesk_mods.helpdesk_ticket_view_form_inherited
+msgid "Follow-up action"
+msgstr "Action de suivi"
